@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "hydrogen-js-sdk": "^1.7.0",
+    "mockjs": "^1.0.1-beta3",
     "mpvue": "^2.0.0",
     "vuex": "^3.0.1"
   },

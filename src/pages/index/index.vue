@@ -3,11 +3,14 @@
 
     <button @click="djtest">bmob测试</button>
 
+    <button @click="testdata">随机数据</button>
+
 
   </div>
 </template>
 
 <script>
+  import * as mock from '@/common/mockdata/index.js'
 
   export default {
     data () {
@@ -17,6 +20,13 @@
     } ,
 
     methods : {
+      testdata () {
+        // let arr1 = mock.gethelpproduct( 10 );
+        let arr = mock.gethelpproduct( 2 );
+
+        console.log( arr )
+        // console.log( arr1 )
+      } ,
       djtest () {
         const query = this.$Bmob.Query( this.tableName );
 
