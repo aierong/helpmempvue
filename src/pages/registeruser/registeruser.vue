@@ -14,10 +14,12 @@
     <van-field :value="pwd"
                label="密码"
                @change="pwdChange"
+               type="password"
                placeholder="请输入密码"/>
     <van-field :value="pwd2"
                label="再次密码"
                @change="pwd2Change"
+               type="password"
                placeholder="请输入密码"/>
     <button type="primary"
             @click="reg">注册
@@ -42,13 +44,58 @@
     //方法
     methods : {
       reg () {
+        if ( !this.userid ) {
+          // this.$toast( "请输入手机号码" )
+          wx.showToast( {
+            title : '请输入手机号码' , //提示的内容,
+            duration : 2000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+
+          } );
+
+          return;
+        }
+
+        if ( !this.pwd ) {
+          // this.$toast( "请输入密码" )
+
+          wx.showToast( {
+            title : '请输入密码' , //提示的内容,
+            duration : 2000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+
+          } );
+          return;
+        }
+
+        if ( this.pwd != this.pwd2 ) {
+          wx.showToast( {
+            title : '2次密码不一致' , //提示的内容,
+            duration : 2000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+
+          } );
+          return;
+        }
+
+        if ( this.userid.length != 11 ) {
+          wx.showToast( {
+            title : '手机号码长度不正确' , //提示的内容,
+            duration : 2000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+
+          } );
+          return;
+        }
+
+
 
       } ,
       backpage () {
-
+        wx.navigateBack()
       } ,
       useridChange ( event ) {
-        //
+
         this.userid = event.mp.detail
       } ,
       pwdChange ( event ) {
