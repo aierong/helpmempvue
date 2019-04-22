@@ -7,7 +7,7 @@
 <template>
 
   <div>
-    用户注册
+    帮助我，填写单据
   </div>
 
 </template>
@@ -15,7 +15,7 @@
 <!-- js脚本代码片段 -->
 <script>
   export default {
-    name : "registeruser" ,
+    name : "helpmeadd" ,
     //数据模型
     data () {
       return {
@@ -45,6 +45,6 @@
 
 <!-- 样式代码片段  scoped -->
 <style scoped
-       src="./registeruser.css">
+       src="./helpmeadd.css">
 
 </style>
