@@ -102,7 +102,7 @@
         //调用 api
         // 成功 写入本地存储 写入vuex  页面跳转
         userapi.login( userid , pwd ).then( ( res ) => {
-          console.log( 'res' , res )
+          // console.log( 'res' , res )
           if ( res != null && res.isok ) {
             //登录成功
             var now = new Date();
