@@ -1,11 +1,11 @@
 <template>
   <div>
-
+    <van-nav-bar right-text="注册"
+                 @clickright="onClickRight"/>
     <!--    <button @click="djtest">bmob测试</button>-->
 
     <!--    <button @click="testdata">随机数据</button>-->
-    <van-nav-bar right-text="注册"
-                 @clickright="onClickRight"/>
+
     <div v-if="!isvaliduser">
       11
     </div>
