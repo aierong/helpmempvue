@@ -11,16 +11,66 @@
 
 <script>
   // import * as mock from '@/common/mockdata/index.js'
+  import * as constant from '@/common/constant.js'
+
+  import * as userapi from '@/common/BmobApi/users.js'
 
   export default {
     data () {
       return {
-        tableName : 'wxq'
+        //tableName : 'wxq'
+        isvaliduser : false ,
+
       }
     } ,
 
     methods : {
+      getStorageValue () {
+        let StorageValue = wx.getStorageSync( constant.StorageName )
 
+        return StorageValue;
+      } ,
+      setStorageValue ( vals ) {
+        wx.setStorageSync( constant.StorageName , vals )
+      } ,
+      userlogin () {
+        //检查数据有效性
+
+        let userid = "";
+        let pwd = "";
+
+        //调用 api
+        // 成功 写入本地存储 写入vuex  页面跳转
+        userapi.login( userid , pwd ).then( ( res ) => {
+          if ( res != null && res.isok ) {
+            //登录成功
+            var now = new Date();
+            let obj = {
+              userid : userid ,
+              username : res.username ,
+              logintime : now
+            };
+            this.setStorageValue( obj );
+            //分发 action 修改状态
+            this.$store.dispatch( 'SetupUser' , obj )
+
+            // 跳转
+            wx.switchTab( {
+              url : "../me/main"
+            } );
+          }
+          else {
+            wx.showToast( {
+              title : '登录失败' , //提示的内容,
+              duration : 2000 , //延迟时间,
+              mask : true , //显示透明蒙层，防止触摸穿透,
+              success : res => {
+                console.log( res )
+              }
+            } );
+          }
+        } );
+      } ,
       // testdata () {
       //
       //   let arr = mock.gethelpproduct( 2 );
@@ -47,7 +97,41 @@
 
     created () {
       // let app = getApp()
-    }
+    } ,
+    //生命周期(mounted)
+    mounted () {
+      let StorageValue = this.getStorageValue();
+
+      if ( StorageValue ) {
+        // 取到值了
+        console.log( StorageValue )
+
+        //取到值 判断是否过期
+        var now = new Date();
+
+        if ( StorageValue.logintime ) {
+          let validtime = StorageValue.logintime;
+
+          validtime.setDate( validtime.getDate() + constant.validday );
+
+          console.log( 'validtime' , validtime )
+
+          if ( now.getTime() <= validtime.getTime() ) {
+            this.isvaliduser = true;
+          }
+          else {
+            //过期了,需要重新登录
+            this.isvaliduser = false;
+          }
+        }
+      }
+      else {
+        //如果key的值不存在，就会运行这里
+        // console.log( '没有取到数据' )
+
+        this.isvaliduser = false;
+      }
+    } ,
   }
 </script>
 
