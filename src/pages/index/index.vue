@@ -96,18 +96,19 @@
           return;
         }
 
-        let userid = "";
-        let pwd = "";
+        let userid = this.userid;
+        let pwd = this.pwd;
 
         //调用 api
         // 成功 写入本地存储 写入vuex  页面跳转
         userapi.login( userid , pwd ).then( ( res ) => {
+          console.log( 'res' , res )
           if ( res != null && res.isok ) {
             //登录成功
             var now = new Date();
             let userobj = {
               userid : userid ,
-              username : res.username ,
+              username : res.data.username ,
               logintime : now
             };
             this.setStorageValue( userobj );
@@ -115,37 +116,13 @@
             this.SaveVuexAndSwitch( userobj )
           }
           else {
-            wx.showToast( {
-              title : '登录失败' , //提示的内容,
-              duration : 2000 , //延迟时间,
-              mask : true , //显示透明蒙层，防止触摸穿透,
+            Toast.fail( '登录失败' );
 
-            } );
+            return;
           }
         } );
       } ,
-      // testdata () {
-      //
-      //   let arr = mock.gethelpproduct( 2 );
-      //
-      //   console.log( arr )
-      //
-      // } ,
-      // djtest () {
-      //   const query = this.$Bmob.Query( this.tableName );
-      //
-      //   query.equalTo( "id" , ">" , 100 );
-      //   // 对num1字段升序排列
-      //
-      //   // 对num1字段降序排列
-      //   query.order( "-num1" );
-      //
-      //   query.find().then( res => {
-      //     //返回的是数组,没有找到就是空数组
-      //
-      //     console.log( res )
-      //   } );
-      // } ,
+
     } ,
 
     created () {
@@ -154,7 +131,9 @@
     //生命周期(mounted)
     mounted () {
       let StorageValue = this.getStorageValue();
+
       console.log( 'StorageValue' , StorageValue )
+
       if ( StorageValue ) {
         // 取到值了
         console.log( StorageValue )

@@ -71,7 +71,7 @@ export function isexistsuserid ( userid ) {
 export function login ( userid , pwd ) {
   return new Promise( ( resolve , reject ) => {
 
-    const query = Bmob.Query( tableName_users );
+    const query = Bmob.Query( UserTable );
     query.equalTo( "pwd" , "==" , pwd );
     query.equalTo( "userid" , "==" , userid );
 
