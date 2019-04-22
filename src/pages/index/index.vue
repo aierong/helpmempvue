@@ -5,7 +5,9 @@
 
     <!--    <button @click="testdata">随机数据</button>-->
     index
-
+    <div v-if="!isvaliduser">
+      11
+    </div>
   </div>
 </template>
 
