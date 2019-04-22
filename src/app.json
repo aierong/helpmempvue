@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/main",
     "pages/registeruser/main",
-    "pages/helpmeadd/main"
+    "pages/helpmeadd/main",
+    "pages/reply/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

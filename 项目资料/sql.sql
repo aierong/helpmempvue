@@ -16,7 +16,9 @@ itemsname --产品名称
 
 poqty     --订单数量   INT 整型
 
-helppmcmans -- 求助对象  数组
+--helppmcmans        del ***
+
+
     
 helptimes --求助次数
     
@@ -37,6 +39,11 @@ comment --备注 CS求助备注
 
 overdate        --完成时间 
 
+helppmc1          -- 求助对象1  13925520750
+helppmc2          -- 求助对象2  13925520750
+
+helppmcname1      -- 求助对象1  名字
+helppmcname2      -- 求助对象2  名字
 
  
 
