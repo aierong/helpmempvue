@@ -9,19 +9,23 @@
   <div>
     <van-field :value="userid"
                label="手机号"
+               required
                @change="useridChange"
                placeholder="请输入手机号"/>
-    <van-field :value="userid"
-               label="手机号"
-               @change="useridChange"
-               placeholder="请输入手机号"/>
+    <van-field :value="username"
+               label="姓名"
+               required
+               @change="usernameChange"
+               placeholder="请输入姓名"/>
     <van-field :value="pwd"
                label="密码"
+               required
                @change="pwdChange"
                type="password"
                placeholder="请输入密码"/>
     <van-field :value="pwd2"
                label="再次密码"
+               required
                @change="pwd2Change"
                type="password"
                placeholder="请输入密码"/>
@@ -58,7 +62,8 @@
       return {
         userid : '' ,
         pwd : '' ,
-        pwd2 : ''
+        pwd2 : '' ,
+        username : ''
       }
     } ,
     //方法
@@ -67,6 +72,13 @@
         if ( !this.userid ) {
 
           Toast.fail( '请输入手机号码' );
+
+          return;
+        }
+
+        if ( !this.username ) {
+
+          Toast.fail( '请输入姓名' );
 
           return;
         }
@@ -93,9 +105,50 @@
           return;
         }
 
+        ( async () => {
+
+          let result = await userapi.isexistsuserid( this.userid )
+
+          console.log( result )
+
+          if ( result.isexists ) {
+
+            Toast.fail( '手机号码已存在' );
+
+            return
+          }
+          else {
+            let addresult = await userapi.adduser( {
+              userid : this.userid ,
+              username : this.username ,
+              pwd : this.pwd
+            } )
+
+            console.log( 'addresult' , addresult )
+
+            if ( addresult != null ) {
+              Toast.success( '成功' );
+
+              this.backpage();
+
+              return;
+            }
+            else {
+              Toast.fail( '失败' );
+
+              return
+            }
+
+            return
+          }
+        } )()
+
       } ,
       backpage () {
         wx.navigateBack()
+      } ,
+      usernameChange ( event ) {
+        this.username = event.mp.detail
       } ,
       useridChange ( event ) {
 

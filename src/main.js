@@ -8,10 +8,11 @@ Vue.prototype.$store = store
 // 打开 main.js
 import Bmob from "hydrogen-js-sdk";
 // 初始化
-Bmob.initialize( "eca6fbf1ee5ac340179514bb43e8042d" , "9334701aa2c615aceb991ef030f2e7a3" );
+Bmob.initialize( "78f2882af40774e452922d8a97fcad6a" ,
+  "07b65c92aba4eda938c4a6ce8469cc3a" );
 
 // 挂载到全局使用
-Vue.prototype.$Bmob = Bmob
+Vue.prototype.Bmob = Bmob
 
 Vue.config.productionTip = false
 App.mpType = 'app'

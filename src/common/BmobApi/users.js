@@ -11,6 +11,8 @@ export function adduser ( registerUser ) {
 
   return new Promise( ( resolve , reject ) => {
 
+    console.log( 'registerUser' , registerUser )
+
     const query = Bmob.Query( UserTable );
     //这里 设置  列的数据
 
@@ -38,12 +40,14 @@ export function adduser ( registerUser ) {
 //是存在用户id 存在手机号码
 export function isexistsuserid ( userid ) {
   return new Promise( ( resolve , reject ) => {
+    console.log( UserTable )
+
     const query = Bmob.Query( UserTable );
     query.equalTo( "userid" , "==" , userid );
 
     query.find().then( res => {
       //返回的是数组,没有找到就是空数组
-      //console.log( res )
+      console.log( 'res' , res )
 
       if ( res != null && res.length > 0 ) {
         resolve( {
