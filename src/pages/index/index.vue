@@ -11,7 +11,6 @@
 
 <script>
   // import * as mock from '@/common/mockdata/index.js'
-  import * as constant from '@/common/constant.js'
 
   export default {
     data () {
@@ -21,12 +20,7 @@
     } ,
 
     methods : {
-      //退出系统，清除本地存储
-      ExitSystem () {
-        wx.removeStorageSync( constant.StorageName )
 
-
-      } ,
       // testdata () {
       //
       //   let arr = mock.gethelpproduct( 2 );

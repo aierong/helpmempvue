@@ -14,6 +14,8 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as constant from '@/common/constant.js'
+
   export default {
     name : "me" ,
     //数据模型
@@ -24,9 +26,17 @@
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      //退出系统，清除本地存储
+      ExitSystem () {
+        wx.removeStorageSync( constant.StorageName )
+
+        //分发 action 修改状态
+        this.$store.dispatch( 'SetupUser' , null )
+
+        //转向 登录页面
+        const url = "../index/main"
+        wx.navigateTo( { url : url } )
+      } ,
 
     } ,
     //计算属性

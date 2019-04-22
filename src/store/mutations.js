@@ -9,8 +9,4 @@ export default {
     // console.log( state )
   } ,
 
-  // [ decrement ] ( state ) {
-  //   const obj = state
-  //   obj.count -= 1
-  // } ,
 }
