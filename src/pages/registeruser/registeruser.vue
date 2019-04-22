@@ -11,6 +11,10 @@
                label="手机号"
                @change="useridChange"
                placeholder="请输入手机号"/>
+    <van-field :value="userid"
+               label="手机号"
+               @change="useridChange"
+               placeholder="请输入手机号"/>
     <van-field :value="pwd"
                label="密码"
                @change="pwdChange"
@@ -21,10 +25,13 @@
                @change="pwd2Change"
                type="password"
                placeholder="请输入密码"/>
-    <button type="primary"
-            @click="reg">注册
-    </button>
-    <button @click="backpage">返回</button>
+    <van-button size="large"
+                type="primary"
+                @click="reg">注册
+    </van-button>
+    <van-button size="large"
+                @click="backpage">返回
+    </van-button>
 
     <!--
    注意要配一个van-toast,才会显示提示 ,默认id van-toast
@@ -41,6 +48,8 @@
   // 代码中也要引用
   // 注意引用路径
   import Toast from '../../../static/vant/toast/toast';
+
+  import * as userapi from '@/common/BmobApi/users.js'
 
   export default {
     name : "registeruser" ,
