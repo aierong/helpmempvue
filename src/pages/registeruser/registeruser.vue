@@ -42,6 +42,7 @@
 
    -->
     <van-toast id="van-toast"/>
+
   </div>
 
 </template>
@@ -127,9 +128,28 @@
             console.log( 'addresult' , addresult )
 
             if ( addresult != null ) {
-              Toast.success( '成功' );
+              // Toast.success( '成功' );
+              // const message = '成功添加,请登录';
+              //
+              // Dialog.alert( {
+              //   message
+              // } );
 
-              this.backpage();
+              const toast = Toast.loading( {
+                duration : 0 ,
+                forbidClick : true ,
+                loadingType : 'spinner' ,
+                message : '成功'
+              } );
+
+              setInterval( () => {
+
+                //关闭提示
+                Toast.clear();
+
+                this.backpage();
+
+              } , 2000 );
 
               return;
             }
