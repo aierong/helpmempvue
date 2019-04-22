@@ -4,7 +4,7 @@ autokey  自动增长
 userid    录入人
 username  录入人姓名
  
-productno 工程单号
+productno 工程单号  （唯一）
      
 custno 客户编号
     

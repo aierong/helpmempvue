@@ -34,15 +34,13 @@ const gethelpproduct = function ( mockcounts ) {
     let newArticleObject = {
       productno : qz ,
       custno : Random.csentence( i > 10 ? 5 : 6 ) ,
-      title : Random.csentence( 5 ) ,
-      content : Random.cparagraph( 5 , 7 ) ,
-      time : Random.date() + ' ' + Random.time() ,
-      location : Random.city() ,
-      author_name : Random.cname() ,
-      date : Random.date() + ' ' + Random.time() ,
+      pono : Random.csentence( i > 10 ? 5 : 6 ) ,
 
-      // thumbnail_pic_s : Random.dataImage( '100x50' , '俺mock图片' )
+      itemno : Random.csentence( i > 10 ? 5 : 6 ) ,
+      itemsname : Random.csentence( i > 10 ? 5 : 6 ) ,
+
     }
+
     arrs.push( newArticleObject )
   }
 
