@@ -60,3 +60,34 @@ export function isexistsuserid ( userid ) {
     } );
   } );
 }
+
+//登录
+export function login ( userid , pwd ) {
+  return new Promise( ( resolve , reject ) => {
+
+    const query = Bmob.Query( tableName_users );
+    query.equalTo( "pwd" , "==" , pwd );
+    query.equalTo( "userid" , "==" , userid );
+
+    query.find().then( res => {
+      //返回的是数组,没有找到就是空数组
+      //console.log( res )
+
+      if ( res != null && res.length > 0 ) {
+        resolve( {
+          //是存在 可以登录
+          isok : true ,
+          data : res[ 0 ]
+        } );
+      }
+      else {
+        resolve( {
+          isok : false ,
+          data : null
+        } );
+      }
+    } );
+  } );
+}
+
+
