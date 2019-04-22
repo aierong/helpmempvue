@@ -142,25 +142,17 @@
         var now = new Date();
 
         if ( StorageValue.logintime ) {
-          let validtime = StorageValue.logintime;
-
+          let validtime = new Date( StorageValue.logintime );
+          // console.log( 'validtime' , validtime )
           validtime.setDate( validtime.getDate() + constant.validday );
 
-          console.log( 'validtime' , validtime )
+          // console.log( 'validtime' , validtime )
 
           if ( now.getTime() <= validtime.getTime() ) {
             this.isvaliduser = true;
 
             this.SaveVuexAndSwitch( StorageValue )
 
-            // //把值取回来
-            // //分发 action 修改状态
-            // this.$store.dispatch( 'SetupUser' , StorageValue )
-            //
-            // // 跳转
-            // wx.switchTab( {
-            //   url : "../me/main"
-            // } );
           }
           else {
             //过期了,需要重新登录
