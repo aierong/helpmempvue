@@ -2,7 +2,7 @@
  作者: chenghao
  功能: js脚本
  */
-
+import Bmob from "hydrogen-js-sdk";
 //表名称
 import { UserTable } from '@/common/constant.js';
 
@@ -42,6 +42,7 @@ export function isexistsuserid ( userid ) {
   return new Promise( ( resolve , reject ) => {
     console.log( UserTable )
 
+    console.log( Bmob )
     const query = Bmob.Query( UserTable );
     query.equalTo( "userid" , "==" , userid );
 
