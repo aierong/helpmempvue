@@ -4,7 +4,8 @@
     <!--    <button @click="djtest">bmob测试</button>-->
 
     <!--    <button @click="testdata">随机数据</button>-->
-    index
+    <van-nav-bar right-text="注册"
+                 @clickright="onClickRight"/>
     <div v-if="!isvaliduser">
       11
     </div>
@@ -27,6 +28,11 @@
     } ,
 
     methods : {
+      onClickRight () {
+        //转向 注册页面
+        const url = "../registeruser/main"
+        wx.navigateTo( { url : url } )
+      } ,
       getStorageValue () {
         let StorageValue = wx.getStorageSync( constant.StorageName )
 
