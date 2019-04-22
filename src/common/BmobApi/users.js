@@ -3,6 +3,7 @@
  功能: js脚本
  */
 
+//表名称
 import { UserTable } from '@/common/TableName.js';
 
 //添加用户

@@ -3,6 +3,9 @@
  功能: js脚本
  */
 
+//表名称
+import { DlTable } from '@/common/TableName.js';
+
 
 
 
