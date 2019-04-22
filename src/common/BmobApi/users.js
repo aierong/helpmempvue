@@ -11,7 +11,7 @@ export function adduser ( registerUser ) {
 
   return new Promise( ( resolve , reject ) => {
 
-    console.log( 'registerUser' , registerUser )
+    // console.log( 'registerUser' , registerUser )
 
     const query = Bmob.Query( UserTable );
     //这里 设置  列的数据
@@ -40,9 +40,9 @@ export function adduser ( registerUser ) {
 //是存在用户id 存在手机号码
 export function isexistsuserid ( userid ) {
   return new Promise( ( resolve , reject ) => {
-    console.log( UserTable )
+    // console.log( UserTable )
 
-    console.log( Bmob )
+    // console.log( Bmob )
     const query = Bmob.Query( UserTable );
     query.equalTo( "userid" , "==" , userid );
 
