@@ -9,3 +9,7 @@ export const UserTable = "users";
 //数据表
 export const DlTable = "dl";
 
+//本地存储的名称
+export const StorageName = "HelpMeStorage";
+
+
