@@ -10,7 +10,8 @@
 </template>
 
 <script>
-  import * as mock from '@/common/mockdata/index.js'
+  // import * as mock from '@/common/mockdata/index.js'
+  import * as constant from '@/common/constant.js'
 
   export default {
     data () {
@@ -20,28 +21,34 @@
     } ,
 
     methods : {
-      testdata () {
-        // let arr1 = mock.gethelpproduct( 10 );
-        let arr = mock.gethelpproduct( 2 );
+      //退出系统，清除本地存储
+      ExitSystem () {
+        wx.removeStorageSync( constant.StorageName )
 
-        console.log( arr )
-        // console.log( arr1 )
+
       } ,
-      djtest () {
-        const query = this.$Bmob.Query( this.tableName );
-
-        query.equalTo( "id" , ">" , 100 );
-        // 对num1字段升序排列
-
-        // 对num1字段降序排列
-        query.order( "-num1" );
-
-        query.find().then( res => {
-          //返回的是数组,没有找到就是空数组
-
-          console.log( res )
-        } );
-      } ,
+      // testdata () {
+      //
+      //   let arr = mock.gethelpproduct( 2 );
+      //
+      //   console.log( arr )
+      //
+      // } ,
+      // djtest () {
+      //   const query = this.$Bmob.Query( this.tableName );
+      //
+      //   query.equalTo( "id" , ">" , 100 );
+      //   // 对num1字段升序排列
+      //
+      //   // 对num1字段降序排列
+      //   query.order( "-num1" );
+      //
+      //   query.find().then( res => {
+      //     //返回的是数组,没有找到就是空数组
+      //
+      //     console.log( res )
+      //   } );
+      // } ,
     } ,
 
     created () {

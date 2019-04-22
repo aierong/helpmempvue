@@ -3,12 +3,13 @@
     "pages/index/main",
     "pages/registeruser/main",
     "pages/helpmeadd/main",
-    "pages/reply/main"
+    "pages/reply/main",
+    "pages/me/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "求助",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
