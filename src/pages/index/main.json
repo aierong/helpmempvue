@@ -1,7 +1,10 @@
 {
   "usingComponents": {
     "van-nav-bar": "/static/vant/nav-bar/index",
-    "van-icon": "/static/vant/icon/index"
+    "van-icon": "/static/vant/icon/index",
+    "van-button": "/static/vant/button/index",
+    "van-field": "/static/vant/field/index",
+    "van-toast": "/static/vant/toast/index"
   },
   "navigationBarTitleText": "登录页"
 }

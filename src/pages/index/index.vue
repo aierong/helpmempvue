@@ -1,13 +1,25 @@
 <template>
   <div>
-    <van-nav-bar right-text="注册"
-                 @clickright="onClickRight"/>
-    <!--    <button @click="djtest">bmob测试</button>-->
 
-    <!--    <button @click="testdata">随机数据</button>-->
 
     <div v-if="!isvaliduser">
-      11
+      <van-nav-bar right-text="注册"
+                   @clickright="onClickRight"/>
+      <van-field :value="userid"
+                 label="手机号"
+                 required
+                 @change="useridChange"
+                 placeholder="请输入手机号"/>
+      <van-field :value="pwd"
+                 label="密码"
+                 required
+                 @change="pwdChange"
+                 type="password"
+                 placeholder="请输入密码"/>
+      <van-button size="large"
+                  type="primary"
+                  @click="userlogin">登录
+      </van-button>
     </div>
   </div>
 </template>
@@ -23,11 +35,19 @@
       return {
 
         isvaliduser : false ,
-
+        userid : '' ,
+        pwd : '' ,
       }
     } ,
 
     methods : {
+      useridChange ( event ) {
+
+        this.userid = event.mp.detail
+      } ,
+      pwdChange ( event ) {
+        this.pwd = event.mp.detail
+      } ,
       onClickRight () {
         //转向 注册页面
         const url = "../registeruser/main"

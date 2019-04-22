@@ -128,12 +128,6 @@
             console.log( 'addresult' , addresult )
 
             if ( addresult != null ) {
-              // Toast.success( '成功' );
-              // const message = '成功添加,请登录';
-              //
-              // Dialog.alert( {
-              //   message
-              // } );
 
               const toast = Toast.loading( {
                 duration : 0 ,
