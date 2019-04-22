@@ -25,12 +25,23 @@
             @click="reg">注册
     </button>
     <button @click="backpage">返回</button>
+
+    <!--
+   注意要配一个van-toast,才会显示提示 ,默认id van-toast
+
+   -->
+    <van-toast id="van-toast"/>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+  // 配置文件json也要配置,这里代码也要引用
+  // 代码中也要引用
+  // 注意引用路径
+  import Toast from '../../../static/vant/toast/toast';
+
   export default {
     name : "registeruser" ,
     //数据模型
@@ -45,13 +56,8 @@
     methods : {
       reg () {
         if ( !this.userid ) {
-          // this.$toast( "请输入手机号码" )
-          wx.showToast( {
-            title : '请输入手机号码' , //提示的内容,
-            duration : 2000 , //延迟时间,
-            mask : true , //显示透明蒙层，防止触摸穿透,
 
-          } );
+          Toast.fail( '请输入手机号码' );
 
           return;
         }
@@ -59,36 +65,24 @@
         if ( !this.pwd ) {
           // this.$toast( "请输入密码" )
 
-          wx.showToast( {
-            title : '请输入密码' , //提示的内容,
-            duration : 2000 , //延迟时间,
-            mask : true , //显示透明蒙层，防止触摸穿透,
+          Toast.fail( '请输入密码' );
 
-          } );
           return;
         }
 
         if ( this.pwd != this.pwd2 ) {
-          wx.showToast( {
-            title : '2次密码不一致' , //提示的内容,
-            duration : 2000 , //延迟时间,
-            mask : true , //显示透明蒙层，防止触摸穿透,
 
-          } );
+          Toast.fail( '2次密码不一致' );
+
           return;
         }
 
         if ( this.userid.length != 11 ) {
-          wx.showToast( {
-            title : '手机号码长度不正确' , //提示的内容,
-            duration : 2000 , //延迟时间,
-            mask : true , //显示透明蒙层，防止触摸穿透,
 
-          } );
+          Toast.fail( '手机号码长度不正确' );
+
           return;
         }
-
-
 
       } ,
       backpage () {
