@@ -20,12 +20,22 @@
                   type="primary"
                   @click="userlogin">登录
       </van-button>
+
+      <!--
+注意要配一个van-toast,才会显示提示 ,默认id van-toast
+
+-->
+      <van-toast id="van-toast"/>
     </div>
   </div>
 </template>
 
 <script>
-  // import * as mock from '@/common/mockdata/index.js'
+  // 配置文件json也要配置,这里代码也要引用
+  // 代码中也要引用
+  // 注意引用路径
+  import Toast from '../../../static/vant/toast/toast';
+
   import * as constant from '@/common/constant.js'
 
   import * as userapi from '@/common/BmobApi/users.js'
@@ -72,6 +82,19 @@
       } ,
       userlogin () {
         //检查数据有效性
+        if ( !this.userid ) {
+
+          Toast.fail( '请输入手机号码' );
+
+          return;
+        }
+
+        if ( !this.pwd ) {
+
+          Toast.fail( '请输入密码' );
+
+          return;
+        }
 
         let userid = "";
         let pwd = "";

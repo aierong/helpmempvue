@@ -85,7 +85,6 @@
         }
 
         if ( !this.pwd ) {
-          // this.$toast( "请输入密码" )
 
           Toast.fail( '请输入密码' );
 
