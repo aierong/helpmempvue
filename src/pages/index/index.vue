@@ -1,10 +1,10 @@
 <template>
   <div>
 
-    <button @click="djtest">bmob测试</button>
+    <!--    <button @click="djtest">bmob测试</button>-->
 
-    <button @click="testdata">随机数据</button>
-
+    <!--    <button @click="testdata">随机数据</button>-->
+    index
 
   </div>
 </template>
@@ -18,7 +18,7 @@
   export default {
     data () {
       return {
-        //tableName : 'wxq'
+
         isvaliduser : false ,
 
       }
@@ -33,6 +33,15 @@
       setStorageValue ( vals ) {
         wx.setStorageSync( constant.StorageName , vals )
       } ,
+      SaveVuexAndSwitch ( userobj ) {
+        //分发 action 修改状态
+        this.$store.dispatch( 'SetupUser' , userobj )
+
+        // 跳转
+        wx.switchTab( {
+          url : "../me/main"
+        } );
+      } ,
       userlogin () {
         //检查数据有效性
 
@@ -45,19 +54,14 @@
           if ( res != null && res.isok ) {
             //登录成功
             var now = new Date();
-            let obj = {
+            let userobj = {
               userid : userid ,
               username : res.username ,
               logintime : now
             };
-            this.setStorageValue( obj );
-            //分发 action 修改状态
-            this.$store.dispatch( 'SetupUser' , obj )
+            this.setStorageValue( userobj );
 
-            // 跳转
-            wx.switchTab( {
-              url : "../me/main"
-            } );
+            this.SaveVuexAndSwitch( userobj )
           }
           else {
             wx.showToast( {
@@ -101,7 +105,7 @@
     //生命周期(mounted)
     mounted () {
       let StorageValue = this.getStorageValue();
-
+      console.log( 'StorageValue' , StorageValue )
       if ( StorageValue ) {
         // 取到值了
         console.log( StorageValue )
@@ -118,6 +122,17 @@
 
           if ( now.getTime() <= validtime.getTime() ) {
             this.isvaliduser = true;
+
+            this.SaveVuexAndSwitch( StorageValue )
+
+            // //把值取回来
+            // //分发 action 修改状态
+            // this.$store.dispatch( 'SetupUser' , StorageValue )
+            //
+            // // 跳转
+            // wx.switchTab( {
+            //   url : "../me/main"
+            // } );
           }
           else {
             //过期了,需要重新登录
