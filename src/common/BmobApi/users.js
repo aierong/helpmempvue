@@ -4,7 +4,7 @@
  */
 
 //表名称
-import { UserTable } from '@/common/TableName.js';
+import { UserTable } from '@/common/constant.js';
 
 //添加用户
 export function adduser ( registerUser ) {

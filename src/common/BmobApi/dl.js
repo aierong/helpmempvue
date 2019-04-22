@@ -4,7 +4,7 @@
  */
 
 //表名称
-import { DlTable } from '@/common/TableName.js';
+import { DlTable } from '@/common/constant.js';
 
 
 

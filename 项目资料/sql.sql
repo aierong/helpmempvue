@@ -22,7 +22,7 @@ poqty     --订单数量   INT 整型
     
 helptimes --求助次数
     
-helplasttime --最后求助时间 (一天只可以求助一次)
+helplasttime --最后求助时间 (一天只可以求助一次) 
 
 csexpectdate     --cs期望交期  字符
     
