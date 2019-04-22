@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import App from './App'
+import store from '@/store/store.js'
+
+//将store对象放置在Vue的原型上, 为的是每个实例都可以使用
+Vue.prototype.$store = store
 
 // 打开 main.js
 import Bmob from "hydrogen-js-sdk";
