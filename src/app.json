@@ -21,13 +21,13 @@
     "list": [
       {
         "text": "首页",
-        "pagePath": "pages/index/main",
+        "pagePath": "pages/me/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/home-active.png"
       },
       {
         "text": "首页",
-        "pagePath": "pages/index/main",
+        "pagePath": "pages/me/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/orders-active.png"
       }
