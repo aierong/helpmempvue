@@ -17,17 +17,17 @@ html代码片段
 
     <!--
     desc="描述信息"
-
     -->
     <van-panel :key="index"
                v-for="(item,index) in SearchProductList"
                :title="(index+1)+ '.工单:'+item.productno"
                :status="'客户:'+item.custno"
                use-footer-slot>
-      <view>
+
+      <view class="txt">
         {{ '订单:' + item.pono +' 数量:' + item.poqty }}
       </view>
-      <view>
+      <view class="txt">
         {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
       </view>
       <!--
@@ -40,7 +40,7 @@ html代码片段
                     @click="selectdata(item)"
                     size="mini">选择
         </van-button>
-
+        <hr/>
       </view>
     </van-panel>
   </div>
