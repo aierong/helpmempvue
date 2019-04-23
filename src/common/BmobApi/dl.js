@@ -157,3 +157,59 @@ export function reply ( id , userid , username , addpmcreplydate , addpmcreplyco
     } )
   } );
 }
+
+// 再次求助
+export function againhelp ( id , helplasttime , csexpectdate ) {
+  return new Promise( ( resolve , reject ) => {
+
+    const query = Bmob.Query( DlTable );
+    //这里 设置  列的数据
+
+    query.get( id ).then( res => {
+      console.log( res )
+
+      //次数加1
+      res.set( "helptimes" , res.helptimes + 1 )
+      res.set( "helplasttime" , helplasttime )
+      res.set( "csexpectdate" , csexpectdate )
+      res.set( "pmsreplydate" , '' )
+      res.set( "addpmcreplycomment" , '' )
+
+      res.set( "addpmcreplydate" , '' )
+      res.set( "addpmcman" , '' )
+      res.set( "addpmcmanname" , '' )
+
+      res.save()
+
+      resolve( res );
+    } ).catch( err => {
+      console.log( err )
+
+      resolve( null );
+    } )
+
+    // query.set( 'id' , id ) //需要修改的objectId
+
+    //
+    // query.set( "helptimes" , 111 )
+    // query.set( "helplasttime" , helplasttime )
+    // query.set( "csexpectdate" , csexpectdate )
+    // query.set( "pmsreplydate" , '' )
+    // query.set( "addpmcreplycomment" , '' )
+    //
+    // query.set( "addpmcreplydate" , '' )
+    // query.set( "addpmcman" , '' )
+    // query.set( "addpmcmanname" , '' )
+    //
+    // query.save().then( res => {
+    //   //console.log( res )
+    //
+    //   resolve( res );
+    //
+    // } ).catch( err => {
+    //   //console.log( err )
+    //
+    //   resolve( null );
+    // } )
+  } );
+}
