@@ -1,4 +1,12 @@
 {
+  "usingComponents": {
+    "van-checkbox": "/static/vant/checkbox/index",
+    "van-checkbox-group": "/static/vant/checkbox-group/index",
+    "van-button": "/static/vant/button/index",
+    "van-cell": "/static/vant/cell/index",
+    "van-cell-group": "/static/vant/cell-group/index",
+    "van-toast": "/static/vant/toast/index"
+  },
   "navigationBarTitleText": "选择用户"
 }
 

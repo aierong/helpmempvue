@@ -104,8 +104,11 @@ export function getuserlist ( userid ) {
   return new Promise( ( resolve , reject ) => {
 
     const query = Bmob.Query( UserTable );
+    if ( userid ) {
+      query.notContainedIn( "userid" , [ userid ] );
+    }
 
-    query.notContainedIn( "userid" , [ userid ] );
+    query.order( "userid" );
 
     query.find().then( res => {
       //返回的是数组,没有找到就是空数组
