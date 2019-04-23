@@ -181,17 +181,25 @@ export function againhelp ( id , helplasttime , csexpectdate ) {
 }
 
 //得我需要答复的
-export function getmyreply ( userid ) {
+export function getmyreply ( userid , counts , autokeylist ) {
   const query = Bmob.Query( DlTable );
 
   query.equalTo( "isover" , "==" , false );
   //还没有复期的
   query.equalTo( "pmsreplydate" , "==" , '' );
 
+  if ( autokeylist != null && autokeylist.length > 0 ) {
+    query.notContainedIn( "autokey" , autokeylist );
+  }
+
   const query1 = query.equalTo( "helppmc1" , "==" , userid );
   const query2 = query.equalTo( "helppmc2" , "==" , userid );
 
   query.or( query1 , query2 );
+
+  if ( counts > 0 ) {
+    query.limit( counts );
+  }
 
   query.order( "autokey" );
 
