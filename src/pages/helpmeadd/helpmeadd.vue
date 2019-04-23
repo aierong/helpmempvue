@@ -55,7 +55,7 @@
                   @click="onselectdate">选择
       </van-button>
     </van-field>
-    <van-field :value="csexpectdate"
+    <van-field :value="helpmaninfo.helppmcname1"
                label="求助人1"
                disabled
                required
@@ -66,13 +66,24 @@
                   type="primary"
                   @click="onselectuser1">选择
       </van-button>
+
+    </van-field>
+    <van-field :value="helpmaninfo.helppmcname2"
+               label="求助人2"
+               disabled
+               placeholder="请选择求助人2"
+               use-button-slot>
+      <van-button slot="button"
+                  size="mini"
+                  type="primary"
+                  @click="onselectuser2">选择
+      </van-button>
       <van-button slot="button"
                   size="mini"
                   type="warning"
-                  @click="onselectdate">清除
+                  @click="onuserselectclear2">清除
       </van-button>
     </van-field>
-
     <van-field :value="comment"
                label="备注"
                clearable
@@ -124,7 +135,19 @@
       commentChange ( event ) {
         this.comment = event.mp.detail
       } ,
+      onuserselectclear2 () {
+        if ( this.helpmaninfo != null ) {
+          this.$store.dispatch( 'ClearUserSelectHelpMan2' );
+
+        }
+      } ,
       onselectuser1 () {
+        this.gotouserselectpage();
+      } ,
+      onselectuser2 () {
+        this.gotouserselectpage();
+      } ,
+      gotouserselectpage () {
         //转向  用户选择页面
         const url = "../selectuser/main"
         wx.navigateTo( { url : url } )
@@ -177,7 +200,11 @@
       productinfo () {
         return this.$store.state.userselectproductdata;
 
-      }
+      } ,
+      helpmaninfo () {
+        return this.$store.state.userselecthelpman;
+
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {

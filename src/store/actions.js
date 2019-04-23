@@ -1,6 +1,8 @@
 import {
   SetupUser ,
-  SetupUserSelectProductData
+  SetupUserSelectProductData ,
+  SetupUserSelectHelpManData ,
+  ClearUserSelectHelpMan2 ,
 } from './mutation-type'
 
 export default {
@@ -11,4 +13,10 @@ export default {
   SetupUserSelectProductData ( { commit } , data ) {
     commit( SetupUserSelectProductData , data )
   } ,
+  SetupUserSelectHelpManData ( { commit } , data ) {
+    commit( SetupUserSelectHelpManData , data )
+  } ,
+  ClearUserSelectHelpMan2 ( { commit } ) {
+    commit( ClearUserSelectHelpMan2 )
+  }
 }
