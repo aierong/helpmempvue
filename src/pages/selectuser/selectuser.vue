@@ -148,6 +148,9 @@
     mounted () {
       console.log( 'selectuser mouted' )
 
+      //清空一下，以免记录上次的
+      this.selectval = [];
+
       //console.log( this.getloginuserid )
       this.getuserlist();
 
