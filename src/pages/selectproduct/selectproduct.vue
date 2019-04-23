@@ -24,7 +24,7 @@
       -->
       <view style="text-align: right;"
             slot="footer">
-        <van-button @click="selectdata"
+        <van-button @click="selectdata(item)"
                     size="small">选择
         </van-button>
 
@@ -48,14 +48,31 @@
     } ,
     //方法
     methods : {
+      backpage () {
+        wx.navigateBack()
+      } ,
       getproductlist () {
         let counts = 5;
         this.productlist = dlapi.getproductlist( counts )
 
         console.log( this.productlist )
       } ,
-      selectdata () {
+      selectdata ( item ) {
+        //把数据存储在 vuex，并且返回
+        let obj = {
+          productno : item.productno ,
+          custno : item.custno ,
+          pono : item.pono ,
 
+          itemno : item.itemno ,
+          itemsname : item.itemsname ,
+          poqty : item.poqty
+
+        };
+
+        this.$store.dispatch( 'SetupUserSelectProductData' , obj );
+
+        this.backpage();
       } ,
     } ,
     //计算属性

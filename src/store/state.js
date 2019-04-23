@@ -1,9 +1,15 @@
 export default {
-  // listTmp : [] ,
 
-  // moviesArr : {} ,
+  user : null ,
 
-  // count : 0
+  //操作者选择的产品
+  userselectproductdata : {
+    productno : '' ,
+    custno : '' ,
+    pono : '' ,
 
-  user : null
+    itemno : '' ,
+    itemsname : '' ,
+    poqty : 0
+  }
 }

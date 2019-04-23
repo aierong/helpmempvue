@@ -1,12 +1,17 @@
 import {
-  SetupUser
+  SetupUser ,
+  SetupUserSelectProductData
 } from './mutation-type'
 
 export default {
 
   [ SetupUser ] ( state , userdata ) {
     state.user = userdata
-    // console.log( state )
+
+  } ,
+  [ SetupUserSelectProductData ] ( state , selectdata ) {
+    state.userselectproductdata = selectdata
+
   } ,
 
 }

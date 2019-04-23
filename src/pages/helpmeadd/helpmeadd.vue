@@ -15,7 +15,7 @@
     <!--
     disabled 禁止输入
     -->
-    <van-field :value="productno"
+    <van-field :value="productinfo.productno"
                center
                clearable
                label="工程单"
@@ -28,6 +28,12 @@
                   @click="onselectproduct">选择
       </van-button>
     </van-field>
+    <van-field :value="productinfo.custno"
+               label="客户编号"
+               disabled/>
+    <van-field :value="productinfo.poqty"
+               label="数量"
+               disabled/>
   </div>
 
 </template>
@@ -39,7 +45,7 @@
     //数据模型
     data () {
       return {
-        productno : ''
+        // productno : ''
       }
     } ,
     //方法
@@ -54,10 +60,19 @@
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      productinfo () {
+        return this.$store.state.userselectproductdata;
+
+        //let _data = this.$store.state.userselectproductdata;
+
+        // if ( _data != null ) {
+        //   return _data;
+        // }
+        // else {
+        //
+        // }
+
+      }
     } ,
     //生命周期(mounted)
     mounted () {

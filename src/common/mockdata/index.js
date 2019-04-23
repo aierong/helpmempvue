@@ -37,6 +37,7 @@ const gethelpproduct = function ( mockcounts ) {
 
       itemno : Random.string( 'lower' , 4 , 5 ) + Random.string( 'number' , 3 , 3 ) ,
       itemsname : Random.cname() + Random.csentence( i > 10 ? 5 : 6 ) ,
+      poqty : parseInt( Random.string( 'number' , 6 , 6 ) )
 
     }
 
