@@ -25,7 +25,7 @@ html代码片段
                :status="'客户:'+item.custno"
                use-footer-slot>
       <view>
-        {{ '订单:' + item.pono }}
+        {{ '订单:' + item.pono +' 数量:' + item.poqty }}
       </view>
       <view>
         {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
