@@ -99,4 +99,20 @@ export function login ( userid , pwd ) {
   } );
 }
 
+// 得用户列表，排除某个用户
+export function getuserlist ( userid ) {
+  return new Promise( ( resolve , reject ) => {
 
+    const query = Bmob.Query( UserTable );
+
+    query.notContainedIn( "userid" , [ userid ] );
+
+    query.find().then( res => {
+      //返回的是数组,没有找到就是空数组
+      //console.log( res )
+
+      resolve( res );
+
+    } );
+  } );
+}

@@ -7,10 +7,19 @@
 <template>
 
   <div>
-    <!--    desc="描述信息" -->
+    <van-search :value="SearchVal"
+                placeholder="请输入工程单搜索关键词"
+                show-action
+                @search="onSearch"
+                @cancel="onCancel"/>
+
+    <!--
+    desc="描述信息"
+    :title="'工程单:'+item.productno"
+    -->
     <van-panel :key="index"
-               v-for="(item,index) in productlist"
-               :title="'工程单:'+item.productno"
+               v-for="(item,index) in SearchProductList"
+               :title="(index+1)+ '.工单:'+item.productno"
                :status="'客户:'+item.custno"
                use-footer-slot>
       <view>
@@ -45,7 +54,11 @@
     //数据模型
     data () {
       return {
-        productlist : []
+        maxcounts : 20 ,
+
+        productlist : [] ,
+
+        SearchVal : ''
       }
     } ,
     //方法
@@ -53,9 +66,20 @@
       backpage () {
         wx.navigateBack()
       } ,
+
+      onSearch ( event ) {
+        //要搜索的值
+        let val = event.mp.detail;
+
+        // 最好 把模型同步一下
+        this.SearchVal = val;
+      } ,
+      onCancel ( event ) {
+        this.SearchVal = "";
+      } ,
       getproductlist () {
-        let counts = 5;
-        this.productlist = dlapi.getproductlist( counts )
+        // let counts = 10;
+        this.productlist = dlapi.getproductlist( this.maxcounts )
 
         console.log( this.productlist )
       } ,
@@ -80,10 +104,27 @@
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      SearchProductList () {
+        if ( this.SearchVal ) {
+          if ( this.productlist != null && this.productlist.length > 0 ) {
+            let result = this.productlist.filter( ( value , index , array ) => {
+              let _productno = value.productno;
+              if ( _productno ) {
+                return _productno.includes( this.SearchVal ); // 返回
+              }
+              else {
+                return false;
+              }
+
+            } );
+
+            return result;
+          }
+
+        }
+
+        return this.productlist;
+      }
     } ,
 
     //生命周期(mounted)

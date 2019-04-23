@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "van-panel": "/static/vant/panel/index",
-    "van-button": "/static/vant/button/index"
+    "van-button": "/static/vant/button/index",
+    "van-search": "/static/vant/search/index"
   },
   "navigationBarTitleText": "选择产品"
 }
