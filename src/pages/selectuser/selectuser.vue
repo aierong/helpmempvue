@@ -33,8 +33,8 @@
     //方法
     methods : {
       getuserlist () {
-        userapi.getuserlist().then( ( res ) => {
-
+        userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
+          console.log( res )
         } )
       } ,
 
@@ -49,7 +49,9 @@
     mounted () {
       console.log( 'selectuser mouted' )
 
-      console.log( this.getloginuserid )
+      //console.log( this.getloginuserid )
+      this.getuserlist();
+
     } ,
     onLoad () {
       console.log( 'selectuser onLoad' )
