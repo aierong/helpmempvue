@@ -18,8 +18,12 @@
 <script>
   import * as userapi from '@/common/BmobApi/users.js'
 
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
   export default {
     name : "selectuser" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     //数据模型
     data () {
       return {
@@ -37,15 +41,15 @@
     } ,
     //计算属性
     computed : {
-      getuserid () {
-        return this.$store.getters.getuserid;
-      } ,
+      // getuserid () {
+      //   return this.$store.getters.getuserid;
+      // } ,
     } ,
     //生命周期(mounted)
     mounted () {
       console.log( 'selectuser mouted' )
 
-      console.log( this.getuserid )
+      console.log( this.getloginuserid )
     } ,
     onLoad () {
       console.log( 'selectuser onLoad' )

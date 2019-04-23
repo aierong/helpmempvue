@@ -97,8 +97,14 @@
 <script>
   import dayjs from 'dayjs'
 
+  import * as dlapi from '@/common/BmobApi/dl.js'
+
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
   export default {
     name : "helpmeadd" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     //数据模型
     data () {
       return {
@@ -107,7 +113,10 @@
         minDate : new Date().getTime() ,
 
         csexpectdate : '' ,
-        comment : ''
+        comment : '' ,
+
+        //最多处理多少 100
+        maxsavecount : 5
       }
     } ,
     //方法
@@ -147,6 +156,20 @@
       //关闭时间弹窗
       closeDateWin () {
         this.isshowdatepicker = false;
+      } ,
+      async checksave ( productno ) {
+        let isexists = await dlapi.isexistsproductno( productno );
+
+        if ( isexists ) {
+          return '工程单号已经存在'
+        }
+
+        let counts = await dlapi.getontworkcounts( this.getloginuserid );
+        if ( counts > this.maxsavecount ) {
+          return '您的未完成工程单已超过' + this.maxsavecount + '个'
+        }
+
+        return '';
       } ,
     } ,
     //计算属性

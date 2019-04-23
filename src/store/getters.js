@@ -1,4 +1,4 @@
-const getuserid = ( state ) => {
+const getloginuserid = ( state ) => {
   if ( state.user != null ) {
     return state.user.userid;
   }

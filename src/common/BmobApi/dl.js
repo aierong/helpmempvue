@@ -64,35 +64,67 @@ export function adddl ( dl ) {
 
 // 得产品列表
 export function getproductlist ( counts ) {
-  // let resultarr = [];
 
   let mockarr = mock.gethelpproduct( counts );
 
   return mockarr;
 
-  // if ( mockarr != null && mockarr.length > 0 ) {
-  //
-  //   let len = mockarr.length;
-  //
-  //   for ( let index = 0 ; index < len ; index++ ) {
-  //
-  //     // console.log( a[ index ] );
-  //     let item = mockarr[ index ];
-  //
-  //     let obj = {
-  //       productno : item.productno ,
-  //       custno : item.custno ,
-  //       pono : item.pono ,
-  //       itemno : item.itemno ,
-  //       itemsname : item.itemsname
-  //     };
-  //
-  //     resultarr.push( obj );
-  //   }
-
-  // }
-
-  // return resultarr;
 }
 
+//是存在相同的 工程单
+export function isexistsproductno ( productno ) {
+  return new Promise( ( resolve , reject ) => {
 
+    const query = Bmob.Query( DlTable );
+    //这里 设置  列的数据
+
+    query.equalTo( "productno" , "==" , productno );
+
+    query.find().then( res => {
+      //返回的是数组,没有找到就是空数组
+      //console.log( res )
+
+      if ( res != null && res.length > 0 ) {
+        //是存在  相同的
+        resolve( true );
+      }
+      else {
+        resolve( false );
+      }
+    } );
+
+  } );
+}
+
+//得未完成 工程单数量
+export function getontworkcounts ( userid ) {
+  return new Promise( ( resolve , reject ) => {
+
+    const query = Bmob.Query( DlTable );
+    //这里 设置  列的数据
+
+    query.equalTo( "userid" , "==" , userid );
+    //  为完成的
+    query.notContainedIn( "overdate" , [ '' ] );
+
+    query.count().then( res => {
+      //返回的是 数字
+      console.log( res )
+      resolve( res );
+    } );
+
+    // query.find().then( res => {
+    //   //返回的是数组,没有找到就是空数组
+    //   //console.log( res )
+    //
+    //   if ( res != null && res.length > 0 ) {
+    //     //是存在  相同的
+    //     resolve( true );
+    //   }
+    //   else {
+    //     resolve( false );
+    //   }
+    // } );
+
+  } );
+}

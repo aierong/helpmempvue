@@ -1,6 +1,6 @@
 
 dl表结构:
-autokey  自动增长
+autokey   自动增长
 userid    录入人
 username  录入人姓名
  
@@ -20,13 +20,13 @@ poqty     --订单数量   INT 整型
 
 
     
-helptimes --求助次数
+helptimes      --求助次数
     
-helplasttime --最后求助时间 (一天只可以求助一次) 
+helplasttime   --最后求助时间 (一天只可以求助一次) 
 
 csexpectdate     --cs期望交期  字符
     
-pmsreplydate --pmc复期  字符
+pmsreplydate     --pmc复期  字符
 
 addpmcreplycomment --pmc 答复时填写备注
 
