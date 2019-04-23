@@ -7,10 +7,7 @@
 <template>
 
   <div>
-    <!--    <van-field :value="productno"-->
-    <!--               label="工程单"-->
-    <!--               required-->
-    <!--               placeholder="请输入工程单"/>-->
+
 
     <!--
     disabled 禁止输入
@@ -37,12 +34,12 @@
     <van-field :value="productinfo.poqty"
                label="数量"
                disabled/>
-    <van-field :value="productinfo.itemno"
-               label="料号"
+    <van-field :value="productinfo.itemno + '(' + productinfo.itemsname + ')' "
+               label="物料"
                disabled/>
-    <van-field :value="productinfo.itemsname"
-               label="物料名称"
-               disabled/>
+    <!--    <van-field :value="productinfo.itemsname"-->
+    <!--               label="物料名称"-->
+    <!--               disabled/>-->
     <van-field :value="csexpectdate"
                label="期望交期"
                disabled
