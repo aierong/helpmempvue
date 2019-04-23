@@ -194,12 +194,13 @@
       } ,
       async checkproductsave ( productno ) {
         let isexists = await dlapi.isexistsproductno( productno );
-
+        console.log( 'isexists' , isexists )
         if ( isexists ) {
           return '工程单号已经存在'
         }
 
         let counts = await dlapi.getontworkcounts( this.getloginuserid );
+        console.log( 'counts' , counts )
         if ( counts > this.maxsavecount ) {
           return '您的未完成工程单已超过' + this.maxsavecount + '个'
         }
@@ -238,10 +239,12 @@
           helppmcname2 : this.helpmaninfo.helppmcname2 ,
         }
 
+        console.log( 'newdata' , newdata )
+
         //开始做判断了
         if ( newdata.productno ) {
           let msg = this.checkproductsave( newdata.productno );
-
+          console.log( 'msg' , msg )
           if ( msg ) {
             Toast.fail( msg );
 

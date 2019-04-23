@@ -113,7 +113,7 @@ export function getontworkcounts ( userid ) {
 
     query.count().then( res => {
       //返回的是 数字
-      console.log( res )
+      // console.log( res )
       resolve( res );
     } );
 
