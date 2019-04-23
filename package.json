@@ -23,6 +23,7 @@
     "build": "node build/build.js wx"
   },
   "dependencies": {
+    "dayjs": "^1.8.12",
     "hydrogen-js-sdk": "^1.7.0",
     "mockjs": "^1.0.1-beta3",
     "mpvue": "^2.0.0",

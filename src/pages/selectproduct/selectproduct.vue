@@ -24,8 +24,10 @@
       -->
       <view style="text-align: right;"
             slot="footer">
-        <van-button @click="selectdata(item)"
-                    size="small">选择
+        <van-button plain
+                    type="primary"
+                    @click="selectdata(item)"
+                    size="mini">选择
         </van-button>
 
       </view>
@@ -58,7 +60,8 @@
         console.log( this.productlist )
       } ,
       selectdata ( item ) {
-        //把数据存储在 vuex，并且返回
+        //逻辑说明: 把数据存储在 vuex，并且返回
+
         let obj = {
           productno : item.productno ,
           custno : item.custno ,
