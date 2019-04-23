@@ -13,7 +13,8 @@ const getloginusername = ( state ) => {
 }
 
 export default {
-  getuserid ,
+
+  getloginuserid ,
   getloginusername ,
 
 }
