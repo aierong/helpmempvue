@@ -4,9 +4,12 @@
 export const SetupUser = 'SetupUser'
 
 export const SetupUserSelectProductData = 'SetupUserSelectProductData'
+export const ClearUserSelectProductData = 'ClearUserSelectProductData'
 
 export const SetupUserSelectHelpManData = 'SetupUserSelectHelpManData'
 
 export const ClearUserSelectHelpMan2 = 'ClearUserSelectHelpMan2'
+
+export const ClearUserSelectHelpManData = 'ClearUserSelectHelpManData'
 
 

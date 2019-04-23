@@ -26,6 +26,8 @@ export function adddl ( dl ) {
     query.set( "itemno" , dl.itemno )
 
     query.set( "itemsname" , dl.itemsname )
+    query.set( "poqty" , dl.poqty )
+
     query.set( "helptimes" , dl.helptimes )
     query.set( "helplasttime" , dl.helplasttime )
 

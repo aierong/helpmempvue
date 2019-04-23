@@ -5,7 +5,15 @@ const getloginuserid = ( state ) => {
   return '';
 }
 
+const getloginusername = ( state ) => {
+  if ( state.user != null ) {
+    return state.user.username;
+  }
+  return '';
+}
+
 export default {
   getuserid ,
+  getloginusername ,
 
 }

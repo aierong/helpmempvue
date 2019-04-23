@@ -90,6 +90,11 @@
                @change="commentChange"
                placeholder="请输入备注"/>
 
+    <van-button size="large"
+                type="primary"
+                @click="savedata">保存
+    </van-button>
+
     <!--    放最后，一个弹窗-->
     <van-popup :show="isshowdatepicker"
                position="bottom">
@@ -100,12 +105,22 @@
                            @confirm="userselectdate"
                            @cancel="userselectdatecancel"/>
     </van-popup>
+    <!--    放最后，一个 提示-->
+    <!--
+注意要配一个van-toast,才会显示提示 ,默认id van-toast
+-->
+    <van-toast id="van-toast"/>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+  // 配置文件json也要配置,这里代码也要引用
+  // 代码中也要引用
+  // 注意引用路径
+  import Toast from '../../../static/vant/toast/toast';
+
   import dayjs from 'dayjs'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
@@ -180,7 +195,7 @@
       closeDateWin () {
         this.isshowdatepicker = false;
       } ,
-      async checksave ( productno ) {
+      async checkproductsave ( productno ) {
         let isexists = await dlapi.isexistsproductno( productno );
 
         if ( isexists ) {
@@ -194,6 +209,80 @@
 
         return '';
       } ,
+      //保存数据
+      savedata () {
+        // 先构建数据，再做检查判断
+        let newdata = {
+          userid : this.getloginuserid ,
+          username : this.getloginusername ,
+          productno : this.productinfo.productno ,
+          custno : this.productinfo.custno ,
+
+          pono : this.productinfo.pono ,
+          itemno : this.productinfo.itemno ,
+          itemsname : this.productinfo.itemsname ,
+          poqty : this.productinfo.poqty ,
+
+          helptimes : 1 ,
+          helplasttime : '' ,
+          csexpectdate : this.csexpectdate ,
+          pmsreplydate : '' ,
+          addpmcreplycomment : '' ,
+          addpmcreplydate : '' ,
+          addpmcman : '' ,
+          addpmcmanname : '' ,
+          comment : this.comment ,
+          overdate : '' ,
+          helppmc1 : this.helpmaninfo.helppmc1 ,
+          helppmc2 : this.helpmaninfo.helppmc2 ,
+          helppmcname1 : this.helpmaninfo.helppmcname1 ,
+          helppmcname2 : this.helpmaninfo.helppmcname2 ,
+        }
+
+        //开始做判断了
+        if ( newdata.productno ) {
+          let msg = this.checkproductsave( newdata.productno );
+
+          if ( msg ) {
+            Toast.fail( msg );
+
+            return;
+          }
+        }
+        else {
+          Toast.fail( '工程单号为空' );
+
+          return;
+        }
+
+        if ( newdata.csexpectdate ) {
+
+        }
+        else {
+          Toast.fail( '期望交期为空' );
+
+          return;
+        }
+
+        if ( newdata.helppmc1 ) {
+
+        }
+        else {
+          Toast.fail( '求助人1为空' );
+
+          return;
+        }
+
+        //开始保存吧
+
+        //保存完成，要清除一下数据
+        //this.cleardata();
+      } ,
+      cleardata () {
+        this.csexpectdate = ''
+        this.comment = ''
+
+      }
     } ,
     //计算属性
     computed : {

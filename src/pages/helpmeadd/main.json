@@ -7,7 +7,7 @@
     "van-popup": "/static/vant/popup/index",
     "van-datetime-picker": "/static/vant/datetime-picker/index"
   },
-  "navigationBarTitleText": "帮助我,填单"
+  "navigationBarTitleText": "填单,帮助我!"
 }
 
 

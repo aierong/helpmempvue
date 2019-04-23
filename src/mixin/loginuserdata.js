@@ -9,7 +9,9 @@ export const loginuserdatamix = {
     getloginuserid () {
       return this.$store.getters.getloginuserid;
     } ,
-
+    getloginusername () {
+      return this.$store.getters.getloginusername;
+    } ,
   } ,
 
 }
