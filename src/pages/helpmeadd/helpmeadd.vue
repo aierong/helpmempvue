@@ -274,13 +274,41 @@
         }
 
         //开始保存吧
+        Toast.loading( {
+          duration : 0 ,
+          //forbidClick	是否禁止背景点击
+          forbidClick : true ,
+          loadingType : 'spinner' ,
+          message : '保存中...'
+        } );
 
-        //保存完成，要清除一下数据
-        //this.cleardata();
+        dlapi.adddl( newdata ).then( ( res ) => {
+          console.log( 'res' , res );
+
+          //关闭提示
+          //Toast.clear		关闭提示
+          Toast.clear();
+
+          if ( res != null ) {
+            Toast.success( '成功' );
+          }
+          else {
+            Toast.fail( '失败' );
+          }
+
+          //保存完成，要清除一下数据
+          this.cleardata();
+
+          return;
+        } )
+
       } ,
       cleardata () {
         this.csexpectdate = ''
         this.comment = ''
+
+        this.$store.dispatch( 'ClearUserSelectProductData' );
+        this.$store.dispatch( 'ClearUserSelectHelpManData' );
 
       }
     } ,

@@ -130,3 +130,30 @@ export function getontworkcounts ( userid ) {
 
   } );
 }
+
+//pmc答复
+export function reply ( id , userid , username , addpmcreplydate , addpmcreplycomment ) {
+  return new Promise( ( resolve , reject ) => {
+
+    const query = Bmob.Query( DlTable );
+    //这里 设置  列的数据
+
+    query.set( 'id' , id ) //需要修改的objectId
+
+    query.set( "addpmcman" , userid )
+    query.set( "addpmcmanname" , username )
+    query.set( "addpmcreplydate" , addpmcreplydate )
+    query.set( "addpmcreplycomment" , addpmcreplycomment )
+
+    query.save().then( res => {
+      //console.log( res )
+
+      resolve( res );
+
+    } ).catch( err => {
+      //console.log( err )
+
+      resolve( null );
+    } )
+  } );
+}
