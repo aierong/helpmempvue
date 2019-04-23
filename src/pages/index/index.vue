@@ -8,11 +8,13 @@
       <van-field :value="userid"
                  label="手机号"
                  required
+                 clearable
                  @change="useridChange"
                  placeholder="请输入手机号"/>
       <van-field :value="pwd"
                  label="密码"
                  required
+                 clearable
                  @change="pwdChange"
                  type="password"
                  placeholder="请输入密码"/>

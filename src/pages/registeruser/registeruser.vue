@@ -10,22 +10,26 @@
     <van-field :value="userid"
                label="手机号"
                required
+               clearable
                @change="useridChange"
                placeholder="请输入手机号"/>
     <van-field :value="username"
                label="姓名"
                required
+               clearable
                @change="usernameChange"
                placeholder="请输入姓名"/>
     <van-field :value="pwd"
                label="密码"
                required
+               clearable
                @change="pwdChange"
                type="password"
                placeholder="请输入密码"/>
     <van-field :value="pwd2"
                label="再次密码"
                required
+               clearable
                @change="pwd2Change"
                type="password"
                placeholder="请输入密码"/>
