@@ -4,6 +4,7 @@
     "pages/registeruser/main",
     "pages/helpmeadd/main",
     "pages/selectproduct/main",
+    "pages/selectuser/main",
     "pages/reply/main",
     "pages/me/main"
   ],

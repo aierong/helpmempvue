@@ -23,7 +23,7 @@
                placeholder="请选择工程单"
                use-button-slot>
       <van-button slot="button"
-                  size="small"
+                  size="mini"
                   type="primary"
                   @click="onselectproduct">选择
       </van-button>
@@ -50,9 +50,26 @@
                placeholder="请选择期望交期"
                use-button-slot>
       <van-button slot="button"
-                  size="small"
+                  size="mini"
                   type="primary"
                   @click="onselectdate">选择
+      </van-button>
+    </van-field>
+    <van-field :value="csexpectdate"
+               label="求助人1"
+               disabled
+               required
+               placeholder="请选择求助人1"
+               use-button-slot>
+      <van-button slot="button"
+                  size="mini"
+                  type="primary"
+                  @click="onselectdate">选择
+      </van-button>
+      <van-button slot="button"
+                  size="mini"
+                  type="warning"
+                  @click="onselectdate">清除
       </van-button>
     </van-field>
 
