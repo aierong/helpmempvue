@@ -16,7 +16,7 @@
     disabled 禁止输入
     -->
     <van-field :value="productinfo.productno"
-               center
+               required
                clearable
                label="工程单"
                disabled
@@ -46,6 +46,7 @@
     <van-field :value="csexpectdate"
                label="期望交期"
                disabled
+               required
                placeholder="请选择期望交期"
                use-button-slot>
       <van-button slot="button"
@@ -54,6 +55,12 @@
                   @click="onselectdate">选择
       </van-button>
     </van-field>
+
+    <van-field :value="comment"
+               label="备注"
+               clearable
+               @change="commentChange"
+               placeholder="请输入备注"/>
 
     <!--    放最后，一个弹窗-->
     <van-popup :show="isshowdatepicker"
@@ -82,11 +89,15 @@
         currentDate : new Date().getTime() ,
         minDate : new Date().getTime() ,
 
-        csexpectdate : ''
+        csexpectdate : '' ,
+        comment : ''
       }
     } ,
     //方法
     methods : {
+      commentChange ( event ) {
+        this.comment = event.mp.detail
+      } ,
       onselectproduct () {
         //代码搞这里
         //转向  产品选择页面
@@ -105,8 +116,14 @@
         let selectdate = new Date( detail );  //得到日期
         let _now2 = dayjs( selectdate );
         this.csexpectdate = _now2.format( 'YYYY-MM-DD' )
+
+        this.closeDateWin();
       } ,
       userselectdatecancel () {
+        this.closeDateWin();
+      } ,
+      //关闭时间弹窗
+      closeDateWin () {
         this.isshowdatepicker = false;
       } ,
     } ,

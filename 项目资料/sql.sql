@@ -35,7 +35,7 @@ addpmcreplydate     --pmc答复时间
 addpmcman         --pmc答复人
 addpmcmanname     --pmc答复人姓名
     
-comment --备注 CS求助备注
+comment           --备注 CS求助备注
 
 overdate        --完成时间 
 
