@@ -3,7 +3,9 @@
 功能:vue页
 -->
 
-<!-- html代码片段 -->
+<!--
+html代码片段
+-->
 <template>
 
   <div>
@@ -15,7 +17,7 @@
 
     <!--
     desc="描述信息"
-    :title="'工程单:'+item.productno"
+
     -->
     <van-panel :key="index"
                v-for="(item,index) in SearchProductList"
@@ -78,7 +80,7 @@
         this.SearchVal = "";
       } ,
       getproductlist () {
-        // let counts = 10;
+
         this.productlist = dlapi.getproductlist( this.maxcounts )
 
         console.log( this.productlist )
@@ -131,6 +133,9 @@
     mounted () {
       console.log( 'selectproduct mouted' )
 
+      //清空一下，以免记录上次的
+      this.SearchVal = '';
+
       this.getproductlist();
     } ,
     onLoad () {
@@ -146,5 +151,4 @@
 <!-- 样式代码片段  scoped -->
 <style src="./selectproduct.css"
        scoped>
-
 </style>
