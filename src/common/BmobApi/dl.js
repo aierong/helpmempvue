@@ -3,6 +3,9 @@
  功能: js脚本
  */
 
+//  引入
+import Bmob from "hydrogen-js-sdk";
+
 //表名称
 import { DlTable } from '@/common/constant.js';
 import * as mock from '@/common/mockdata/index.js'
@@ -91,3 +94,5 @@ export function getproductlist ( counts ) {
 
   // return resultarr;
 }
+
+

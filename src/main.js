@@ -5,7 +5,7 @@ import store from '@/store/store.js'
 //将store对象放置在Vue的原型上, 为的是每个实例都可以使用
 Vue.prototype.$store = store
 
-// 打开 main.js
+//  引入
 import Bmob from "hydrogen-js-sdk";
 // 初始化
 Bmob.initialize( "78f2882af40774e452922d8a97fcad6a" ,
