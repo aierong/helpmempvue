@@ -14,19 +14,24 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as dlapi from '@/common/BmobApi/dl.js'
+
   export default {
     name : "selectproduct" ,
     //数据模型
     data () {
       return {
-        msg : ''
+        productlist : []
       }
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      getproductlist () {
+        let counts = 5;
+        this.productlist = dlapi.getproductlist( counts )
+
+        console.log( this.productlist )
+      } ,
 
     } ,
     //计算属性
@@ -36,10 +41,20 @@
       //return this.data;
       //}
     } ,
+
     //生命周期(mounted)
     mounted () {
+      console.log( 'selectproduct mouted' )
 
+      this.getproductlist();
     } ,
+    onLoad () {
+      console.log( 'selectproduct onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'selectproduct onShow' );
+    }
   }
 </script>
 

@@ -25,19 +25,18 @@ const gethelpproduct = function ( mockcounts ) {
     var now = new Date();
     var m = now.getMonth() + 1;
     var d = now.getDate();
-    // var h = now.getHours();
-    // var mi = now.getMinutes();
+
     var all = now.getTime();
-    //+ h.toString() + mi.toString()
+
     qz = qz + m.toString() + d.toString() + all.toString();
 
     let newArticleObject = {
       productno : qz ,
-      custno : Random.csentence( i > 10 ? 5 : 6 ) ,
-      pono : Random.csentence( i > 10 ? 5 : 6 ) ,
+      custno : Random.string( 'lower' , 4 , 5 ) ,
+      pono : ( i > 10 ? 'AS' : 'BS' ) + Random.string( 'number' , 6 , 6 ) ,
 
-      itemno : Random.csentence( i > 10 ? 5 : 6 ) ,
-      itemsname : Random.csentence( i > 10 ? 5 : 6 ) ,
+      itemno : Random.string( 'lower' , 4 , 5 ) + Random.string( 'number' , 3 , 3 ) ,
+      itemsname : Random.cname() + Random.csentence( i > 10 ? 5 : 6 ) ,
 
     }
 

@@ -61,8 +61,15 @@
     } ,
     //生命周期(mounted)
     mounted () {
-
+      console.log( 'helpmeadd mouted' )
     } ,
+    onLoad () {
+      console.log( 'helpmeadd onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'helpmeadd onShow' );
+    }
   }
 </script>
 
