@@ -28,9 +28,11 @@
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      getuserlist () {
+        userapi.getuserlist().then( ( res ) => {
+
+        } )
+      } ,
 
     } ,
     //计算属性
