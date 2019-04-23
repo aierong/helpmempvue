@@ -65,14 +65,52 @@
     methods : {
       selectuser () {
         if ( this.selectval == null || this.selectval.length <= 0 ) {
-          Toast.fail( '请一个或2个求助对象' );
+          Toast.fail( '请选择求助对象' );
 
           return;
         }
 
+        if ( this.selectval.length > this.maxmancounts ) {
+          Toast.fail( '最多选择' + this.maxmancounts + '个求助对象' );
+
+          return;
+        }
+
+        let obj = {
+          helppmc1 : '' ,
+          helppmcname1 : '' ,
+          helppmc2 : '' ,
+          helppmcname2 : ''
+        }
+
+        let selectdata1 = this.selectval[ 0 ];
+        obj.helppmc1 = selectdata1;
+        obj.helppmcname1 = this.getname( selectdata1 )
+
+        if ( this.selectval.length <= 2 ) {
+          let selectdata2 = this.selectval[ 1 ];
+          obj.helppmc2 = selectdata2;
+          obj.helppmcname2 = this.getname( selectdata2 )
+        }
+
+        this.$store.dispatch( 'SetupUserSelectHelpManData' , obj );
+
+        this.backpage();
       } ,
       backpage () {
         wx.navigateBack()
+      } ,
+      getname ( userid ) {
+        if ( this.userlist != null && this.userlist.length > 0 ) {
+          let result = this.userlist.find( ( n ) => {
+            return n.userid == userid;
+          } )
+
+          if ( result != null ) {
+            return result.username;
+          }
+        }
+        return "";
       } ,
       getuserlist () {
         userapi.getuserlist( this.getloginuserid ).then( ( res ) => {

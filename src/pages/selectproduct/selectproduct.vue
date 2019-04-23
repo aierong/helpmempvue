@@ -83,7 +83,7 @@ html代码片段
 
         this.productlist = dlapi.getproductlist( this.maxcounts )
 
-        console.log( this.productlist )
+        // console.log( this.productlist )
       } ,
       selectdata ( item ) {
         //逻辑说明: 把数据存储在 vuex，并且返回
