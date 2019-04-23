@@ -14,12 +14,18 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
+  import * as dlapi from '@/common/BmobApi/dl.js'
+
   export default {
     name : "reply" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     //数据模型
     data () {
       return {
-        msg : ''
+        productlist : []
       }
     } ,
     //方法
@@ -38,13 +44,20 @@
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'reply mouted' )
 
     } ,
+    onLoad () {
+      console.log( 'reply onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'reply onShow' );
+    }
   }
 </script>
 
 <!-- 样式代码片段  scoped -->
 <style scoped
        src="./reply.css">
-
 </style>
