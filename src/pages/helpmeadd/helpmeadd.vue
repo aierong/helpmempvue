@@ -232,7 +232,9 @@
           addpmcman : '' ,
           addpmcmanname : '' ,
           comment : this.comment ,
+          //未完成的
           overdate : '' ,
+          isover : false ,
           helppmc1 : this.helpmaninfo.helppmc1 ,
           helppmc2 : this.helpmaninfo.helppmc2 ,
           helppmcname1 : this.helpmaninfo.helppmcname1 ,

@@ -37,7 +37,8 @@ addpmcmanname     --pmc答复人姓名
     
 comment           --备注 CS求助备注
 
-overdate        --完成时间 
+overdate          --完成时间 
+isover            --是完成 布尔值
 
 helppmc1          -- 求助对象1  13925520750
 helppmc2          -- 求助对象2  13925520750

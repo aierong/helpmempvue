@@ -41,6 +41,8 @@ export function adddl ( dl ) {
     query.set( "comment" , dl.comment )
 
     query.set( "overdate" , dl.overdate )
+    query.set( "isover" , dl.isover )
+
     query.set( "helppmc1" , dl.helppmc1 )
     query.set( "helppmc2" , dl.helppmc2 )
 
@@ -106,27 +108,14 @@ export function getontworkcounts ( userid ) {
     //这里 设置  列的数据
 
     query.equalTo( "userid" , "==" , userid );
-    //  为完成的
-    query.notContainedIn( "overdate" , [ '' ] );
+    // isover 为完成的
+    query.equalTo( "isover" , "==" , false );
 
     query.count().then( res => {
       //返回的是 数字
       console.log( res )
       resolve( res );
     } );
-
-    // query.find().then( res => {
-    //   //返回的是数组,没有找到就是空数组
-    //   //console.log( res )
-    //
-    //   if ( res != null && res.length > 0 ) {
-    //     //是存在  相同的
-    //     resolve( true );
-    //   }
-    //   else {
-    //     resolve( false );
-    //   }
-    // } );
 
   } );
 }
@@ -188,28 +177,25 @@ export function againhelp ( id , helplasttime , csexpectdate ) {
       resolve( null );
     } )
 
-    // query.set( 'id' , id ) //需要修改的objectId
-
-    //
-    // query.set( "helptimes" , 111 )
-    // query.set( "helplasttime" , helplasttime )
-    // query.set( "csexpectdate" , csexpectdate )
-    // query.set( "pmsreplydate" , '' )
-    // query.set( "addpmcreplycomment" , '' )
-    //
-    // query.set( "addpmcreplydate" , '' )
-    // query.set( "addpmcman" , '' )
-    // query.set( "addpmcmanname" , '' )
-    //
-    // query.save().then( res => {
-    //   //console.log( res )
-    //
-    //   resolve( res );
-    //
-    // } ).catch( err => {
-    //   //console.log( err )
-    //
-    //   resolve( null );
-    // } )
   } );
 }
+
+//得我需要答复的
+export function getmyreply ( userid ) {
+  const query = Bmob.Query( DlTable );
+
+  query.equalTo( "isover" , "==" , false );
+  //还没有复期的
+  query.equalTo( "pmsreplydate" , "==" , '' );
+
+  const query1 = query.equalTo( "helppmc1" , "==" , userid );
+  const query2 = query.equalTo( "helppmc2" , "==" , userid );
+
+  query.or( query1 , query2 );
+
+  query.order( "autokey" );
+
+  return query.find();
+}
+
+
