@@ -26,8 +26,14 @@
         "selectedIconPath": "static/tabs/home-active.png"
       },
       {
-        "text": "首页",
-        "pagePath": "pages/me/main",
+        "text": "求助",
+        "pagePath": "pages/helpmeadd/main",
+        "iconPath": "static/tabs/home.png",
+        "selectedIconPath": "static/tabs/orders-active.png"
+      },
+      {
+        "text": "答复",
+        "pagePath": "pages/reply/main",
         "iconPath": "static/tabs/home.png",
         "selectedIconPath": "static/tabs/orders-active.png"
       }

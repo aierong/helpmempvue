@@ -7,7 +7,7 @@
 <template>
 
   <div>
-    答复人家
+    答复人家reply
   </div>
 
 </template>
