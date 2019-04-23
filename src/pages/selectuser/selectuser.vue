@@ -3,23 +3,27 @@
 功能:vue页
 -->
 
-<!-- html代码片段 -->
+<!--
+用户选择
+ -->
 <template>
 
   <div>
-
+    selectuser
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as userapi from '@/common/BmobApi/users.js'
+
   export default {
     name : "selectuser" ,
     //数据模型
     data () {
       return {
-        msg : ''
+        userlist : []
       }
     } ,
     //方法
@@ -31,15 +35,23 @@
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      getuserid () {
+        return this.$store.getters.getuserid;
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'selectuser mouted' )
 
+      console.log( this.getuserid )
     } ,
+    onLoad () {
+      console.log( 'selectuser onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'selectuser onShow' );
+    }
   }
 </script>
 

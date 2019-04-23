@@ -64,7 +64,7 @@
       <van-button slot="button"
                   size="mini"
                   type="primary"
-                  @click="onselectdate">选择
+                  @click="onselectuser1">选择
       </van-button>
       <van-button slot="button"
                   size="mini"
@@ -115,8 +115,13 @@
       commentChange ( event ) {
         this.comment = event.mp.detail
       } ,
+      onselectuser1 () {
+        //转向  用户选择页面
+        const url = "../selectuser/main"
+        wx.navigateTo( { url : url } )
+      } ,
       onselectproduct () {
-        //代码搞这里
+
         //转向  产品选择页面
         const url = "../selectproduct/main"
         wx.navigateTo( { url : url } )
