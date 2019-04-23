@@ -182,7 +182,7 @@
         let selectdate = new Date( detail );  //得到日期
         let _now2 = dayjs( selectdate );
         this.csexpectdate = _now2.format( 'YYYY-MM-DD' )
-
+        // yyyy-MM-dd HH:mm:ss
         this.closeDateWin();
       } ,
       userselectdatecancel () {
@@ -192,24 +192,12 @@
       closeDateWin () {
         this.isshowdatepicker = false;
       } ,
-      async checkproductsave ( productno ) {
-        let isexists = await dlapi.isexistsproductno( productno );
-        console.log( 'isexists' , isexists )
-        if ( isexists ) {
-          return '工程单号已经存在'
-        }
 
-        let counts = await dlapi.getontworkcounts( this.getloginuserid );
-        console.log( 'counts' , counts )
-        if ( counts > this.maxsavecount ) {
-          return '您的未完成工程单已超过' + this.maxsavecount + '个'
-        }
-
-        return '';
-      } ,
       //保存数据
-      savedata () {
+      async savedata () {
         // 先构建数据，再做检查判断
+        let now = new Date();
+
         let newdata = {
           userid : this.getloginuserid ,
           username : this.getloginusername ,
@@ -222,7 +210,8 @@
           poqty : this.productinfo.poqty ,
 
           helptimes : 1 ,
-          helplasttime : '' ,
+          //最后求助时间
+          helplasttime : dayjs( now ).format( 'YYYY-MM-DD HH:mm:ss' ) ,
           csexpectdate : this.csexpectdate ,
           pmsreplydate : '' ,
           addpmcreplycomment : '' ,
@@ -239,17 +228,37 @@
           helppmcname2 : this.helpmaninfo.helppmcname2 ,
         }
 
-        console.log( 'newdata' , newdata )
+        // console.log( 'newdata' , newdata )
+
+        // return;
 
         //开始做判断了
         if ( newdata.productno ) {
-          let msg = this.checkproductsave( newdata.productno );
-          console.log( 'msg' , msg )
-          if ( msg ) {
-            Toast.fail( msg );
+          // let msg = this.checkproductsave( newdata.productno );
+
+          let isexists = await dlapi.isexistsproductno( newdata.productno );
+          // console.log( 'isexists' , isexists )
+
+          if ( isexists ) {
+            // return '工程单号已经存在'
+
+            Toast.fail( '工程单号已经存在' );
 
             return;
           }
+
+          let counts = await dlapi.getontworkcounts( this.getloginuserid );
+
+          // console.log( 'counts' , counts )
+
+          if ( counts > this.maxsavecount ) {
+            // return '您的未完成工程单已超过' + this.maxsavecount + '个'
+
+            Toast.fail( '您的未完成工程单已超过' + this.maxsavecount + '个' );
+
+            return;
+          }
+
         }
         else {
           Toast.fail( '工程单号为空' );
@@ -257,10 +266,12 @@
           return;
         }
 
+        // console.log( 'newdata.csexpectdate' , newdata.csexpectdate )
         if ( newdata.csexpectdate ) {
 
         }
         else {
+          // console.log( '期望交期为空' )
           Toast.fail( '期望交期为空' );
 
           return;
