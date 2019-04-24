@@ -70,7 +70,8 @@
       //设置页面标题
       setpagetitle () {
         let _title = this.getloginusername + '的主页'
-        wx.setNavigationBarTitle( _title );
+        // console.log( _title )
+        wx.setNavigationBarTitle( { title : _title } );
       } ,
       helpclick () {
         //
