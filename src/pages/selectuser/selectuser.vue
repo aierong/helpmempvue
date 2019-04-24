@@ -115,6 +115,8 @@
         userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
           // console.log( res )
           this.userlist = res;
+
+          console.log( 'this.userlist' , this.userlist )
         } )
       } ,
       cellclick ( ee ) {

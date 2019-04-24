@@ -120,6 +120,8 @@
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
+  import { logruntype } from '@/common/constant.js';
+
   export default {
     name : "helpmeadd" ,
     //导入混入对象 可以是多个,数组
@@ -225,7 +227,17 @@
           helppmcname2 : this.helpmaninfo.helppmcname2 ,
         }
 
+        //构建日志数据
+        let objlog = {
+          logruntype : logruntype.add ,
+          userid : newdata.userid ,
+          username : newdata.username ,
+          productno : newdata.productno ,
+          dates : newdata.csexpectdate ,
+          comment : newdata.comment
+        };
         // console.log( 'newdata' , newdata )
+        // console.log( 'objlog' , objlog )
 
         // return;
 
