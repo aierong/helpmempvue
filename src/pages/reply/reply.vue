@@ -19,20 +19,15 @@
       <view class="txt">
         {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
       </view>
-      <!--
-      加个样式把按钮搞右边去
-      -->
-      <view slot="footer">
-        <!--        <van-button plain-->
-        <!--                    type="primary"-->
-        <!--                    @click="replydata(item)"-->
-        <!--                    size="mini">答复-->
-        <!--        </van-button>-->
 
+      <view slot="footer">
         <van-row>
           <van-col span="18">
             <div>qq</div>
           </van-col>
+          <!--
+ 加个样式把按钮搞右边去
+ -->
           <van-col style="text-align: right;"
                    span="6">
             <van-button plain
