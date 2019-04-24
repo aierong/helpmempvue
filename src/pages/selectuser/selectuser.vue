@@ -20,6 +20,8 @@
         </van-cell>
       </van-cell-group>
     </van-checkbox-group>
+    <!--    <mybr/>-->
+    <div class="msgtxt">{{ '最多可选'+maxmancounts+'人' }}</div>
     <van-button size="large"
                 type="primary"
                 @click="selectuser">确定选择
@@ -27,6 +29,7 @@
     <van-button size="large"
                 @click="backpage">返回
     </van-button>
+
     <!--
     注意要配一个van-toast,才会显示提示 ,默认id van-toast
     -->
@@ -46,10 +49,15 @@
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
+  // import mybr from '@/components/mybr.vue'
+
   export default {
     name : "selectuser" ,
     //导入混入对象 可以是多个,数组
     mixins : [ loginuserdatamix ] ,
+    // components : {
+    //   mybr
+    // } ,
     //数据模型
     data () {
       return {
