@@ -8,10 +8,6 @@
 
   <div>
 
-
-    <!--
-    disabled 禁止输入
-    -->
     <van-field :value="productinfo.productno"
                required
                clearable
@@ -92,7 +88,7 @@
                 @click="savedata">保存
     </van-button>
 
-    <!--    放最后，一个弹窗-->
+    <!--    放最后，一个弹窗 -->
     <van-popup :show="isshowdatepicker"
                position="bottom">
 
@@ -102,10 +98,10 @@
                            @confirm="userselectdate"
                            @cancel="userselectdatecancel"/>
     </van-popup>
-    <!--    放最后，一个 提示-->
+    <!--    放最后，一个提示-->
     <!--
-注意要配一个van-toast,才会显示提示 ,默认id van-toast
--->
+    注意要配一个van-toast,才会显示提示 ,默认id van-toast
+    -->
     <van-toast id="van-toast"/>
   </div>
 
@@ -195,7 +191,8 @@
 
       //保存数据
       async savedata () {
-        // 先构建数据，再做检查判断
+        //运行逻辑:1.构建数据，2.再做检查判断 3.保存数据
+
         let now = new Date();
 
         let newdata = {
@@ -240,7 +237,6 @@
           // console.log( 'isexists' , isexists )
 
           if ( isexists ) {
-            // return '工程单号已经存在'
 
             Toast.fail( '工程单号已经存在' );
 
@@ -252,7 +248,6 @@
           // console.log( 'counts' , counts )
 
           if ( counts > this.maxsavecount ) {
-            // return '您的未完成工程单已超过' + this.maxsavecount + '个'
 
             Toast.fail( '您的未完成工程单已超过' + this.maxsavecount + '个' );
 

@@ -43,7 +43,6 @@
 
     <!--
    注意要配一个van-toast,才会显示提示 ,默认id van-toast
-
    -->
     <van-toast id="van-toast"/>
 
@@ -195,5 +194,4 @@
 <!-- 样式代码片段  scoped -->
 <style scoped
        src="./registeruser.css">
-
 </style>

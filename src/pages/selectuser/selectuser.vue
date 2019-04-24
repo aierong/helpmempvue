@@ -28,9 +28,8 @@
                 @click="backpage">返回
     </van-button>
     <!--
-注意要配一个van-toast,才会显示提示 ,默认id van-toast
-
--->
+    注意要配一个van-toast,才会显示提示 ,默认id van-toast
+    -->
     <van-toast id="van-toast"/>
   </div>
 
