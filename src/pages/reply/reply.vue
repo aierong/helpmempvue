@@ -30,9 +30,9 @@
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      getproductlist () {
+        //代码搞这里
+      } ,
 
     } ,
     //计算属性
