@@ -57,6 +57,8 @@
     methods : {
       //退出系统，
       ExitSystem () {
+        // console.log( 'into ExitSystem' )
+
         //清除本地存储
         wx.removeStorageSync( constant.StorageName )
 
@@ -87,6 +89,8 @@
       } ,
       exitclick () {
         //弹窗提示一下
+        let that = this;
+
         wx.showModal( {
           title : '提示' ,
           content : '确定退出吗?' ,
@@ -94,7 +98,7 @@
             if ( res.confirm ) {
               // console.log('用户点击确定')
 
-              this.ExitSystem();
+              that.ExitSystem();
             }
             else if ( res.cancel ) {
               // console.log('用户点击取消')
