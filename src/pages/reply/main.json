@@ -1,5 +1,9 @@
 {
-  "navigationBarTitleText": "答复"
+  "navigationBarTitleText": "答复",
+  "usingComponents": {
+    "van-panel": "/static/vant/panel/index",
+    "van-button": "/static/vant/button/index"
+  }
 }
 
 
