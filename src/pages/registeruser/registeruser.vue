@@ -116,7 +116,7 @@
 
           if ( result.isexists ) {
 
-            Toast.fail( '手机号码已存在' );
+            Toast.fail( '手机号已存在' );
 
             return
           }
