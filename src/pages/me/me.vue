@@ -69,7 +69,9 @@
 
         //转向 登录页面
         const url = "../index/main"
-        wx.navigateTo( { url : url } )
+        // wx.navigateTo( { url : url } )
+
+        wx.reLaunch( { url : url } );
       } ,
       // //设置页面标题
       // setuppagetitle () {

@@ -102,6 +102,10 @@
       } ,
       backpage () {
         wx.navigateBack()
+
+        // wx.switchTab( {
+        //   url : "../helpmeadd/main"
+        // } );
       } ,
       getname ( userid ) {
         if ( this.userlist != null && this.userlist.length > 0 ) {
