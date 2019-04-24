@@ -51,19 +51,18 @@ helppmcname2      -- 求助对象2  名字
 
 
  
-dllog
-autokey   自动增长
+dllog表结构:
+autokey      自动增长
     
-runtype   数据类型  -- add添加记录 update添加记录  reply答复  againhelp 再次求助
+logruntype   日志表数据类型  -- add添加记录 update添加记录  reply答复  againhelp 再次求助
  
-userid    录入人
-username  录入人姓名
+userid       录入人
+username     录入人姓名
 
-productno 工程单号  
+productno    工程单号  
 
-dates     cs期望交期/或者pmc的复期
-comment   当时的备注
-
+dates        cs期望交期/或者pmc的复期
+comment      当时的备注
 
 
 
