@@ -41,8 +41,12 @@
 <script>
   import * as constant from '@/common/constant.js'
 
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
   export default {
     name : "me" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     //数据模型
     data () {
       return {
@@ -62,6 +66,11 @@
         //转向 登录页面
         const url = "../index/main"
         wx.navigateTo( { url : url } )
+      } ,
+      //设置页面标题
+      setpagetitle () {
+        let _title = this.getloginusername + '的主页'
+        wx.setNavigationBarTitle( _title );
       } ,
       helpclick () {
         //
@@ -103,8 +112,17 @@
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'me mouted' )
 
+      this.setpagetitle();
     } ,
+    onLoad () {
+      console.log( 'me onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'me onShow' );
+    }
   }
 </script>
 
