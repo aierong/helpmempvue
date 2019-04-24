@@ -10,25 +10,25 @@
     <van-row class="user-links">
       <van-col span="6">
         <van-icon @click="helpclick"
-                  name="pending-payment"
+                  name="friends-o"
                   size="36px"/>
         <br>求助
       </van-col>
       <van-col span="6">
         <van-icon @click="replyclick"
-                  name="bag"
+                  name="comment-o"
                   size="36px"/>
         <br>答复
       </van-col>
       <van-col span="6">
         <van-icon @click="queryclick"
-                  name="fire"
+                  name="search"
                   size="36px"/>
         <br>查询
       </van-col>
       <van-col span="6">
         <van-icon @click="exitclick"
-                  name="logistics"
+                  name="exchange"
                   size="36px"/>
         <br>退出
       </van-col>
@@ -64,13 +64,16 @@
         wx.navigateTo( { url : url } )
       } ,
       helpclick () {
-
+        //
+        wx.switchTab( { url : "../helpmeadd/main" } );
       } ,
       replyclick () {
-
+        //
+        wx.switchTab( { url : "../reply/main" } );
       } ,
       queryclick () {
-
+        //
+        wx.switchTab( { url : "../querylist/main" } );
       } ,
       exitclick () {
         //弹窗提示一下
@@ -88,7 +91,6 @@
             }
           }
         } )
-
 
       } ,
     } ,
