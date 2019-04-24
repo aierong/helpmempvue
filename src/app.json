@@ -6,7 +6,8 @@
     "pages/selectproduct/main",
     "pages/selectuser/main",
     "pages/reply/main",
-    "pages/me/main"
+    "pages/me/main",
+    "pages/querylist/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,22 +22,28 @@
     "borderStyle": "white",
     "list": [
       {
-        "text": "首页",
+        "text": "我的",
         "pagePath": "pages/me/main",
-        "iconPath": "static/tabs/home.png",
-        "selectedIconPath": "static/tabs/home-active.png"
+        "iconPath": "static/tabs/profile.png",
+        "selectedIconPath": "static/tabs/profile-actived.png"
       },
       {
         "text": "求助",
         "pagePath": "pages/helpmeadd/main",
-        "iconPath": "static/tabs/home.png",
-        "selectedIconPath": "static/tabs/orders-active.png"
+        "iconPath": "static/tabs/safari.png",
+        "selectedIconPath": "static/tabs/safari-actived.png"
       },
       {
         "text": "答复",
         "pagePath": "pages/reply/main",
-        "iconPath": "static/tabs/home.png",
-        "selectedIconPath": "static/tabs/orders-active.png"
+        "iconPath": "static/tabs/star.png",
+        "selectedIconPath": "static/tabs/star-actived.png"
+      },
+      {
+        "text": "查询",
+        "pagePath": "pages/querylist/main",
+        "iconPath": "static/tabs/search.png",
+        "selectedIconPath": "static/tabs/search-actived.png"
       }
     ],
     "position": "bottom"
