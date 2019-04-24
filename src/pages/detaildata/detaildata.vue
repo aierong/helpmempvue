@@ -23,6 +23,10 @@
       </van-collapse-item>
 
     </van-collapse>
+
+    <van-button size="large"
+                @click="backpage">返回
+    </van-button>
   </div>
 
 </template>
@@ -58,6 +62,13 @@
     } ,
     //方法
     methods : {
+      backpage () {
+        wx.navigateBack()
+
+        // wx.switchTab( {
+        //   url : "../helpmeadd/main"
+        // } );
+      } ,
       onActiveChange ( event ) {
         //由于 :value="activeNames" 不是双向数据绑定 这里我们要主动赋值一下
         this.activeNames = event.mp.detail;
