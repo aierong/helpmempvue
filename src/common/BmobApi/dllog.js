@@ -41,4 +41,13 @@ export function adddllog ( dllog ) {
   } );
 }
 
+//由工程单号查询列表
+export function getloglistbyproductno ( productno ) {
+  const query = Bmob.Query( DlLogTable );
 
+  query.equalTo( "productno" , "==" , productno );
+
+  query.order( "autokey" );
+
+  return query.find();
+}
