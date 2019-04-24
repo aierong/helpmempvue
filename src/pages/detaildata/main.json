@@ -1,5 +1,10 @@
 {
-  "navigationBarTitleText": "详细页面"
+  "navigationBarTitleText": "详情",
+  "usingComponents": {
+    "van-steps": "/static/vant/steps/index",
+    "van-collapse": "/static/vant/collapse/index",
+    "van-collapse-item": "/static/vant/collapse-item/index"
+  }
 }
 
 

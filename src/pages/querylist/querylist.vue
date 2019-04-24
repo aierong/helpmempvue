@@ -7,7 +7,7 @@
 <template>
 
   <div>
-    querylistquerylistquerylist
+    列表
   </div>
 
 </template>

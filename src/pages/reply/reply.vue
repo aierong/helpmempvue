@@ -78,8 +78,10 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      replydata () {
-
+      replydata ( item ) {
+        //暂时转向
+        const url = "../detaildata/main"
+        wx.navigateTo( { url : url } )
       } ,
     } ,
     //计算属性
