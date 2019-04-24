@@ -75,7 +75,7 @@
       reg () {
         if ( !this.userid ) {
 
-          Toast.fail( '请输入手机号码' );
+          Toast.fail( '请输手机号' );
 
           return;
         }
