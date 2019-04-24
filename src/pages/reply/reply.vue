@@ -32,6 +32,20 @@
     methods : {
       getproductlist () {
         //代码搞这里
+        let initcount = 5;
+
+        dlapi.getmyreply( this.getloginuserid , initcount , [] ).then( ( res ) => {
+          console.log( 're' , res )
+
+          if ( res != null && res.length > 0 ) {
+            this.productlist = res;
+          }
+          else {
+            this.productlist = [];
+          }
+
+          console.log( 'this.productlist' , this.productlist )
+        } );
       } ,
 
     } ,
@@ -46,6 +60,7 @@
     mounted () {
       console.log( 'reply mouted' )
 
+      this.getproductlist();
     } ,
     onLoad () {
       console.log( 'reply onLoad' )
