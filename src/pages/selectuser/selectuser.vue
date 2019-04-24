@@ -116,7 +116,7 @@
           // console.log( res )
           this.userlist = res;
 
-          console.log( 'this.userlist' , this.userlist )
+          // console.log( 'this.userlist' , this.userlist )
         } )
       } ,
       cellclick ( ee ) {
