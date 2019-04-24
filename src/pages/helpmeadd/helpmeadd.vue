@@ -118,6 +118,8 @@
   import dayjs from 'dayjs'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
+  import * as dllogapi from '@/common/BmobApi/dllog.js'
+  import * as utils from '@/common/utils.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
@@ -308,26 +310,49 @@
           message : '保存中...'
         } );
 
-        dlapi.adddl( newdata ).then( ( res ) => {
-          console.log( 'res' , res );
+        // dlapi.adddl( newdata ).then( ( res ) => {
+        //   console.log( 'res' , res );
+        //
+        //   //关闭提示
+        //   //Toast.clear		关闭提示
+        //   Toast.clear();
+        //
+        //   if ( res != null ) {
+        //     Toast.success( '成功' );
+        //   }
+        //   else {
+        //     Toast.fail( '失败' );
+        //   }
+        //
+        //   //保存完成，要清除一下数据
+        //   this.cleardata();
+        //
+        //   return;
+        // } )
 
-          //关闭提示
-          //Toast.clear		关闭提示
-          Toast.clear();
+        var result = await Promise.all( [
+          dlapi.adddl( newdata ) ,
+          dllogapi.adddllog( objlog ) ,
+          utils.runlongtims( 3000 )
+        ] )
 
-          if ( res != null ) {
+        Toast.clear();
+
+        // console.log( '2ge' , result )
+        if ( result != null && result.length >= 2 ) {
+          if ( result[ 0 ] != null && result[ 1 ] != null ) {
             Toast.success( '成功' );
+
+            this.cleardata();
+
+            return;
           }
-          else {
-            Toast.fail( '失败' );
-          }
+        }
 
-          //保存完成，要清除一下数据
-          this.cleardata();
+        Toast.fail( '失败' );
+        this.cleardata();
 
-          return;
-        } )
-
+        return;
       } ,
       cleardata () {
         this.csexpectdate = ''
