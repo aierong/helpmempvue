@@ -83,6 +83,7 @@
                @change="commentChange"
                placeholder="请输入备注"/>
 
+    <mybr/>
     <van-button size="large"
                 type="primary"
                 @click="savedata">保存
@@ -122,8 +123,13 @@
 
   import { logruntype } from '@/common/constant.js';
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     name : "helpmeadd" ,
+    components : {
+      mybr
+    } ,
     //导入混入对象 可以是多个,数组
     mixins : [ loginuserdatamix ] ,
     //数据模型
