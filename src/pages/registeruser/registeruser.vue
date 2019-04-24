@@ -32,7 +32,8 @@
                clearable
                @change="pwd2Change"
                type="password"
-               placeholder="请输入密码"/>
+               placeholder="请再次输入密码"/>
+    <mybr/>
     <van-button size="large"
                 type="primary"
                 @click="reg">注册
@@ -59,8 +60,13 @@
 
   import * as userapi from '@/common/BmobApi/users.js'
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     name : "registeruser" ,
+    components : {
+      mybr
+    } ,
     //数据模型
     data () {
       return {

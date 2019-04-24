@@ -18,7 +18,7 @@
                  @change="pwdChange"
                  type="password"
                  placeholder="请输入密码"/>
-
+      <mybr/>
       <van-button size="large"
                   type="primary"
                   @click="userlogin">登录
@@ -45,6 +45,8 @@
 
   import * as userapi from '@/common/BmobApi/users.js'
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     data () {
       return {
@@ -56,7 +58,9 @@
         validday : constant.validday
       }
     } ,
-
+    components : {
+      mybr
+    } ,
     methods : {
       useridChange ( event ) {
 
