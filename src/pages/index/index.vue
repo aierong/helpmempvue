@@ -18,14 +18,14 @@
                  @change="pwdChange"
                  type="password"
                  placeholder="请输入密码"/>
-      <!--      style="text-align: right;color: green;"
-      -->
-      <div class="msgtxt">{{ '登录状态保存'+validday+'天' }}</div>
+
       <van-button size="large"
                   type="primary"
                   @click="userlogin">登录
       </van-button>
-
+      <!--      style="text-align: right;color: green;"
+         -->
+      <div class="msgtxt">{{ '登录状态保存'+validday+'天' }}</div>
       <!--
 注意要配一个van-toast,才会显示提示 ,默认id van-toast
 
