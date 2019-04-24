@@ -49,6 +49,8 @@
         isvaliduser : false ,
         userid : '' ,
         pwd : '' ,
+
+        validday : constant.validday
       }
     } ,
 
@@ -146,7 +148,7 @@
         if ( StorageValue.logintime ) {
           let validtime = new Date( StorageValue.logintime );
           // console.log( 'validtime' , validtime )
-          validtime.setDate( validtime.getDate() + constant.validday );
+          validtime.setDate( validtime.getDate() + this.validday );
 
           // console.log( 'validtime' , validtime )
 

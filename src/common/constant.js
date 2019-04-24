@@ -13,4 +13,4 @@ export const DlTable = "dl";
 export const StorageName = "HelpMeStorage";
 
 //有效期
-export const validday = 5;
+export const validday = 7;
