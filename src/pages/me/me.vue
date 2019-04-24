@@ -43,10 +43,12 @@
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
+  import { mixmethods } from '@/mixin/commonmethods.js'
+
   export default {
     name : "me" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [ loginuserdatamix , mixmethods ] ,
     //数据模型
     data () {
       return {
@@ -69,12 +71,12 @@
         const url = "../index/main"
         wx.navigateTo( { url : url } )
       } ,
-      //设置页面标题
-      setpagetitle () {
-        let _title = this.getloginusername + '的主页'
-        // console.log( _title )
-        wx.setNavigationBarTitle( { title : _title } );
-      } ,
+      // //设置页面标题
+      // setuppagetitle () {
+      //   let _title = this.getloginusername + '的主页'
+      //
+      //   wx.setNavigationBarTitle( { title : _title } );
+      // } ,
       helpclick () {
         //
         wx.switchTab( { url : "../helpmeadd/main" } );
@@ -119,7 +121,8 @@
     mounted () {
       console.log( 'me mouted' )
 
-      this.setpagetitle();
+      let _title = this.getloginusername + '的主页!';
+      this.setuppagetitle( _title );
     } ,
     onLoad () {
       console.log( 'me onLoad' )
