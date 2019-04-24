@@ -121,7 +121,7 @@
     mounted () {
       console.log( 'me mouted' )
 
-      let _title = this.getloginusername + '的主页!';
+      let _title = this.getloginusername + '的主页';
       this.setuppagetitle( _title );
     } ,
     onLoad () {
