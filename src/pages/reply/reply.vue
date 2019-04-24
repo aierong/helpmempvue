@@ -7,7 +7,31 @@
 <template>
 
   <div>
-    答复人家reply
+    <van-panel :key="index"
+               v-for="(item,index) in productlist"
+               :title="(index+1)+ '.工单:'+item.productno"
+               :status="'客户:'+item.custno"
+               use-footer-slot>
+
+      <view class="txt">
+        {{ '订单:' + item.pono +' 数量:' + item.poqty }}
+      </view>
+      <view class="txt">
+        {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
+      </view>
+      <!--
+      加个样式把按钮搞右边去
+      -->
+      <view style="text-align: right;"
+            slot="footer">
+        <van-button plain
+                    type="primary"
+                    @click="replydata(item)"
+                    size="mini">答复
+        </van-button>
+
+      </view>
+    </van-panel>
   </div>
 
 </template>
@@ -47,7 +71,9 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
+      replydata () {
 
+      } ,
     } ,
     //计算属性
     computed : {

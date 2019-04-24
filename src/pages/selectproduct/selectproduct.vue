@@ -40,7 +40,7 @@ html代码片段
                     @click="selectdata(item)"
                     size="mini">选择
         </van-button>
-        <hr/>
+
       </view>
     </van-panel>
   </div>
