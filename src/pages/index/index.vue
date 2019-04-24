@@ -18,6 +18,9 @@
                  @change="pwdChange"
                  type="password"
                  placeholder="请输入密码"/>
+      <!--      style="text-align: right;color: green;"
+      -->
+      <div class="msgtxt">{{ '登录状态保存'+validday+'天' }}</div>
       <van-button size="large"
                   type="primary"
                   @click="userlogin">登录
