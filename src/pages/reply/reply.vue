@@ -22,14 +22,26 @@
       <!--
       加个样式把按钮搞右边去
       -->
-      <view style="text-align: right;"
-            slot="footer">
-        <van-button plain
-                    type="primary"
-                    @click="replydata(item)"
-                    size="mini">答复
-        </van-button>
+      <view slot="footer">
+        <!--        <van-button plain-->
+        <!--                    type="primary"-->
+        <!--                    @click="replydata(item)"-->
+        <!--                    size="mini">答复-->
+        <!--        </van-button>-->
 
+        <van-row>
+          <van-col span="18">
+            <div>qq</div>
+          </van-col>
+          <van-col style="text-align: right;"
+                   span="6">
+            <van-button plain
+                        type="primary"
+                        @click="replydata(item)"
+                        size="mini">答复
+            </van-button>
+          </van-col>
+        </van-row>
       </view>
     </van-panel>
   </div>
