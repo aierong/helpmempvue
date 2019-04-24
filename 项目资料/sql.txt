@@ -49,7 +49,11 @@ helppmc2          -- 求助对象2  13925520750
 helppmcname1      -- 求助对象1  名字
 helppmcname2      -- 求助对象2  名字
 
+
  
+dllog
+
+
 
 users表结构:
 autokey  自动增长
