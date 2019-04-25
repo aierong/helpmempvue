@@ -196,7 +196,7 @@
       //清空一下，以免记录上次的
       this.selectval = [];
       this.userlist = [];
-      //console.log( this.getloginuserid )
+
       this.getuserlist();
 
       console.log( 'selectuser onShow' );
