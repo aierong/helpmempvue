@@ -16,8 +16,8 @@
 
       <van-collapse-item title="时光轴"
                          name="2">
-        <van-steps :steps="steps2"
-                   :active="active2"
+        <van-steps :steps="stepdata"
+                   :active="activesteps"
                    direction="vertical"
                    active-color="#f44"/>
       </van-collapse-item>
@@ -38,9 +38,11 @@
     //数据模型
     data () {
       return {
+        selectproductno : '' ,
+
         activeNames : [ "1" , "2" ] ,
-        active2 : 3 ,
-        steps2 : [
+        activesteps : 3 ,
+        stepdata : [
           {
             text : '步骤一' ,
             desc : '描述信息'
@@ -84,6 +86,9 @@
     } ,
     //生命周期(mounted)
     mounted () {
+      //取到前一个页面传递过来的工程单号
+      this.selectproductno = this.$mp.query.productno
+
       console.log( 'detaildata mouted' )
     } ,
     onLoad () {

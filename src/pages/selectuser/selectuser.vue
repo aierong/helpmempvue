@@ -186,6 +186,7 @@
     } ,
     //生命周期(mounted)
     mounted () {
+
       console.log( 'selectuser mouted' )
 
     } ,
