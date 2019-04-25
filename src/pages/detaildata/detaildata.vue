@@ -11,7 +11,17 @@
                   @change="onActiveChange">
       <van-collapse-item title="单据基本属性"
                          name="1">
-        单据基本属性
+        <van-panel v-if="userselectproductdetaildata"
+                   :title="'工单:'+userselectproductdetaildata.productno"
+                   :status="'填单:'+userselectproductdetaildata.username"
+                   use-footer-slot>
+          <view class="txt">
+            {{ '订单:' + userselectproductdetaildata.pono +' 数量:' + userselectproductdetaildata.poqty +' 客户:'+userselectproductdetaildata.custno }}
+          </view>
+          <view class="txt">
+            {{ '产品:' + userselectproductdetaildata.itemno + '(' + userselectproductdetaildata.itemsname +')' }}
+          </view>
+        </van-panel>
       </van-collapse-item>
 
       <van-collapse-item title="操作日志时光轴"
@@ -48,7 +58,7 @@
     data () {
       return {
         userselectproductno : '' ,
-        userselectproductdetaildata : {} ,
+        userselectproductdetaildata : null ,
 
         activeNames : [ "1" , "2" ] ,
         activesteps : 0 ,
@@ -124,7 +134,7 @@
             this.userselectproductdetaildata = res;
           }
           else {
-            this.userselectproductdetaildata = {};
+            this.userselectproductdetaildata = null;
           }
 
         } )
