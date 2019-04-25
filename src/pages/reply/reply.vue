@@ -32,8 +32,8 @@
                    span="6">
             <van-button plain
                         type="primary"
-                        @click="replydata(item.productno)"
-                        size="mini">答复
+                        @click="querydetaildata(item.productno)"
+                        size="mini">详情
             </van-button>
           </van-col>
         </van-row>
@@ -97,8 +97,8 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      replydata ( productno ) {
-        //暂时转向
+      querydetaildata ( productno ) {
+        //转向
         this.gotodetailpage( productno );
       } ,
       gotodetailpage ( productno ) {
