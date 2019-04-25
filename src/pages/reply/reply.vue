@@ -19,35 +19,44 @@
       <view class="txt">
         {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
       </view>
-
+      <view>
+        <van-button plain
+                    type="primary"
+                    @click="querydetaildata(item.productno)"
+                    size="mini">详情
+        </van-button>
+      </view>
       <view slot="footer">
-        <van-row>
-          <van-col span="18">
-            <div>qq</div>
-          </van-col>
-          <!--
- 加个样式把按钮搞右边去
- -->
-          <van-col style="text-align: right;"
-                   span="6">
-            <van-button plain
-                        type="primary"
-                        @click="querydetaildata(item.productno)"
-                        size="mini">详情
-            </van-button>
-          </van-col>
-        </van-row>
+        <van-field :value="item.pmsreplydate"
+                   label="复期"
+                   disabled
+                   required
+                   placeholder="请选择复期"
+                   use-button-slot>
+          <van-button slot="button"
+                      size="mini"
+                      type="primary"
+                      @click="onselectdate(index)">选择
+          </van-button>
+        </van-field>
+        <van-field :value="item.addpmcreplycomment"
+                   label="备注"
+                   clearable
+                   @change="commentChange($event,index)"
+                   placeholder="请输入复期备注"/>
       </view>
     </van-panel>
   </div>
 
 </template>
 
+
 <!-- js脚本代码片段 -->
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
+  import * as utils from '@/common/utils.js'
 
   export default {
     name : "reply" ,
@@ -56,7 +65,8 @@
     //数据模型
     data () {
       return {
-        productlist : []
+        productlist : [] ,
+        datelist : []
       }
     } ,
     //方法
@@ -105,6 +115,36 @@
         const url = "../detaildata/main?productno=" + productno
         wx.navigateTo( { url : url } )
       } ,
+      onselectdate ( index ) {
+        let that = this;
+
+        wx.showActionSheet( {
+          //按钮的文字数组，数组长度最大为 6 个,
+          itemList : this.datelist ,
+          //按钮的文字颜色
+          itemColor : '#000000' ,
+          success : res => {
+            //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
+            let selectval = that.datelist[ res.tapIndex ];
+
+            console.log( selectval )
+
+            that.productlist[ index ].pmsreplydate = selectval;
+          }
+        } );
+      } ,
+      commentChange ( event , index ) {
+        // console.log( 'event' , event )
+        // console.log( index )
+
+        let vals = event.mp.detail;
+        this.productlist[ index ].addpmcreplycomment = vals;
+      } ,
+      getdatelist () {
+        this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
+
+        console.log( 'this.datelist' , this.datelist )
+      } ,
     } ,
     //计算属性
     computed : {
@@ -124,7 +164,7 @@
     onShow () {
 
       console.log( 'reply onShow' );
-
+      this.getdatelist();
       this.getproductlist();
     }
   }

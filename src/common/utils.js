@@ -47,10 +47,10 @@ export function getdatelist ( isincludetoday , counts , formatstring ) {
       }
     }
     else {
-      let addday = index + 1;
+      let addday = index;
 
       if ( !isincludetoday ) {
-        addday = index + 2;
+        addday = index + 1;
       }
 
       arr.push( now.add( addday , 'day' ).format( formatstring ) )

@@ -4,7 +4,8 @@
     "van-panel": "/static/vant/panel/index",
     "van-button": "/static/vant/button/index",
     "van-row": "/static/vant/row/index",
-    "van-col": "/static/vant/col/index"
+    "van-col": "/static/vant/col/index",
+    "van-field": "/static/vant/field/index"
   }
 }
 
