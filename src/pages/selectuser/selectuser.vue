@@ -144,7 +144,7 @@
 
         Promise.all( [
           userapi.getuserlist( this.getloginuserid ) ,
-          utils.runlongtims( 3000 )
+          utils.runlongtims( 1500 )
         ] ).then( ( values ) => {
           //values是数组
           this.userlist = values[ 0 ];
