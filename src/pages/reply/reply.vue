@@ -32,7 +32,7 @@
                    span="6">
             <van-button plain
                         type="primary"
-                        @click="replydata(item)"
+                        @click="replydata(item.productno)"
                         size="mini">答复
             </van-button>
           </van-col>
@@ -97,12 +97,12 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      replydata ( item ) {
+      replydata ( productno ) {
         //暂时转向
-        this.gotodetailpage();
+        this.gotodetailpage( productno );
       } ,
-      gotodetailpage () {
-        const url = "../detaildata/main"
+      gotodetailpage ( productno ) {
+        const url = "../detaildata/main?productno=" + productno
         wx.navigateTo( { url : url } )
       } ,
     } ,

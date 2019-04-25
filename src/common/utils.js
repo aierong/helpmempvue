@@ -5,6 +5,8 @@
 
 import dayjs from 'dayjs'
 
+import { logruntype } from '@/common/constant.js';
+
 /**
  * 长时间等待
  * @param 等待时间（毫秒）
@@ -58,3 +60,26 @@ export function getdatelist ( isincludetoday , counts , formatstring ) {
   return arr;
 }
 
+/**
+ * 得日志表日志表数据类型描述
+ * @param logruntype
+ */
+export function getlogruntypedesc ( logruntypecode ) {
+  if ( logruntypecode == logruntype.add ) {
+    return '添加'
+  }
+
+  if ( logruntypecode == logruntype.update ) {
+    return '修改'
+  }
+
+  if ( logruntypecode == logruntype.reply ) {
+    return '答复'
+  }
+
+  if ( logruntypecode == logruntype.againhelp ) {
+    return '再求助'
+  }
+
+  return '';
+}

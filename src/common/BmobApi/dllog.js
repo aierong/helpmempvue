@@ -9,7 +9,11 @@ import Bmob from "hydrogen-js-sdk";
 //表名称
 import { DlLogTable } from '@/common/constant.js';
 
-//添加dllog
+/**
+ * 添加日志数据
+ * @param dllog
+ * @returns {Promise<any>}
+ */
 export function adddllog ( dllog ) {
 
   return new Promise( ( resolve , reject ) => {

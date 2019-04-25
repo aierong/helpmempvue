@@ -33,33 +33,39 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as dllogapi from '@/common/BmobApi/dllog.js'
+  import * as utils from '@/common/utils.js'
+
   export default {
     name : "detaildata" ,
     //数据模型
     data () {
       return {
-        selectproductno : '' ,
+        userselectproductno : '' ,
+        userselectproductdetaildata : {} ,
 
         activeNames : [ "1" , "2" ] ,
-        activesteps : 3 ,
-        stepdata : [
-          {
-            text : '步骤一' ,
-            desc : '描述信息'
-          } ,
-          {
-            text : '步骤二' ,
-            desc : '描述信息'
-          } ,
-          {
-            text : '步骤三' ,
-            desc : '描述信息'
-          } ,
-          {
-            text : '步骤四' ,
-            desc : '描述信息'
-          }
-        ] ,
+        activesteps : 0 ,
+        stepdata : [] ,
+        // stepdata : [
+        //   {
+        //     text : '步骤一' ,
+        //     desc : '描述信息'
+        //   } ,
+        //   {
+        //     text : '步骤二' ,
+        //     desc : '描述信息'
+        //   } ,
+        //   {
+        //     text : '步骤三' ,
+        //     desc : '描述信息'
+        //   } ,
+        //   {
+        //     text : '步骤四' ,
+        //     desc : '描述信息'
+        //   }
+        // ] ,
+
       }
     } ,
     //方法
@@ -76,6 +82,37 @@
         this.activeNames = event.mp.detail;
       } ,
 
+      /**
+       * 得时光轴数据
+       */
+      getstepdata () {
+        dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
+          console.log( 'res' , res )
+
+          this.stepdata = []
+          this.activesteps = 0;
+
+          if ( res != null && res.length > 0 ) {
+            for ( let item of res ) {
+              let _desc = '操作:' + utils.getlogruntypedesc( item.logruntype ) + '  交期/复期:' + item.dates;
+
+              let obj = {
+                text : item.createdAt + '(' + item.username + ')' ,
+                desc : _desc
+              }
+
+              //把数据加入
+              this.stepdata.push( obj );
+            }
+
+            this.activesteps = res.length;
+          }
+
+        } )
+      } ,
+      getdetaildata () {
+
+      } ,
     } ,
     //计算属性
     computed : {
@@ -86,10 +123,13 @@
     } ,
     //生命周期(mounted)
     mounted () {
-      //取到前一个页面传递过来的工程单号
-      this.selectproductno = this.$mp.query.productno
-
       console.log( 'detaildata mouted' )
+
+      //取到前一个页面传递过来的工程单号
+      this.userselectproductno = this.$mp.query.productno
+      console.log( 'userselectproductno' , this.userselectproductno )
+      this.getstepdata();
+
     } ,
     onLoad () {
       console.log( 'detaildata onLoad' )
