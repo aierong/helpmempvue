@@ -32,7 +32,10 @@
               <span>{{ '求助次数:' + userselectproductdetaildata.helptimes }}</span>
             </van-col>
           </van-row>
+          <view class="txt">
 
+            {{ '复期:' + userselectproductdetaildata.pmsreplydate }}
+          </view>
 
           <!--          <van-row>-->
           <!--            <van-col span="14">-->
@@ -60,10 +63,8 @@
           <!--          <view class="txt">-->
           <!--            {{ '答复信息:'+ userselectproductdetaildata.addpmcreplydate ? userselectproductdetaildata.addpmcreplydate:'' + userselectproductdetaildata.addpmcmanname? '(' + userselectproductdetaildata.addpmcmanname + ')':'' }}-->
           <!--          </view>-->
-          <view class="txt">
 
-            {{ '复期:' + userselectproductdetaildata.pmsreplydate }}
-          </view>
+
         </van-panel>
       </van-collapse-item>
 
