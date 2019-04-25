@@ -11,10 +11,10 @@
                   @change="onActiveChange">
       <van-collapse-item title="单据基本属性"
                          name="1">
-        提供多样店铺模板，快速搭建网上商城
+        单据基本属性
       </van-collapse-item>
 
-      <van-collapse-item title="时光轴"
+      <van-collapse-item title="操作日志时光轴"
                          name="2">
         <van-steps :steps="stepdata"
                    :active="activesteps"
@@ -23,7 +23,7 @@
       </van-collapse-item>
 
     </van-collapse>
-
+    <mybr/>
     <van-button size="large"
                 @click="backpage">返回
     </van-button>
@@ -33,11 +33,17 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as dlapi from '@/common/BmobApi/dl.js'
   import * as dllogapi from '@/common/BmobApi/dllog.js'
   import * as utils from '@/common/utils.js'
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     name : "detaildata" ,
+    components : {
+      mybr
+    } ,
     //数据模型
     data () {
       return {
@@ -87,7 +93,7 @@
        */
       getstepdata () {
         dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
-          console.log( 'res' , res )
+          // console.log( 'res' , res )
 
           this.stepdata = []
           this.activesteps = 0;
@@ -111,7 +117,17 @@
         } )
       } ,
       getdetaildata () {
+        dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
+          console.log( 'res' , res )
 
+          if ( res != null ) {
+            this.userselectproductdetaildata = res;
+          }
+          else {
+            this.userselectproductdetaildata = {};
+          }
+
+        } )
       } ,
     } ,
     //计算属性
@@ -129,7 +145,7 @@
       this.userselectproductno = this.$mp.query.productno
       console.log( 'userselectproductno' , this.userselectproductno )
       this.getstepdata();
-
+      this.getdetaildata();
     } ,
     onLoad () {
       console.log( 'detaildata onLoad' )

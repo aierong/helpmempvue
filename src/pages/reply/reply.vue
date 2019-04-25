@@ -117,7 +117,6 @@
     mounted () {
       console.log( 'reply mouted' )
 
-      this.getproductlist();
     } ,
     onLoad () {
       console.log( 'reply onLoad' )
@@ -125,6 +124,8 @@
     onShow () {
 
       console.log( 'reply onShow' );
+
+      this.getproductlist();
     }
   }
 </script>
