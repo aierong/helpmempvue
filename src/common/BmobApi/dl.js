@@ -100,6 +100,35 @@ export function isexistsproductno ( productno ) {
   } );
 }
 
+/**
+ * 由工程单号得详细数据
+ * @param productno
+ * @returns {*|Promise|Promise<any>}
+ */
+export function getproductbyproductno ( productno ) {
+  return new Promise( ( resolve , reject ) => {
+    const query = Bmob.Query( DlTable );
+
+    query.equalTo( "productno" , "==" , productno );
+    query.limit( 1 );
+    query.order( "-autokey" );
+
+    query.find().then( res => {
+      //返回的是数组,没有找到就是空数组
+      //console.log( res )
+
+      if ( res != null && res.length > 0 ) {
+        //是存在
+        resolve( res[ 0 ] );
+      }
+      else {
+        resolve( null );
+      }
+    } );
+  } );
+
+}
+
 //得未完成 工程单数量
 export function getontworkcounts ( userid ) {
   return new Promise( ( resolve , reject ) => {
