@@ -46,6 +46,7 @@
   import Toast from '../../../static/vant/toast/toast';
 
   import * as userapi from '@/common/BmobApi/users.js'
+  import * as utils from '@/common/utils.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
@@ -125,13 +126,32 @@
         return "";
       } ,
       getuserlist () {
-        userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
-          // console.log( res )
+        // userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
+        //   // console.log( res )
 
-          this.userlist = res;
+        //   this.userlist = res;
 
-          // console.log( 'this.userlist' , this.userlist )
+        //   // console.log( 'this.userlist' , this.userlist )
+        // } )
+
+        Toast.loading( {
+          duration : 0 ,
+          //forbidClick	是否禁止背景点击
+          forbidClick : true ,
+          loadingType : 'spinner' ,
+          message : '挖数据...'
+        } );
+
+        Promise.all( [
+          userapi.getuserlist( this.getloginuserid ) ,
+          utils.runlongtims( 3000 )
+        ] ).then( ( values ) => {
+          //values是数组
+          this.userlist = values[ 0 ];
+
+          Toast.clear();
         } )
+
       } ,
       cellclick ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
@@ -168,17 +188,16 @@
     mounted () {
       console.log( 'selectuser mouted' )
 
-      //清空一下，以免记录上次的
-      this.selectval = [];
-
-      //console.log( this.getloginuserid )
-      this.getuserlist();
-
     } ,
     onLoad () {
       console.log( 'selectuser onLoad' )
     } ,
     onShow () {
+      //清空一下，以免记录上次的
+      this.selectval = [];
+      this.userlist = [];
+      //console.log( this.getloginuserid )
+      this.getuserlist();
 
       console.log( 'selectuser onShow' );
     }
