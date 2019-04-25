@@ -5,6 +5,11 @@
 
 import dayjs from 'dayjs'
 
+/**
+ * 长时间等待
+ * @param 等待时间（毫秒）
+ * @returns {Promise<any>}
+ */
 export function runlongtims ( times ) {
 
   return new Promise( ( resolve , reject ) => {
@@ -17,11 +22,14 @@ export function runlongtims ( times ) {
 
 }
 
-
+/**
+ * 得日期列表
+ * @param 是包含今天
+ * @param 天数
+ * @param 日期格式化字符
+ * @returns {Array}
+ */
 export function getdatelist ( isincludetoday , counts , formatstring ) {
-  // 'YYYY-MM-DD'
-
-
 
   let now = dayjs();  //得今天
 
@@ -38,6 +46,7 @@ export function getdatelist ( isincludetoday , counts , formatstring ) {
     }
     else {
       let addday = index + 1;
+
       if ( !isincludetoday ) {
         addday = index + 2;
       }

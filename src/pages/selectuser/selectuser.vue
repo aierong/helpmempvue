@@ -21,7 +21,7 @@
       </van-cell-group>
     </van-checkbox-group>
 
-    <div class="msgtxt">{{ '最多可选'+maxmancounts+'人' }}</div>
+    <div class="msgtxt">{{ '可供选择用户'+usercounts+'人,您最多可选'+maxmancounts+'人' }}</div>
     <van-button size="large"
                 type="primary"
                 @click="selectuser">确定选择
@@ -108,7 +108,7 @@
         // } );
       } ,
       /**
-       *
+       * 得用户名称
        * @param userid
        * @returns {string|*}
        */
@@ -127,6 +127,7 @@
       getuserlist () {
         userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
           // console.log( res )
+
           this.userlist = res;
 
           // console.log( 'this.userlist' , this.userlist )
@@ -146,17 +147,22 @@
           this.selectval.splice( index , 1 );
         }
       } ,
-      // onChange ( ev ) {
-      //   console.log( ev )
-      //
-      //   this.selectval = ev.mp.detail;
-      // } ,
+
     } ,
     //计算属性
     computed : {
-      // getuserid () {
-      //   return this.$store.getters.getuserid;
-      // } ,
+      /**
+       * 用户数量
+       * @returns {number}
+       */
+      usercounts () {
+        if ( this.userlist != null && this.userlist.length > 0 ) {
+          return this.userlist.length;
+        }
+
+        return 0;
+
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {

@@ -61,6 +61,25 @@
     } ,
     //方法
     methods : {
+      /**
+       * 列表数量
+       * @returns {number}
+       */
+      replycount () {
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          return this.productlist.length;
+        }
+
+        /**
+         *作者:  chenghao
+         *Date: 2019/4/25
+         *Time: 14:28
+         *功能: 没有就默认返回0
+
+         */
+
+        return 0;
+      } ,
       getproductlist () {
         //代码搞这里
         let initcount = 5;
@@ -80,6 +99,9 @@
       } ,
       replydata ( item ) {
         //暂时转向
+        this.gotodetailpage();
+      } ,
+      gotodetailpage () {
         const url = "../detaildata/main"
         wx.navigateTo( { url : url } )
       } ,
