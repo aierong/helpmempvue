@@ -91,6 +91,7 @@
         //
         wx.switchTab( { url : "../querylist/main" } );
       } ,
+
       exitclick () {
         //弹窗提示一下
         let that = this;

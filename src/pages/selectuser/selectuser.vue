@@ -107,6 +107,11 @@
         //   url : "../helpmeadd/main"
         // } );
       } ,
+      /**
+       *
+       * @param userid
+       * @returns {string|*}
+       */
       getname ( userid ) {
         if ( this.userlist != null && this.userlist.length > 0 ) {
           let result = this.userlist.find( ( n ) => {
