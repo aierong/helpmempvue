@@ -37,33 +37,6 @@
             {{ '复期:' + userselectproductdetaildata.pmsreplydate }}
           </view>
 
-          <!--          <van-row>-->
-          <!--            <van-col span="14">-->
-          <!--              <span>{{  '最后求助:'+userselectproductdetaildata.helplasttime  }}</span>-->
-          <!--            </van-col>-->
-
-          <!--            <van-col style="text-align: right;"-->
-          <!--                     span="10">-->
-
-          <!--              <span>{{ '期望交期:' + userselectproductdetaildata.csexpectdate }}</span>-->
-          <!--            </van-col>-->
-          <!--          </van-row>-->
-          <!--          <van-row>-->
-          <!--            <van-col span="14">-->
-          <!--              <span>{{  '答复时间:'+ userselectproductdetaildata.addpmcreplydate ? userselectproductdetaildata.addpmcreplydate:''  }}</span>-->
-          <!--            </van-col>-->
-
-          <!--            <van-col style="text-align: right;"-->
-          <!--                     span="10">-->
-
-          <!--              <span>{{ '复期:' + userselectproductdetaildata.pmsreplydate ? userselectproductdetaildata.pmsreplydate:'' }}</span>-->
-          <!--            </van-col>-->
-          <!--          </van-row>-->
-
-          <!--          <view class="txt">-->
-          <!--            {{ '答复信息:'+ userselectproductdetaildata.addpmcreplydate ? userselectproductdetaildata.addpmcreplydate:'' + userselectproductdetaildata.addpmcmanname? '(' + userselectproductdetaildata.addpmcmanname + ')':'' }}-->
-          <!--          </view>-->
-
 
         </van-panel>
       </van-collapse-item>
