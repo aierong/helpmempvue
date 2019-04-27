@@ -102,6 +102,11 @@ Time: 21:32
       //return this.data;
       //}
     } ,
+    //生命周期(mounted)
+    mounted () {
+      console.log( '组件index mouted' )
+
+    } ,
 
   }
 </script>

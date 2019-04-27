@@ -9,23 +9,24 @@
   <div>
     列表
 
-    <detaildata></detaildata>
+    <!--    <detaildata></detaildata>-->
     <!--        <detail></detail>-->
+    <button @click="dj">qqqqqqq</button>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  import detaildata from '@/components/detaildata/index.vue'
+  // import detaildata from '@/components/detaildata/index.vue'
 
   // import detail from '/pages/detaildata/detail.vue'
 
   export default {
     name : "querylist" ,
-    components : {
-      detaildata
-    } ,
+    // components : {
+    //   detaildata
+    // } ,
     //数据模型
     data () {
       return {
@@ -34,9 +35,11 @@
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      dj () {
+        //代码搞这里
+        const url = "../replydata/main"
+        wx.navigateTo( { url : url } )
+      } ,
 
     } ,
     //计算属性

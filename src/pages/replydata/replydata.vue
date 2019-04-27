@@ -10,14 +10,25 @@ Time: 22:55
 
   <div>
     replydata
+    <detaildata :userselectproductdetaildata="userselectproductdetaildata"
+                :stepdata="stepdata"
+                :activesteps="activesteps"></detaildata>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+  import detaildata from '@/components/detaildata/index.vue'
+  import * as dlapi from '@/common/BmobApi/dl.js'
+  import * as dllogapi from '@/common/BmobApi/dllog.js'
+  import * as utils from '@/common/utils.js'
+
   export default {
     name : "replydata" ,
+    components : {
+      detaildata
+    } ,
     //数据模型
     data () {
       return {

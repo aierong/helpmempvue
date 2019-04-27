@@ -160,7 +160,7 @@
     //计算属性
     computed : {
       //name() {
-      //代码搞这里
+      // 代码搞这里
       //return this.data;
       //}
     } ,
