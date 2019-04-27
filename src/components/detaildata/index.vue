@@ -1,31 +1,28 @@
 <!--
 作者:chenghao
-功能:vue页
+Date: 2019/4/27
+Time: 21:32
+功能:
 -->
 
 <!-- html代码片段 -->
 <template>
 
   <div>
-    列表
+<!--    <van-button size="large" type="warning" plain -->
+    <!--                @click="dj"-->
+    <!--    >返回123-->
+    <!--    </van-button>-->
 
-    <detaildata></detaildata>
-    <!--        <detail></detail>-->
+    <!--    <button>1putong</button>-->
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  import detaildata from '@/components/detaildata/index.vue'
-
-  // import detail from '/pages/detaildata/detail.vue'
-
   export default {
-    name : "querylist" ,
-    components : {
-      detaildata
-    } ,
+    name : "index" ,
     //数据模型
     data () {
       return {
@@ -34,9 +31,10 @@
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      dj () {
+        //代码搞这里
+        console.log( 'dj' )
+      } ,
 
     } ,
     //计算属性
@@ -55,6 +53,5 @@
 
 <!-- 样式代码片段  scoped -->
 <style scoped
-       src="./querylist.css">
-
+       src="./index.css">
 </style>

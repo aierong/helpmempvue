@@ -16,6 +16,15 @@
     "navigationBarTitleText": "求助",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents": {
+    "van-steps": "/static/vant/steps/index",
+    "van-collapse": "/static/vant/collapse/index",
+    "van-collapse-item": "/static/vant/collapse-item/index",
+    "van-button": "/static/vant/button/index",
+    "van-panel": "/static/vant/panel/index",
+    "van-row": "/static/vant/row/index",
+    "van-col": "/static/vant/col/index"
+  },
   "tabBar": {
     "color": "#999",
     "backgroundColor": "#fafafa",
