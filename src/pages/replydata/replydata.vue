@@ -12,6 +12,7 @@ Time: 22:55
     replydata
     <detaildata :userselectproductdetaildata="userselectproductdetaildata"
                 :stepdata="stepdata"
+                :userselectproductno="userselectproductno"
                 :activesteps="activesteps"></detaildata>
   </div>
 
@@ -32,7 +33,8 @@ Time: 22:55
     //数据模型
     data () {
       return {
-        userselectproductno : 'CJ424205635' ,
+        //CJ424205635
+        userselectproductno : 'CJ' ,
         userselectproductdetaildata : null ,
 
         activesteps : 0 ,
@@ -97,12 +99,19 @@ Time: 22:55
 
       //取到前一个页面传递过来的工程单号
       // this.userselectproductno = this.$mp.query.productno
-      console.log( 'userselectproductno' , this.userselectproductno )
-      this.getstepdata();
-      this.getdetaildata();
+      //CJ424205635
+      // this.userselectproductno = 'CJ424205635'
+      // console.log( 'userselectproductno' , this.userselectproductno )
+      // this.getstepdata();
+      // this.getdetaildata();
     } ,
     onLoad () {
       console.log( 'replydata onLoad' )
+
+      this.userselectproductno = 'CJ424205635'
+      console.log( 'userselectproductno' , this.userselectproductno )
+      this.getstepdata();
+      this.getdetaildata();
     } ,
     onShow () {
 

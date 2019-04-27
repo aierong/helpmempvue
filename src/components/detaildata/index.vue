@@ -52,7 +52,8 @@ Time: 21:32
 
       <van-collapse-item title="操作日志时光轴"
                          name="2">
-        <van-steps :steps="stepdata"
+        <van-steps v-if="activesteps>0"
+                   :steps="stepdata"
                    :active="activesteps"
                    direction="vertical"
                    active-color="#f44"/>
@@ -80,6 +81,10 @@ Time: 21:32
         type : Object ,
         default : null
       } ,
+      userselectproductno : {
+        type : String ,
+        default : ''
+      }
     } ,
     //数据模型
     data () {
@@ -107,7 +112,16 @@ Time: 21:32
       console.log( '组件index mouted' )
 
     } ,
+    onLoad () {
+      console.log( '组件index onLoad' )
 
+      console.log( '组件index this.userselectproductno' , this.userselectproductno )
+    } ,
+    onShow () {
+
+      console.log( '组件index onShow' )
+
+    }
   }
 </script>
 
