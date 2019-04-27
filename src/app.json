@@ -8,7 +8,8 @@
     "pages/reply/main",
     "pages/me/main",
     "pages/querylist/main",
-    "pages/detaildata/main"
+    "pages/detaildata/main",
+    "pages/replydata/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
