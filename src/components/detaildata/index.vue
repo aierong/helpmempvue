@@ -66,21 +66,25 @@ Time: 21:32
 
 <!-- js脚本代码片段 -->
 <script>
+  import * as dlapi from '@/common/BmobApi/dl.js'
+  import * as dllogapi from '@/common/BmobApi/dllog.js'
+  import * as utils from '@/common/utils.js'
+
   export default {
     name : "index" ,
     props : {
-      stepdata : {
-        type : Array ,
-        default : []
-      } ,
-      activesteps : {
-        type : Number ,
-        default : 0
-      } ,
-      userselectproductdetaildata : {
-        type : Object ,
-        default : null
-      } ,
+      // stepdata : {
+      //   type : Array ,
+      //   default : []
+      // } ,
+      // activesteps : {
+      //   type : Number ,
+      //   default : 0
+      // } ,
+      // userselectproductdetaildata : {
+      //   type : Object ,
+      //   default : null
+      // } ,
       userselectproductno : {
         type : String ,
         default : ''
@@ -90,15 +94,61 @@ Time: 21:32
     data () {
       return {
         activeNames : [ "1" , "2" ] ,
+        // userselectproductno : '' ,
+        userselectproductdetaildata : null ,
+
+        // activeNames : [ "1" , "2" ] ,
+        activesteps : 0 ,
+        stepdata : [] ,
       }
     } ,
     //方法
     methods : {
-      dj () {
-        //代码搞这里
-        console.log( 'dj' )
-      } ,
+      // dj () {
+      //   //代码搞这里
+      //   console.log( 'dj' )
+      // } ,
+      /**
+       * 得时光轴数据
+       */
+      getstepdata () {
+        dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
+          // console.log( 'res' , res )
 
+          this.stepdata = []
+          this.activesteps = 0;
+
+          if ( res != null && res.length > 0 ) {
+            for ( let item of res ) {
+              let _desc = '操作:' + utils.getlogruntypedesc( item.logruntype ) + '  交期/复期:' + item.dates;
+
+              let obj = {
+                text : item.createdAt + '(' + item.username + ')' ,
+                desc : _desc
+              }
+
+              //把数据加入
+              this.stepdata.push( obj );
+            }
+
+            this.activesteps = res.length;
+          }
+
+        } )
+      } ,
+      getdetaildata () {
+        dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
+          console.log( 'res' , res )
+
+          if ( res != null ) {
+            this.userselectproductdetaildata = res;
+          }
+          else {
+            this.userselectproductdetaildata = null;
+          }
+
+        } )
+      } ,
     } ,
     //计算属性
     computed : {
@@ -116,11 +166,16 @@ Time: 21:32
       console.log( '组件index onLoad' )
 
       console.log( '组件index this.userselectproductno' , this.userselectproductno )
+
+      this.getstepdata();
+      this.getdetaildata();
     } ,
     onShow () {
 
-      console.log( '组件index onShow' )
+      console.log( '组件index onShow' , this.userselectproductno )
 
+      this.getstepdata();
+      this.getdetaildata();
     }
   }
 </script>

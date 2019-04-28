@@ -9,11 +9,13 @@ Time: 22:55
 <template>
 
   <div>
-    replydata
-    <detaildata :userselectproductdetaildata="userselectproductdetaildata"
-                :stepdata="stepdata"
-                :userselectproductno="userselectproductno"
-                :activesteps="activesteps"></detaildata>
+
+    <!--    <detaildata :userselectproductdetaildata="userselectproductdetaildata"-->
+    <!--                :stepdata="stepdata"-->
+    <!--                :userselectproductno="userselectproductno"-->
+    <!--                :activesteps="activesteps"></detaildata>-->
+
+    <detaildata :userselectproductno="userselectproductno"></detaildata>
   </div>
 
 </template>
@@ -35,55 +37,55 @@ Time: 22:55
       return {
         //CJ424205635
         userselectproductno : 'CJ' ,
-        userselectproductdetaildata : null ,
+        // userselectproductdetaildata : null ,
 
-        activesteps : 0 ,
-        stepdata : [] ,
+        // activesteps : 0 ,
+        // stepdata : [] ,
       }
     } ,
     //方法
     methods : {
-      /**
-       * 得时光轴数据
-       */
-      getstepdata () {
-        dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
-          // console.log( 'res' , res )
-
-          this.stepdata = []
-          this.activesteps = 0;
-
-          if ( res != null && res.length > 0 ) {
-            for ( let item of res ) {
-              let _desc = '操作:' + utils.getlogruntypedesc( item.logruntype ) + '  交期/复期:' + item.dates;
-
-              let obj = {
-                text : item.createdAt + '(' + item.username + ')' ,
-                desc : _desc
-              }
-
-              //把数据加入
-              this.stepdata.push( obj );
-            }
-
-            this.activesteps = res.length;
-          }
-
-        } )
-      } ,
-      getdetaildata () {
-        dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
-          console.log( 'res' , res )
-
-          if ( res != null ) {
-            this.userselectproductdetaildata = res;
-          }
-          else {
-            this.userselectproductdetaildata = null;
-          }
-
-        } )
-      } ,
+      // /**
+      //  * 得时光轴数据
+      //  */
+      // getstepdata () {
+      //   dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
+      //     // console.log( 'res' , res )
+      //
+      //     this.stepdata = []
+      //     this.activesteps = 0;
+      //
+      //     if ( res != null && res.length > 0 ) {
+      //       for ( let item of res ) {
+      //         let _desc = '操作:' + utils.getlogruntypedesc( item.logruntype ) + '  交期/复期:' + item.dates;
+      //
+      //         let obj = {
+      //           text : item.createdAt + '(' + item.username + ')' ,
+      //           desc : _desc
+      //         }
+      //
+      //         //把数据加入
+      //         this.stepdata.push( obj );
+      //       }
+      //
+      //       this.activesteps = res.length;
+      //     }
+      //
+      //   } )
+      // } ,
+      // getdetaildata () {
+      //   dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
+      //     console.log( 'res' , res )
+      //
+      //     if ( res != null ) {
+      //       this.userselectproductdetaildata = res;
+      //     }
+      //     else {
+      //       this.userselectproductdetaildata = null;
+      //     }
+      //
+      //   } )
+      // } ,
 
     } ,
     //计算属性
@@ -108,14 +110,18 @@ Time: 22:55
     onLoad () {
       console.log( 'replydata onLoad' )
 
-      this.userselectproductno = 'CJ424205635'
-      console.log( 'userselectproductno' , this.userselectproductno )
-      this.getstepdata();
-      this.getdetaildata();
+      // this.userselectproductno = 'CJ424205635'
+      //取到前一个页面传递过来的工程单号
+
+      console.log( 'userselectproductno' )
+      // this.getstepdata();
+      // this.getdetaildata();
     } ,
     onShow () {
 
       console.log( 'replydata onShow' );
+
+      this.userselectproductno = this.$mp.query.productno
     }
   }
 </script>

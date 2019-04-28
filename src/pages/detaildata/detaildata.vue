@@ -171,15 +171,18 @@
       //取到前一个页面传递过来的工程单号
       this.userselectproductno = this.$mp.query.productno
       console.log( 'userselectproductno' , this.userselectproductno )
-      this.getstepdata();
-      this.getdetaildata();
+      // this.getstepdata();
+      // this.getdetaildata();
     } ,
     onLoad () {
-      console.log( 'detaildata onLoad' )
+      console.log( 'detaildata onLoad' , this.userselectproductno )
     } ,
     onShow () {
 
-      console.log( 'detaildata onShow' );
+      console.log( 'detaildata onShow' , this.userselectproductno );
+
+      this.getstepdata();
+      this.getdetaildata();
     }
   }
 </script>

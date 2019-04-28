@@ -112,7 +112,7 @@
         this.gotodetailpage( productno );
       } ,
       gotodetailpage ( productno ) {
-        const url = "../detaildata/main?productno=" + productno
+        const url = "../replydata/main?productno=" + productno
         wx.navigateTo( { url : url } )
       } ,
       onselectdate ( index ) {
