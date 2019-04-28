@@ -94,10 +94,9 @@ Time: 21:32
     data () {
       return {
         activeNames : [ "1" , "2" ] ,
-        // userselectproductno : '' ,
+
         userselectproductdetaildata : null ,
 
-        // activeNames : [ "1" , "2" ] ,
         activesteps : 0 ,
         stepdata : [] ,
       }
@@ -109,8 +108,8 @@ Time: 21:32
           console.log( 'newName' , newName )
           console.log( 'oldName' , oldName )
 
-          this.getstepdata( newName );
-          this.getdetaildata( newName );
+          // this.getstepdata( newName );
+          // this.getdetaildata( newName );
         } ,
         // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
         //这里如果不设置immediate = true,那么最初绑定的时候是不会执行的，要等到firstName改变时才执行监听计算
@@ -128,7 +127,7 @@ Time: 21:32
        */
       getstepdata () {
         dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
-          console.log( 'getstepdata res' , res )
+          // console.log( 'getstepdata res' , res )
 
           this.stepdata = []
           this.activesteps = 0;
@@ -153,7 +152,7 @@ Time: 21:32
       } ,
       getdetaildata () {
         dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
-          console.log( 'getdetaildata res' , res )
+          // console.log( 'getdetaildata res' , res )
 
           if ( res != null ) {
             this.userselectproductdetaildata = res;
