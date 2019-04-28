@@ -102,6 +102,21 @@ Time: 21:32
         stepdata : [] ,
       }
     } ,
+    //侦听器
+    watch : {
+      userselectproductno : {
+        handler ( newName , oldName ) {
+          console.log( 'newName' , newName )
+          console.log( 'oldName' , oldName )
+
+          this.getstepdata( newName );
+          this.getdetaildata( newName );
+        } ,
+        // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
+        //这里如果不设置immediate = true,那么最初绑定的时候是不会执行的，要等到firstName改变时才执行监听计算
+        immediate : true
+      }
+    } ,
     //方法
     methods : {
       // dj () {
@@ -113,7 +128,7 @@ Time: 21:32
        */
       getstepdata () {
         dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
-          // console.log( 'res' , res )
+          console.log( 'getstepdata res' , res )
 
           this.stepdata = []
           this.activesteps = 0;
@@ -138,7 +153,7 @@ Time: 21:32
       } ,
       getdetaildata () {
         dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
-          console.log( 'res' , res )
+          console.log( 'getdetaildata res' , res )
 
           if ( res != null ) {
             this.userselectproductdetaildata = res;
@@ -159,23 +174,22 @@ Time: 21:32
     } ,
     //生命周期(mounted)
     mounted () {
-      console.log( '组件index mouted' )
+      console.log( '组件index mouted' , this.userselectproductno )
 
     } ,
     onLoad () {
-      console.log( '组件index onLoad' )
 
-      console.log( '组件index this.userselectproductno' , this.userselectproductno )
+      console.log( '组件index onLoad ' , this.userselectproductno )
 
-      this.getstepdata();
-      this.getdetaildata();
+      // this.getstepdata();
+      // this.getdetaildata();
     } ,
     onShow () {
 
       console.log( '组件index onShow' , this.userselectproductno )
 
-      this.getstepdata();
-      this.getdetaildata();
+      // this.getstepdata();
+      // this.getdetaildata();
     }
   }
 </script>
