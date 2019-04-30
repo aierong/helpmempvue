@@ -9,43 +9,116 @@ Time: 21:32
 <template>
 
   <div>
-    <!--    <van-button size="large" type="warning" plain -->
-    <!--                @click="dj"-->
-    <!--    >返回123-->
-    <!--    </van-button>-->
 
-    <!--    <button>1putong</button>-->
-
+    <!--    use-footer-slot-->
     <van-collapse :value="activeNames"
                   @change="onActiveChange">
       <van-collapse-item title="单据基本属性"
                          name="1">
         <van-panel v-if="userselectproductdetaildata"
                    :title="'工单:'+userselectproductdetaildata.productno"
-                   :status="'填单:'+userselectproductdetaildata.username"
-                   use-footer-slot>
-          <view class="txt">
-            {{ '订单:' + userselectproductdetaildata.pono +' 数量:' + userselectproductdetaildata.poqty +' 客户:'+userselectproductdetaildata.custno }}
-          </view>
-          <view class="txt">
-            {{ '产品:' + userselectproductdetaildata.itemno + '(' + userselectproductdetaildata.itemsname +')' }}
-          </view>
+                   :status="'填单人:'+userselectproductdetaildata.username">
           <van-row>
             <van-col span="14">
-              <span>{{  '求助对象:'+userselectproductdetaildata.helppmcname1 + (userselectproductdetaildata.helppmcname2? ('/'+userselectproductdetaildata.helppmcname2) :'') }}</span>
+              <span>{{  '订单/数量:'+userselectproductdetaildata.pono +'/'+userselectproductdetaildata.poqty }}</span>
             </van-col>
 
-            <van-col style="text-align: right;"
-                     span="10">
+            <van-col span="10">
+              <span>{{  '客户:'+userselectproductdetaildata.custno  }}</span>
 
-              <span>{{ '求助次数:' + userselectproductdetaildata.helptimes }}</span>
             </van-col>
           </van-row>
-          <view class="txt">
+          <van-row>
+            <van-col span="14">
+              <span>{{  '产品:'+userselectproductdetaildata.itemsname   }}</span>
+            </van-col>
 
-            {{ '复期:' + userselectproductdetaildata.pmsreplydate }}
-          </view>
+            <van-col span="10">
+              <span>{{  '料号:'+userselectproductdetaildata.itemno  }}</span>
 
+            </van-col>
+          </van-row>
+          <van-row>
+            <van-col span="14">
+              <span>{{  '求助对象:' +userselectproductdetaildata.helppmcname1 + (userselectproductdetaildata.helppmcname2? ('/'+userselectproductdetaildata.helppmcname2) :'')   }}</span>
+            </van-col>
+
+            <van-col span="10">
+              <span>{{  '求助次数:'+userselectproductdetaildata.helptimes  }}</span>
+
+            </van-col>
+          </van-row>
+
+          <van-row>
+            <van-col span="14">
+              <span>{{  '最后求助时间:' +userselectproductdetaildata.helplasttime   }}</span>
+            </van-col>
+
+            <van-col span="10">
+              <span>{{  '期望交期:'+userselectproductdetaildata.csexpectdate  }}</span>
+
+            </van-col>
+          </van-row>
+
+          <van-row>
+            <van-col span="24">
+              <span>{{  '求助备注:' +userselectproductdetaildata.comment   }}</span>
+            </van-col>
+
+          </van-row>
+          <van-row>
+            <van-col span="14">
+              <span>{{  '答复复期:' +userselectproductdetaildata.pmsreplydate   }}</span>
+            </van-col>
+
+            <van-col span="10">
+              <span>{{  '答复人:'+userselectproductdetaildata.addpmcmanname  }}</span>
+
+            </van-col>
+          </van-row>
+          <van-row>
+            <van-col span="24">
+              <span>{{  '答复时间:' +userselectproductdetaildata.addpmcreplydate   }}</span>
+            </van-col>
+
+          </van-row>
+
+          <van-row>
+            <van-col span="24">
+              <span>{{  '答复备注:' +userselectproductdetaildata.addpmcreplycomment   }}</span>
+            </van-col>
+
+          </van-row>
+          <van-row>
+            <van-col span="14">
+              <span>{{  '完成时间:' +userselectproductdetaildata.overdate   }}</span>
+            </van-col>
+
+            <van-col span="10">
+              <span>{{  '完成状态:'+ userselectproductdetaildata.isover?'已完成':'未完成'  }}</span>
+            </van-col>
+          </van-row>
+          <!--          <view class="txt">-->
+          <!--            {{ '订单:' + userselectproductdetaildata.pono +' 数量:' + userselectproductdetaildata.poqty +' 客户:'+userselectproductdetaildata.custno }}-->
+          <!--          </view>-->
+          <!--          <view class="txt">-->
+          <!--            {{ '产品:' + userselectproductdetaildata.itemno + '(' + userselectproductdetaildata.itemsname +')' }}-->
+          <!--          </view>-->
+          <!--          <van-row>-->
+          <!--            <van-col span="14">-->
+          <!--              <span>{{  '求助对象:'+userselectproductdetaildata.helppmcname1 + (userselectproductdetaildata.helppmcname2? ('/'+userselectproductdetaildata.helppmcname2) :'') }}</span>-->
+          <!--            </van-col>-->
+
+          <!--            <van-col style="text-align: right;"-->
+          <!--                     span="10">-->
+
+          <!--              <span>{{ '求助次数:' + userselectproductdetaildata.helptimes }}</span>-->
+          <!--            </van-col>-->
+          <!--          </van-row>-->
+          <!--          <view class="txt">-->
+
+          <!--            {{ '复期:' + userselectproductdetaildata.pmsreplydate }}-->
+          <!--          </view>-->
 
         </van-panel>
       </van-collapse-item>
