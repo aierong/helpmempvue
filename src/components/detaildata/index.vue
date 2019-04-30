@@ -50,11 +50,16 @@ Time: 21:32
           </van-row>
 
           <van-row>
-            <van-col span="14">
+            <van-col span="24">
               <span>{{  '最后求助时间:' +userselectproductdetaildata.helplasttime   }}</span>
             </van-col>
 
-            <van-col span="10">
+
+          </van-row>
+
+          <van-row>
+
+            <van-col span="24">
               <span>{{  '期望交期:'+userselectproductdetaildata.csexpectdate  }}</span>
 
             </van-col>
@@ -95,30 +100,9 @@ Time: 21:32
             </van-col>
 
             <van-col span="10">
-              <span>{{  '完成状态:'+ userselectproductdetaildata.isover?'已完成':'未完成'  }}</span>
+              <span>{{  '完成状态:'+( userselectproductdetaildata.isover?'已完成':'未完成' ) }}</span>
             </van-col>
           </van-row>
-          <!--          <view class="txt">-->
-          <!--            {{ '订单:' + userselectproductdetaildata.pono +' 数量:' + userselectproductdetaildata.poqty +' 客户:'+userselectproductdetaildata.custno }}-->
-          <!--          </view>-->
-          <!--          <view class="txt">-->
-          <!--            {{ '产品:' + userselectproductdetaildata.itemno + '(' + userselectproductdetaildata.itemsname +')' }}-->
-          <!--          </view>-->
-          <!--          <van-row>-->
-          <!--            <van-col span="14">-->
-          <!--              <span>{{  '求助对象:'+userselectproductdetaildata.helppmcname1 + (userselectproductdetaildata.helppmcname2? ('/'+userselectproductdetaildata.helppmcname2) :'') }}</span>-->
-          <!--            </van-col>-->
-
-          <!--            <van-col style="text-align: right;"-->
-          <!--                     span="10">-->
-
-          <!--              <span>{{ '求助次数:' + userselectproductdetaildata.helptimes }}</span>-->
-          <!--            </van-col>-->
-          <!--          </van-row>-->
-          <!--          <view class="txt">-->
-
-          <!--            {{ '复期:' + userselectproductdetaildata.pmsreplydate }}-->
-          <!--          </view>-->
 
         </van-panel>
       </van-collapse-item>
@@ -146,18 +130,7 @@ Time: 21:32
   export default {
     name : "index" ,
     props : {
-      // stepdata : {
-      //   type : Array ,
-      //   default : []
-      // } ,
-      // activesteps : {
-      //   type : Number ,
-      //   default : 0
-      // } ,
-      // userselectproductdetaildata : {
-      //   type : Object ,
-      //   default : null
-      // } ,
+
       userselectproductno : {
         type : String ,
         default : ''
@@ -181,8 +154,8 @@ Time: 21:32
           console.log( 'newName' , newName )
           console.log( 'oldName' , oldName )
 
-          // this.getstepdata( newName );
-          // this.getdetaildata( newName );
+          this.getstepdata( newName );
+          this.getdetaildata( newName );
         } ,
         // 代表在wacth里声明了firstName这个方法之后立即先去执行handler方法
         //这里如果不设置immediate = true,那么最初绑定的时候是不会执行的，要等到firstName改变时才执行监听计算
@@ -191,10 +164,6 @@ Time: 21:32
     } ,
     //方法
     methods : {
-      // dj () {
-      //   //代码搞这里
-      //   console.log( 'dj' )
-      // } ,
       /**
        * 得时光轴数据
        */
@@ -262,7 +231,7 @@ Time: 21:32
 
       // this.getstepdata();
       // this.getdetaildata();
-    }
+    } ,
   }
 </script>
 
