@@ -81,30 +81,12 @@
     data () {
       return {
         productlist : [] ,
-        datelist : []
+        // datelist : []
       }
     } ,
     //方法
     methods : {
-      /**
-       * 列表数量
-       * @returns {number}
-       */
-      replycount () {
-        if ( this.productlist != null && this.productlist.length > 0 ) {
-          return this.productlist.length;
-        }
 
-        /**
-         *作者:  chenghao
-         *Date: 2019/4/25
-         *Time: 14:28
-         *功能: 没有就默认返回0
-
-         */
-
-        return 0;
-      } ,
       getproductlist () {
         //代码搞这里
         let initcount = 5;
@@ -124,9 +106,9 @@
       } ,
       replydata ( productno ) {
         //转向
-        this.gotodetailpage( productno );
+        this.gotoreplypage( productno );
       } ,
-      gotodetailpage ( productno ) {
+      gotoreplypage ( productno ) {
         const url = "../replydata/main?productno=" + productno;
 
         wx.navigateTo( { url : url } )
@@ -156,18 +138,33 @@
       //   let vals = event.mp.detail;
       //   this.productlist[ index ].addpmcreplycomment = vals;
       // } ,
-      getdatelist () {
-        this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
-
-        console.log( 'this.datelist' , this.datelist )
-      } ,
+      // getdatelist () {
+      //   this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
+      //
+      //   console.log( 'this.datelist' , this.datelist )
+      // } ,
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      /**
+       * 列表数量
+       * @returns {number}
+       */
+      replycount () {
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          return this.productlist.length;
+        }
+
+        /**
+         *作者:  chenghao
+         *Date: 2019/4/25
+         *Time: 14:28
+         *功能: 没有就默认返回0
+
+         */
+
+        return 0;
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
@@ -180,7 +177,7 @@
     onShow () {
 
       console.log( 'reply onShow' );
-      this.getdatelist();
+      // this.getdatelist();
       this.getproductlist();
     }
   }

@@ -9,12 +9,23 @@ Time: 22:55
 <template>
 
   <div>
-
-    <!--    <detaildata :userselectproductdetaildata="userselectproductdetaildata"-->
-    <!--                :stepdata="stepdata"-->
-    <!--                :userselectproductno="userselectproductno"-->
-    <!--                :activesteps="activesteps"></detaildata>-->
-
+    <van-field :value="pmsreplydate"
+               label="复期"
+               disabled
+               required
+               placeholder="请选择复期"
+               use-button-slot>
+      <van-button slot="button"
+                  size="mini"
+                  type="primary"
+                  @click="onselectdate">选择
+      </van-button>
+    </van-field>
+    <van-field :value="addpmcreplycomment"
+               label="备注"
+               clearable
+               @change="commentChange"
+               placeholder="请输入复期备注"/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
   </div>
 
@@ -36,11 +47,16 @@ Time: 22:55
     data () {
       return {
         //CJ424205635
-        userselectproductno : 'CJ' ,
+        userselectproductno : '' ,
+
         // userselectproductdetaildata : null ,
 
         // activesteps : 0 ,
         // stepdata : [] ,
+        datelist : [] ,
+
+        pmsreplydate : '' ,
+        addpmcreplycomment : ''
       }
     } ,
     //方法
@@ -86,7 +102,34 @@ Time: 22:55
       //
       //   } )
       // } ,
+      onselectdate () {
+        let that = this;
 
+        wx.showActionSheet( {
+          //按钮的文字数组，数组长度最大为 6 个,
+          itemList : this.datelist ,
+          //按钮的文字颜色
+          itemColor : '#000000' ,
+          success : res => {
+            //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
+            let selectval = that.datelist[ res.tapIndex ];
+
+            console.log( selectval )
+
+            that.productlist[ index ].pmsreplydate = selectval;
+          }
+        } );
+      } ,
+      getdatelist () {
+        this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
+
+        console.log( 'this.datelist' , this.datelist )
+      } ,
+      commentChange ( event ) {
+        let vals = event.mp.detail;
+
+        this.addpmcreplycomment = vals;
+      }
     } ,
     //计算属性
     computed : {
@@ -120,6 +163,9 @@ Time: 22:55
     onShow () {
 
       // console.log( 'replydata onShow' );
+
+      //日期段 取回来
+      this.getdatelist();
 
       this.userselectproductno = this.$mp.query.productno
 
