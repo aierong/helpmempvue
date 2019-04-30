@@ -7,11 +7,11 @@
 <template>
 
   <div>
+    <!--    use-footer-slot-->
     <van-panel :key="index"
                v-for="(item,index) in productlist"
                :title="(index+1)+ '.工单:'+item.productno"
-               :status="'客户:'+item.custno"
-               use-footer-slot>
+               :status="'客户:'+item.custno">
 
       <view class="txt">
         {{ '订单:' + item.pono +' 数量:' + item.poqty }}
@@ -19,32 +19,47 @@
       <view class="txt">
         {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
       </view>
-      <view>
-        <van-button plain
-                    type="primary"
-                    @click="querydetaildata(item.productno)"
-                    size="mini">详情
-        </van-button>
-      </view>
-      <view slot="footer">
-        <van-field :value="item.pmsreplydate"
-                   label="复期"
-                   disabled
-                   required
-                   placeholder="请选择复期"
-                   use-button-slot>
-          <van-button slot="button"
-                      size="mini"
+      <!--      <view>-->
+      <!--        <van-button plain-->
+      <!--                    type="primary"-->
+      <!--                    @click="replydata(item.productno)"-->
+      <!--                    size="mini">答复-->
+      <!--        </van-button>-->
+      <!--      </view>-->
+      <van-row>
+        <van-col span="14">
+          <span>{{  '求助人:'+item.username  }}</span>
+        </van-col>
+
+        <van-col style="text-align: right;"
+                 span="10">
+          <van-button plain
                       type="primary"
-                      @click="onselectdate(index)">选择
+                      @click="replydata(item.productno)"
+                      size="mini">答复
           </van-button>
-        </van-field>
-        <van-field :value="item.addpmcreplycomment"
-                   label="备注"
-                   clearable
-                   @change="commentChange($event,index)"
-                   placeholder="请输入复期备注"/>
-      </view>
+
+        </van-col>
+      </van-row>
+      <!--      <view slot="footer">-->
+      <!--        <van-field :value="item.pmsreplydate"-->
+      <!--                   label="复期"-->
+      <!--                   disabled-->
+      <!--                   required-->
+      <!--                   placeholder="请选择复期"-->
+      <!--                   use-button-slot>-->
+      <!--          <van-button slot="button"-->
+      <!--                      size="mini"-->
+      <!--                      type="primary"-->
+      <!--                      @click="onselectdate(index)">选择-->
+      <!--          </van-button>-->
+      <!--        </van-field>-->
+      <!--        <van-field :value="item.addpmcreplycomment"-->
+      <!--                   label="备注"-->
+      <!--                   clearable-->
+      <!--                   @change="commentChange($event,index)"-->
+      <!--                   placeholder="请输入复期备注"/>-->
+      <!--      </view>-->
     </van-panel>
   </div>
 
@@ -107,39 +122,40 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      querydetaildata ( productno ) {
+      replydata ( productno ) {
         //转向
         this.gotodetailpage( productno );
       } ,
       gotodetailpage ( productno ) {
-        const url = "../replydata/main?productno=" + productno
+        const url = "../replydata/main?productno=" + productno;
+
         wx.navigateTo( { url : url } )
       } ,
-      onselectdate ( index ) {
-        let that = this;
-
-        wx.showActionSheet( {
-          //按钮的文字数组，数组长度最大为 6 个,
-          itemList : this.datelist ,
-          //按钮的文字颜色
-          itemColor : '#000000' ,
-          success : res => {
-            //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
-            let selectval = that.datelist[ res.tapIndex ];
-
-            console.log( selectval )
-
-            that.productlist[ index ].pmsreplydate = selectval;
-          }
-        } );
-      } ,
-      commentChange ( event , index ) {
-        // console.log( 'event' , event )
-        // console.log( index )
-
-        let vals = event.mp.detail;
-        this.productlist[ index ].addpmcreplycomment = vals;
-      } ,
+      // onselectdate ( index ) {
+      //   let that = this;
+      //
+      //   wx.showActionSheet( {
+      //     //按钮的文字数组，数组长度最大为 6 个,
+      //     itemList : this.datelist ,
+      //     //按钮的文字颜色
+      //     itemColor : '#000000' ,
+      //     success : res => {
+      //       //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
+      //       let selectval = that.datelist[ res.tapIndex ];
+      //
+      //       console.log( selectval )
+      //
+      //       that.productlist[ index ].pmsreplydate = selectval;
+      //     }
+      //   } );
+      // } ,
+      // commentChange ( event , index ) {
+      //   // console.log( 'event' , event )
+      //   // console.log( index )
+      //
+      //   let vals = event.mp.detail;
+      //   this.productlist[ index ].addpmcreplycomment = vals;
+      // } ,
       getdatelist () {
         this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
 
