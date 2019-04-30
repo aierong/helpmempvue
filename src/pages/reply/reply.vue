@@ -13,12 +13,7 @@
                :title="(index+1)+ '.工单:'+item.productno"
                :status="'客户:'+item.custno">
 
-      <!--      <view class="txt">-->
-      <!--        {{ '订单:' + item.pono +' 数量:' + item.poqty }}-->
-      <!--      </view>-->
-      <!--      <view class="txt">-->
-      <!--        {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}-->
-      <!--      </view>-->
+
       <van-row>
         <van-col span="24">
           <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
@@ -103,36 +98,7 @@
 
         wx.navigateTo( { url : url } )
       } ,
-      // onselectdate ( index ) {
-      //   let that = this;
-      //
-      //   wx.showActionSheet( {
-      //     //按钮的文字数组，数组长度最大为 6 个,
-      //     itemList : this.datelist ,
-      //     //按钮的文字颜色
-      //     itemColor : '#000000' ,
-      //     success : res => {
-      //       //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
-      //       let selectval = that.datelist[ res.tapIndex ];
-      //
-      //       console.log( selectval )
-      //
-      //       that.productlist[ index ].pmsreplydate = selectval;
-      //     }
-      //   } );
-      // } ,
-      // commentChange ( event , index ) {
-      //   // console.log( 'event' , event )
-      //   // console.log( index )
-      //
-      //   let vals = event.mp.detail;
-      //   this.productlist[ index ].addpmcreplycomment = vals;
-      // } ,
-      // getdatelist () {
-      //   this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
-      //
-      //   console.log( 'this.datelist' , this.datelist )
-      // } ,
+
     } ,
     //计算属性
     computed : {
@@ -167,7 +133,7 @@
     onShow () {
 
       console.log( 'reply onShow' );
-      // this.getdatelist();
+
       this.getproductlist();
     }
   }
