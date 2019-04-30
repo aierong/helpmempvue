@@ -21,7 +21,7 @@
       </van-cell-group>
     </van-checkbox-group>
 
-    <div class="msgtxt">{{ '可供选择用户'+usercounts+'人,您最多可选'+maxmancounts+'人' }}</div>
+    <div class="msgtxt">{{ '可供选择用户'+usercounts+'人,最多可选'+maxmancounts+'人' }}</div>
     <van-button size="large"
                 type="primary"
                 @click="selectuser">确定选择
@@ -58,8 +58,10 @@
     //数据模型
     data () {
       return {
+        //待选择的用户列表
         userlist : [] ,
 
+        //已经选择的数据
         selectval : [] ,
 
         maxmancounts : 2
@@ -149,6 +151,17 @@
           //values是数组
           this.userlist = values[ 0 ];
 
+          //加载已经选择的
+          if ( this.helpmaninfo != null ) {
+            if ( this.helpmaninfo.helppmc1 ) {
+              this.selectval.push( this.helpmaninfo.helppmc1 )
+            }
+
+            if ( this.helpmaninfo.helppmc2 ) {
+              this.selectval.push( this.helpmaninfo.helppmc2 )
+            }
+          }
+
           Toast.clear();
         } )
 
@@ -181,6 +194,15 @@
         }
 
         return 0;
+
+      } ,
+      /**
+       * 用户选择的人员
+       * @returns {default.userselecthelpman|{helppmc2, helppmc1, helppmcname1, helppmcname2}|*|__webpack_exports__.a.userselecthelpman}
+       */
+      helpmaninfo () {
+
+        return this.$store.state.userselecthelpman;
 
       } ,
     } ,

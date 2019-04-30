@@ -371,6 +371,10 @@
         return this.$store.state.userselectproductdata;
 
       } ,
+      /**
+       * 用户选择的人员
+       * @returns {default.userselecthelpman|{helppmc2, helppmc1, helppmcname1, helppmcname2}|*|__webpack_exports__.a.userselecthelpman}
+       */
       helpmaninfo () {
 
         return this.$store.state.userselecthelpman;
