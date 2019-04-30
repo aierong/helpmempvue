@@ -13,27 +13,34 @@
                :title="(index+1)+ '.工单:'+item.productno"
                :status="'客户:'+item.custno">
 
-      <view class="txt">
-        {{ '订单:' + item.pono +' 数量:' + item.poqty }}
-      </view>
-      <view class="txt">
-        {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
-      </view>
-      <!--      <view>-->
-      <!--        <van-button plain-->
-      <!--                    type="primary"-->
-      <!--                    @click="replydata(item.productno)"-->
-      <!--                    size="mini">答复-->
-      <!--        </van-button>-->
+      <!--      <view class="txt">-->
+      <!--        {{ '订单:' + item.pono +' 数量:' + item.poqty }}-->
+      <!--      </view>-->
+      <!--      <view class="txt">-->
+      <!--        {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}-->
       <!--      </view>-->
       <van-row>
+        <van-col span="24">
+          <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
+        </van-col>
+
+      </van-row>
+      <van-row>
+        <van-col span="24">
+          <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
+        </van-col>
+
+      </van-row>
+
+      <van-row>
         <van-col span="14">
-          <span>{{  '求助人:'+item.username  }}</span>
+          <span class="mytxt">{{  '求助人:'+item.username  }}</span>
         </van-col>
 
         <van-col style="text-align: right;"
                  span="10">
-          <van-button plain
+          <van-button style="padding-right: 10px;padding-bottom: 10px;"
+                      plain
                       type="primary"
                       @click="replydata(item.productno)"
                       size="mini">答复
@@ -41,25 +48,8 @@
 
         </van-col>
       </van-row>
-      <!--      <view slot="footer">-->
-      <!--        <van-field :value="item.pmsreplydate"-->
-      <!--                   label="复期"-->
-      <!--                   disabled-->
-      <!--                   required-->
-      <!--                   placeholder="请选择复期"-->
-      <!--                   use-button-slot>-->
-      <!--          <van-button slot="button"-->
-      <!--                      size="mini"-->
-      <!--                      type="primary"-->
-      <!--                      @click="onselectdate(index)">选择-->
-      <!--          </van-button>-->
-      <!--        </van-field>-->
-      <!--        <van-field :value="item.addpmcreplycomment"-->
-      <!--                   label="备注"-->
-      <!--                   clearable-->
-      <!--                   @change="commentChange($event,index)"-->
-      <!--                   placeholder="请输入复期备注"/>-->
-      <!--      </view>-->
+
+
     </van-panel>
   </div>
 
@@ -81,7 +71,7 @@
     data () {
       return {
         productlist : [] ,
-        // datelist : []
+
       }
     } ,
     //方法
