@@ -26,6 +26,17 @@ Time: 22:55
                clearable
                @change="commentChange"
                placeholder="请输入复期备注"/>
+    <mybr/>
+    <van-button size="large"
+                type="primary"
+                @click="savedata">答复复期
+    </van-button>
+
+    <van-button size="large"
+
+                @click="savedata">返回
+    </van-button>
+    <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
   </div>
 
@@ -37,11 +48,13 @@ Time: 22:55
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as dllogapi from '@/common/BmobApi/dllog.js'
   import * as utils from '@/common/utils.js'
+  import mybr from '@/components/mybr.vue'
 
   export default {
     name : "replydata" ,
     components : {
-      detaildata
+      detaildata ,
+      mybr
     } ,
     //数据模型
     data () {
@@ -49,10 +62,6 @@ Time: 22:55
         //CJ424205635
         userselectproductno : '' ,
 
-        // userselectproductdetaildata : null ,
-
-        // activesteps : 0 ,
-        // stepdata : [] ,
         datelist : [] ,
 
         pmsreplydate : '' ,
@@ -91,7 +100,10 @@ Time: 22:55
         let vals = event.mp.detail;
 
         this.addpmcreplycomment = vals;
-      }
+      } ,
+      savedata () {
+
+      } ,
     } ,
     //计算属性
     computed : {
