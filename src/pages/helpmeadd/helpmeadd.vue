@@ -66,11 +66,12 @@
                disabled
                placeholder="请选择求助人2"
                use-button-slot>
-      <van-button slot="button"
-                  size="mini"
-                  type="primary"
-                  @click="onselectuser2">选择
-      </van-button>
+      <!--      这个选择按钮不用了，上面有一个-->
+      <!--      <van-button slot="button"-->
+      <!--                  size="mini"-->
+      <!--                  type="primary"-->
+      <!--                  @click="onselectuser2">选择-->
+      <!--      </van-button>-->
       <van-button slot="button"
                   size="mini"
                   type="warning"
@@ -155,6 +156,7 @@
       } ,
       onuserselectclear2 () {
         if ( this.helpmaninfo != null ) {
+
           this.$store.dispatch( 'ClearUserSelectHelpMan2' );
 
         }
@@ -162,9 +164,9 @@
       onselectuser1 () {
         this.gotouserselectpage();
       } ,
-      onselectuser2 () {
-        this.gotouserselectpage();
-      } ,
+      // onselectuser2 () {
+      //   this.gotouserselectpage();
+      // } ,
       gotouserselectpage () {
         //转向  用户选择页面
         const url = "../selectuser/main"
@@ -370,6 +372,7 @@
 
       } ,
       helpmaninfo () {
+
         return this.$store.state.userselecthelpman;
 
       } ,
