@@ -9,7 +9,7 @@ Time: 22:55
 <template>
 
   <div>
-    <van-field :value="pmsreplydate"
+    <van-field :value="csexpectdate"
                label="复期"
                disabled
                required
@@ -56,52 +56,14 @@ Time: 22:55
         datelist : [] ,
 
         pmsreplydate : '' ,
-        addpmcreplycomment : ''
+        addpmcreplycomment : '' ,
+        csexpectdate : '' ,
+        objectId : ''
       }
     } ,
     //方法
     methods : {
-      // /**
-      //  * 得时光轴数据
-      //  */
-      // getstepdata () {
-      //   dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
-      //     // console.log( 'res' , res )
-      //
-      //     this.stepdata = []
-      //     this.activesteps = 0;
-      //
-      //     if ( res != null && res.length > 0 ) {
-      //       for ( let item of res ) {
-      //         let _desc = '操作:' + utils.getlogruntypedesc( item.logruntype ) + '  交期/复期:' + item.dates;
-      //
-      //         let obj = {
-      //           text : item.createdAt + '(' + item.username + ')' ,
-      //           desc : _desc
-      //         }
-      //
-      //         //把数据加入
-      //         this.stepdata.push( obj );
-      //       }
-      //
-      //       this.activesteps = res.length;
-      //     }
-      //
-      //   } )
-      // } ,
-      // getdetaildata () {
-      //   dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
-      //     console.log( 'res' , res )
-      //
-      //     if ( res != null ) {
-      //       this.userselectproductdetaildata = res;
-      //     }
-      //     else {
-      //       this.userselectproductdetaildata = null;
-      //     }
-      //
-      //   } )
-      // } ,
+
       onselectdate () {
         let that = this;
 
@@ -116,7 +78,7 @@ Time: 22:55
 
             console.log( selectval )
 
-            that.productlist[ index ].pmsreplydate = selectval;
+            that.csexpectdate = selectval;
           }
         } );
       } ,
@@ -168,7 +130,9 @@ Time: 22:55
       this.getdatelist();
 
       this.userselectproductno = this.$mp.query.productno
-
+      this.csexpectdate = this.$mp.query.csexpectdate
+      //
+      this.objectId = this.$mp.query.objectId
       console.log( 'replydata onShow' , this.userselectproductno );
     }
   }

@@ -192,9 +192,12 @@ Time: 21:32
 
         } )
       } ,
+      /**
+       * 得单据详细数据
+       */
       getdetaildata () {
         dlapi.getproductbyproductno( this.userselectproductno ).then( ( res ) => {
-          // console.log( 'getdetaildata res' , res )
+          console.log( 'getdetaildata res' , res )
 
           if ( res != null ) {
             this.userselectproductdetaildata = res;

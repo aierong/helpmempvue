@@ -37,7 +37,7 @@
           <van-button style="padding-right: 10px;padding-bottom: 10px;"
                       plain
                       type="primary"
-                      @click="replydata(item.productno)"
+                      @click="replydata(item.productno,item.csexpectdate,item.objectId)"
                       size="mini">答复
           </van-button>
 
@@ -89,12 +89,14 @@
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      replydata ( productno ) {
+      replydata ( productno , csexpectdate , objectId ) {
         //转向
-        this.gotoreplypage( productno );
+        this.gotoreplypage( productno , csexpectdate , objectId );
       } ,
-      gotoreplypage ( productno ) {
-        const url = "../replydata/main?productno=" + productno;
+      gotoreplypage ( productno , csexpectdate , objectId ) {
+        const url = "../replydata/main?productno=" + productno
+          + "&csexpectdate=" + csexpectdate
+          + "&objectId=" + objectId;
 
         wx.navigateTo( { url : url } )
       } ,

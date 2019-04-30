@@ -1,5 +1,10 @@
 {
-  "navigationBarTitleText": "复期操作"
+  "navigationBarTitleText": "复期操作",
+  "usingComponents": {
+    "van-button": "/static/vant/button/index",
+    "van-icon": "/static/vant/icon/index",
+    "van-field": "/static/vant/field/index"
+  }
 }
 
 
