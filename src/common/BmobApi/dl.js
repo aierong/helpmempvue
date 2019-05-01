@@ -150,7 +150,7 @@ export function getontworkcounts ( userid ) {
 }
 
 //pmc答复
-export function reply ( id , userid , username , addpmcreplydate , addpmcreplycomment ) {
+export function reply ( id , userid , username , pmsreplydate , addpmcreplydate , addpmcreplycomment ) {
   return new Promise( ( resolve , reject ) => {
 
     const query = Bmob.Query( DlTable );
@@ -158,6 +158,7 @@ export function reply ( id , userid , username , addpmcreplydate , addpmcreplyco
 
     query.set( 'id' , id ) //需要修改的objectId
 
+    query.set( "pmsreplydate" , pmsreplydate )
     query.set( "addpmcman" , userid )
     query.set( "addpmcmanname" , username )
     query.set( "addpmcreplydate" , addpmcreplydate )

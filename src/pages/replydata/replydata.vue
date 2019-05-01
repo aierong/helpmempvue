@@ -38,20 +38,40 @@ Time: 22:55
     </van-button>
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
+
+    <!--    放最后，一个提示-->
+    <!--
+    注意要配一个van-toast,才会显示提示 ,默认id van-toast
+    -->
+    <van-toast id="van-toast"/>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+  // 配置文件json也要配置,这里代码也要引用
+  // 代码中也要引用
+  // 注意引用路径
+  import Toast from '../../../static/vant/toast/toast';
+
   import detaildata from '@/components/detaildata/index.vue'
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as dllogapi from '@/common/BmobApi/dllog.js'
   import * as utils from '@/common/utils.js'
+
   import mybr from '@/components/mybr.vue'
+
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
+  import { logruntype } from '@/common/constant.js';
+
+  import dayjs from 'dayjs'
 
   export default {
     name : "replydata" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     components : {
       detaildata ,
       mybr
@@ -102,6 +122,31 @@ Time: 22:55
         this.addpmcreplycomment = vals;
       } ,
       savedata () {
+        let now = new Date();
+        let nowstr = dayjs( now ).format( 'YYYY-MM-DD HH:mm:ss' );
+
+        let userid = this.getloginuserid;
+        let username = this.getloginusername;
+
+        console.log( this.objectId )
+        console.log( this.getloginuserid )
+        console.log( this.getloginusername )
+
+        if ( this.csexpectdate ) {
+          Toast.fail( '复期请选择' );
+
+          return;
+        }
+
+        //构建日志数据
+        let objlog = {
+          logruntype : logruntype.reply ,
+          userid : userid ,
+          username : username ,
+          productno : this.userselectproductno ,
+          dates : nowstr ,
+          comment : this.addpmcreplycomment
+        };
 
       } ,
       backpage () {
