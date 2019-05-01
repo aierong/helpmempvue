@@ -14,7 +14,7 @@ Time: 21:32
     <van-collapse :value="activeNames"
                   @change="onActiveChange">
       <van-collapse-item title="单据基本属性"
-                         name="1">
+                         name="a">
         <van-panel v-if="userselectproductdetaildata"
                    :title="'工单:'+userselectproductdetaildata.productno"
                    :status="'填单人:'+userselectproductdetaildata.username">
@@ -108,7 +108,7 @@ Time: 21:32
       </van-collapse-item>
 
       <van-collapse-item title="操作日志时光轴"
-                         name="2">
+                         name="b">
         <van-steps v-if="activesteps>0"
                    :steps="stepdata"
                    :active="activesteps"
@@ -139,9 +139,9 @@ Time: 21:32
     //数据模型
     data () {
       return {
-        activeNames : [ "1" , "2" ] ,
-
         userselectproductdetaildata : null ,
+
+        activeNames : [ "a" , "b" ] ,
 
         activesteps : 0 ,
         stepdata : [] ,
@@ -208,6 +208,10 @@ Time: 21:32
 
         } )
       } ,
+      onActiveChange ( event ) {
+        //由于 :value="activeNames" 不是双向数据绑定 这里我们要主动赋值一下
+        this.activeNames = event.mp.detail;
+      } ,
     } ,
     //计算属性
     computed : {
@@ -218,6 +222,7 @@ Time: 21:32
     } ,
     //生命周期(mounted)
     mounted () {
+
       console.log( '组件index mouted' , this.userselectproductno )
 
     } ,
@@ -225,15 +230,11 @@ Time: 21:32
 
       console.log( '组件index onLoad ' , this.userselectproductno )
 
-      // this.getstepdata();
-      // this.getdetaildata();
     } ,
     onShow () {
 
       console.log( '组件index onShow' , this.userselectproductno )
 
-      // this.getstepdata();
-      // this.getdetaildata();
     } ,
   }
 </script>
