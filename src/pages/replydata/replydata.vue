@@ -176,7 +176,7 @@ Time: 22:55
         console.log( result )
       } ,
       backpage () {
-
+        wx.switchTab( { url : "../reply/main" } );
       } ,
     } ,
     //计算属性
