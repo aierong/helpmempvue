@@ -34,7 +34,7 @@ Time: 22:55
 
     <van-button size="large"
 
-                @click="savedata">返回
+                @click="backpage">返回
     </van-button>
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
@@ -104,6 +104,9 @@ Time: 22:55
       savedata () {
 
       } ,
+      backpage () {
+
+      } ,
     } ,
     //计算属性
     computed : {
@@ -116,35 +119,23 @@ Time: 22:55
     mounted () {
       console.log( 'replydata mouted' , this.userselectproductno )
 
-      //取到前一个页面传递过来的工程单号
-      // this.userselectproductno = this.$mp.query.productno
-      //CJ424205635
-      // this.userselectproductno = 'CJ424205635'
-      // console.log( 'userselectproductno' , this.userselectproductno )
-      // this.getstepdata();
-      // this.getdetaildata();
     } ,
     onLoad () {
       console.log( 'replydata onLoad' , this.userselectproductno )
 
-      // this.userselectproductno = 'CJ424205635'
-      //取到前一个页面传递过来的工程单号
-
-      // console.log( 'userselectproductno' )
-      // this.getstepdata();
-      // this.getdetaildata();
     } ,
     onShow () {
 
-      // console.log( 'replydata onShow' );
+      console.log( 'replydata onShow' );
 
       //日期段 取回来
       this.getdatelist();
 
       this.userselectproductno = this.$mp.query.productno
       this.csexpectdate = this.$mp.query.csexpectdate
-      //
+
       this.objectId = this.$mp.query.objectId
+
       console.log( 'replydata onShow' , this.userselectproductno );
     }
   }
