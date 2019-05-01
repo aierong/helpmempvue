@@ -9,7 +9,7 @@ Time: 22:55
 <template>
 
   <div>
-    <van-field :value="csexpectdate"
+    <van-field :value="pmsreplydate"
                label="复期"
                disabled
                required
@@ -86,7 +86,7 @@ Time: 22:55
 
         pmsreplydate : '' ,
         addpmcreplycomment : '' ,
-        csexpectdate : '' ,
+        // csexpectdate : '' ,
         objectId : ''
       }
     } ,
@@ -107,7 +107,7 @@ Time: 22:55
 
             console.log( selectval )
 
-            that.csexpectdate = selectval;
+            that.pmsreplydate = selectval;
           }
         } );
       } ,
@@ -121,18 +121,21 @@ Time: 22:55
 
         this.addpmcreplycomment = vals;
       } ,
-      savedata () {
+      async savedata () {
         let now = new Date();
         let nowstr = dayjs( now ).format( 'YYYY-MM-DD HH:mm:ss' );
 
         let userid = this.getloginuserid;
         let username = this.getloginusername;
 
-        console.log( this.objectId )
-        console.log( this.getloginuserid )
-        console.log( this.getloginusername )
+        // console.log( this.objectId )
+        // console.log( this.getloginuserid )
+        // console.log( this.getloginusername )
 
-        if ( this.csexpectdate ) {
+        if ( this.pmsreplydate ) {
+
+        }
+        else {
           Toast.fail( '复期请选择' );
 
           return;
@@ -148,6 +151,29 @@ Time: 22:55
           comment : this.addpmcreplycomment
         };
 
+        //开始保存吧
+        Toast.loading( {
+          duration : 0 ,
+          //forbidClick	是否禁止背景点击
+          forbidClick : true ,
+          loadingType : 'spinner' ,
+          message : '保存中...'
+        } );
+
+        var result = await Promise.all( [
+          dlapi.reply( this.objectId ,
+            userid ,
+            username ,
+            this.pmsreplydate ,
+            nowstr ,
+            this.addpmcreplycomment ) ,
+          dllogapi.adddllog( objlog ) ,
+          utils.runlongtims( 3000 )
+        ] )
+
+        Toast.clear();
+
+        console.log( result )
       } ,
       backpage () {
 
@@ -177,7 +203,7 @@ Time: 22:55
       this.getdatelist();
 
       this.userselectproductno = this.$mp.query.productno
-      this.csexpectdate = this.$mp.query.csexpectdate
+      this.pmsreplydate = this.$mp.query.csexpectdate
 
       this.objectId = this.$mp.query.objectId
 
