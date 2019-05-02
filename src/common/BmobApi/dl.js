@@ -10,6 +10,9 @@ import Bmob from "hydrogen-js-sdk";
 import { DlTable } from '@/common/constant.js';
 import * as mock from '@/common/mockdata/index.js'
 
+import * as utils from '@/common/utils.js'
+import * as constant from '@/common/constant.js'
+
 //添加dl
 export function adddl ( dl ) {
 
@@ -256,5 +259,32 @@ export function getmyreply ( userid , counts , autokeylist ) {
 
   return query.find();
 }
+
+export function getmyagainhelplist ( userid , counts ) {
+  const query = Bmob.Query( DlTable );
+
+  query.equalTo( "isover" , "==" , false );
+  //还没有复期的
+  query.equalTo( "pmsreplydate" , "!=" , '' );
+
+  // if ( autokeylist != null && autokeylist.length > 0 ) {
+  //   query.notContainedIn( "autokey" , autokeylist );
+  // }
+  let arr = utils.getdatelist( false , 100 , constant.DateFormatStringYMD );
+  query.notContainedIn( "pmsreplydate" , arr );
+
+  const query1 = query.equalTo( "userid" , "==" , userid );
+
+  //query.or( query1 , query2 );
+
+  if ( counts > 0 ) {
+    query.limit( counts );
+  }
+
+  query.order( "autokey" );
+
+  return query.find();
+}
+
 
 

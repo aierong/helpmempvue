@@ -59,6 +59,7 @@ Time: 22:55
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as dllogapi from '@/common/BmobApi/dllog.js'
   import * as utils from '@/common/utils.js'
+  import * as constant from '@/common/constant.js'
 
   import mybr from '@/components/mybr.vue'
 
@@ -112,7 +113,7 @@ Time: 22:55
         } );
       } ,
       getdatelist () {
-        this.datelist = utils.getdatelist( true , 6 , 'YYYY-MM-DD' )
+        this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD )
 
         console.log( 'this.datelist' , this.datelist )
       } ,
@@ -123,7 +124,7 @@ Time: 22:55
       } ,
       async savedata () {
         let now = new Date();
-        let nowstr = dayjs( now ).format( 'YYYY-MM-DD HH:mm:ss' );
+        let nowstr = dayjs( now ).format( constant.DateFormatString );
 
         let userid = this.getloginuserid;
         let username = this.getloginusername;

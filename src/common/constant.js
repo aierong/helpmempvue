@@ -24,3 +24,7 @@ export const StorageName = "HelpMeStorage";
 
 //登录状态有效期
 export const validday = 7;
+
+export const DateFormatStringYMD = 'YYYY-MM-DD';
+
+export const DateFormatString = 'YYYY-MM-DD HH:mm:ss';

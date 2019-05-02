@@ -121,6 +121,7 @@
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as dllogapi from '@/common/BmobApi/dllog.js'
   import * as utils from '@/common/utils.js'
+  import * as constant from '@/common/constant.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
@@ -189,7 +190,7 @@
 
         let selectdate = new Date( detail );  //得到日期
         let _now2 = dayjs( selectdate );
-        this.csexpectdate = _now2.format( 'YYYY-MM-DD' )
+        this.csexpectdate = _now2.format( constant.DateFormatStringYMD )
         // yyyy-MM-dd HH:mm:ss
         this.closeDateWin();
       } ,
@@ -220,7 +221,7 @@
 
           helptimes : 1 ,
           //最后求助时间
-          helplasttime : dayjs( now ).format( 'YYYY-MM-DD HH:mm:ss' ) ,
+          helplasttime : dayjs( now ).format( constant.DateFormatString ) ,
           csexpectdate : this.csexpectdate ,
           pmsreplydate : '' ,
           addpmcreplycomment : '' ,
@@ -391,7 +392,7 @@
     onShow () {
 
       console.log( 'helpmeadd onShow' );
-    },
+    } ,
   }
 </script>
 
