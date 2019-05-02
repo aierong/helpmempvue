@@ -8,29 +8,41 @@
 
   <div>
     <van-row class="user-links">
-      <van-col span="6">
+      <van-col span="8">
         <van-icon @click="helpclick"
                   name="friends-o"
                   size="36px"/>
-        <br>求助
+        <br>填求助
       </van-col>
-      <van-col span="6">
+      <van-col span="8">
         <van-icon @click="replyclick"
                   name="comment-o"
                   size="36px"/>
-        <br>答复
+        <br>待答复
       </van-col>
-      <van-col span="6">
+      <van-col span="8">
+        <van-icon @click="againhelplick"
+                  name="smile-comment-o"
+                  size="36px"/>
+        <br>再求助
+      </van-col>
+
+    </van-row>
+    <van-row class="user-links">
+      <van-col span="8">
         <van-icon @click="queryclick"
                   name="search"
                   size="36px"/>
         <br>查询
       </van-col>
-      <van-col span="6">
+      <van-col span="8">
         <van-icon @click="exitclick"
                   name="exchange"
                   size="36px"/>
         <br>退出
+      </van-col>
+      <van-col span="8">
+
       </van-col>
     </van-row>
   </div>
@@ -80,18 +92,20 @@
       //   wx.setNavigationBarTitle( { title : _title } );
       // } ,
       helpclick () {
-        //
+
         wx.switchTab( { url : "../helpmeadd/main" } );
       } ,
       replyclick () {
-        //
+
         wx.switchTab( { url : "../reply/main" } );
       } ,
       queryclick () {
-        //
+
         wx.switchTab( { url : "../querylist/main" } );
       } ,
-
+      againhelplick () {
+        wx.switchTab( { url : "../againhelp/main" } );
+      } ,
       exitclick () {
         //弹窗提示一下
         let that = this;
