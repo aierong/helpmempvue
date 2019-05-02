@@ -173,7 +173,13 @@ Time: 22:55
 
         Toast.clear();
 
-        console.log( result )
+        // console.log( result )
+        if ( result != null ) {
+          Toast.success( '成功' );
+        }
+
+        //返回
+        this.backpage();
       } ,
       backpage () {
         wx.switchTab( { url : "../reply/main" } );
