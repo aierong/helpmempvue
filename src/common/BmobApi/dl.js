@@ -149,7 +149,16 @@ export function getontworkcounts ( userid ) {
   } );
 }
 
-//pmc答复
+/**
+ * pmc答复
+ * @param id
+ * @param userid
+ * @param username
+ * @param pmsreplydate
+ * @param addpmcreplydate
+ * @param addpmcreplycomment
+ * @returns {Promise<any>}
+ */
 export function reply ( id , userid , username , pmsreplydate , addpmcreplydate , addpmcreplycomment ) {
   return new Promise( ( resolve , reject ) => {
 
@@ -177,7 +186,13 @@ export function reply ( id , userid , username , pmsreplydate , addpmcreplydate 
   } );
 }
 
-// 再次求助
+/**
+ * 再次求助
+ * @param id
+ * @param helplasttime
+ * @param csexpectdate
+ * @returns {Promise<any>}
+ */
 export function againhelp ( id , helplasttime , csexpectdate ) {
   return new Promise( ( resolve , reject ) => {
 
@@ -210,7 +225,13 @@ export function againhelp ( id , helplasttime , csexpectdate ) {
   } );
 }
 
-//得我需要答复的
+/**
+ * 得我需要答复的列表
+ * @param userid
+ * @param counts
+ * @param autokeylist
+ * @returns {*|Promise|Promise<any>}
+ */
 export function getmyreply ( userid , counts , autokeylist ) {
   const query = Bmob.Query( DlTable );
 
