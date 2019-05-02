@@ -8,7 +8,8 @@
 
   <div>
     <!--    use-footer-slot-->
-    <van-panel :key="index"
+    <van-panel v-if="replycount>0"
+               :key="index"
                v-for="(item,index) in productlist"
                :title="(index+1)+ '.工单:'+item.productno"
                :status="'客户:'+item.custno">
@@ -46,6 +47,13 @@
 
 
     </van-panel>
+
+    <van-panel v-if="replycount<=0">
+      <mybr/>
+      <mybr/>
+      <mybr/>
+      <view style="text-align: center;color: green;">空空也,快叫上你的小伙伴来求助你吧!</view>
+    </van-panel>
   </div>
 
 </template>
@@ -58,10 +66,15 @@
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as utils from '@/common/utils.js'
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     name : "reply" ,
     //导入混入对象 可以是多个,数组
     mixins : [ loginuserdatamix ] ,
+    components : {
+      mybr
+    } ,
     //数据模型
     data () {
       return {
