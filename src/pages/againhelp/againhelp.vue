@@ -16,27 +16,61 @@ Time: 19:44
 
 <!-- js脚本代码片段 -->
 <script>
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import * as dlapi from '@/common/BmobApi/dl.js'
+
   export default {
     name : "againhelp" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [ loginuserdatamix ] ,
     //数据模型
     data () {
       return {
-        msg : ''
+        productlist : [] ,
       }
     } ,
     //方法
     methods : {
-      //methodsname() {
-      //代码搞这里
-      //},
+      getproductlist () {
+
+        let initcount = 5;
+
+        dlapi.getmyagainhelplist( this.getloginuserid , initcount ).then( ( res ) => {
+          console.log( 're' , res )
+
+          if ( res != null && res.length > 0 ) {
+            this.productlist = res;
+          }
+          else {
+            this.productlist = [];
+          }
+
+          console.log( 'this.productlist' , this.productlist )
+        } );
+      } ,
 
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      /**
+       * 列表数量
+       * @returns {number}
+       */
+      replycount () {
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          return this.productlist.length;
+        }
+
+        /**
+         *作者:  chenghao
+         *Date: 2019/4/25
+         *Time: 14:28
+         *功能: 没有就默认返回0
+
+         */
+
+        return 0;
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
@@ -48,6 +82,8 @@ Time: 19:44
     onShow () {
 
       console.log( 'againhelp onShow' );
+
+      this.getproductlist();
     } ,
   }
 </script>

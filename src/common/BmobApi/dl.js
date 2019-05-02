@@ -270,8 +270,9 @@ export function getmyagainhelplist ( userid , counts ) {
   // if ( autokeylist != null && autokeylist.length > 0 ) {
   //   query.notContainedIn( "autokey" , autokeylist );
   // }
-  let arr = utils.getdatelist( false , 100 , constant.DateFormatStringYMD );
-  query.notContainedIn( "pmsreplydate" , arr );
+  let arr = utils.getdatelist( false , 250 , constant.DateFormatStringYMD , true );
+  // console.log( 'arr' , arr )
+  query.containedIn( "pmsreplydate" , arr );
 
   const query1 = query.equalTo( "userid" , "==" , userid );
 

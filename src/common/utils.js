@@ -31,26 +31,38 @@ export function runlongtims ( times ) {
  * @param 日期格式化字符
  * @returns {Array}
  */
-export function getdatelist ( isincludetoday , counts , formatstring ) {
+export function getdatelist ( isincludetoday , counts , formatstring , isgobefore ) {
 
   let now = dayjs();  //得今天
 
   let arr = [];
 
   for ( let index = 0 ; index < counts ; index++ ) {
+    let addday = 0;
+
     if ( index == 0 ) {
       if ( isincludetoday ) {
         arr.push( now.format( formatstring ) )
       }
       else {
-        arr.push( now.add( index + 1 , 'day' ).format( formatstring ) )
+        addday = index + 1;
+
+        if ( isgobefore ) {
+          addday = addday * -1;
+        }
+
+        arr.push( now.add( addday , 'day' ).format( formatstring ) )
       }
     }
     else {
-      let addday = index;
+      addday = index;
 
       if ( !isincludetoday ) {
         addday = index + 1;
+      }
+
+      if ( isgobefore ) {
+        addday = addday * -1;
       }
 
       arr.push( now.add( addday , 'day' ).format( formatstring ) )

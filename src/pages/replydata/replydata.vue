@@ -113,7 +113,7 @@ Time: 22:55
         } );
       } ,
       getdatelist () {
-        this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD )
+        this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD , false )
 
         console.log( 'this.datelist' , this.datelist )
       } ,

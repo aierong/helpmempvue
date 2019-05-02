@@ -86,7 +86,7 @@
     methods : {
 
       getproductlist () {
-        //代码搞这里
+
         let initcount = 5;
 
         dlapi.getmyreply( this.getloginuserid , initcount , [] ).then( ( res ) => {
