@@ -9,7 +9,8 @@
     "pages/me/main",
     "pages/querylist/main",
     "pages/detaildata/main",
-    "pages/replydata/main"
+    "pages/replydata/main",
+    "pages/againhelp/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,16 +40,22 @@
         "selectedIconPath": "static/tabs/profile-actived.png"
       },
       {
-        "text": "求助",
+        "text": "填求助",
         "pagePath": "pages/helpmeadd/main",
         "iconPath": "static/tabs/safari.png",
         "selectedIconPath": "static/tabs/safari-actived.png"
       },
       {
-        "text": "答复",
+        "text": "待答复",
         "pagePath": "pages/reply/main",
         "iconPath": "static/tabs/star.png",
         "selectedIconPath": "static/tabs/star-actived.png"
+      },
+      {
+        "text": "再求助",
+        "pagePath": "pages/againhelp/main",
+        "iconPath": "static/tabs/note.png",
+        "selectedIconPath": "static/tabs/note-actived.png"
       },
       {
         "text": "查询",
