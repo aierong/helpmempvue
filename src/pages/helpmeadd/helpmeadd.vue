@@ -391,7 +391,7 @@
     onShow () {
 
       console.log( 'helpmeadd onShow' );
-    }
+    },
   }
 </script>
 

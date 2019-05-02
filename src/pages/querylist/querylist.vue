@@ -52,8 +52,15 @@
     } ,
     //生命周期(mounted)
     mounted () {
-
+      console.log( 'querylist mouted' )
     } ,
+    onLoad () {
+      console.log( 'querylist onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'querylist onShow' );
+    },
   }
 </script>
 

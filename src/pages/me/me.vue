@@ -147,7 +147,7 @@
     onShow () {
 
       console.log( 'me onShow' );
-    }
+    },
   }
 </script>
 

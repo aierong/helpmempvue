@@ -40,7 +40,14 @@ Time: 19:44
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'againhelp mouted' )
+    } ,
+    onLoad () {
+      console.log( 'againhelp onLoad' )
+    } ,
+    onShow () {
 
+      console.log( 'againhelp onShow' );
     } ,
   }
 </script>
