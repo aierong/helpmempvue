@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "待答复列表",
+  "navigationBarTitleText": "我的待答复列表",
   "usingComponents": {
     "van-panel": "/static/vant/panel/index",
     "van-button": "/static/vant/button/index",

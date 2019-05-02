@@ -7,11 +7,12 @@
 <template>
 
   <div>
-    列表
+    <!--    列表-->
 
-    <!--    <detaildata></detaildata>-->
-    <!--        <detail></detail>-->
-    <button @click="dj">qqqqqqq</button>
+    <!--    &lt;!&ndash;    <detaildata></detaildata>&ndash;&gt;-->
+    <!--    &lt;!&ndash;        <detail></detail>&ndash;&gt;-->
+    <!--    <button @click="dj">qqqqqqq</button>-->
+    codeing...
   </div>
 
 </template>
@@ -35,11 +36,11 @@
     } ,
     //方法
     methods : {
-      dj () {
-        //代码搞这里
-        const url = "../replydata/main"
-        wx.navigateTo( { url : url } )
-      } ,
+      // dj () {
+      //   //代码搞这里
+      //   const url = "../replydata/main"
+      //   wx.navigateTo( { url : url } )
+      // } ,
 
     } ,
     //计算属性
@@ -59,5 +60,4 @@
 <!-- 样式代码片段  scoped -->
 <style scoped
        src="./querylist.css">
-
 </style>
