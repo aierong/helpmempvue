@@ -19,10 +19,15 @@ Time: 19:44
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import * as dlapi from '@/common/BmobApi/dl.js'
 
+  import mybr from '@/components/mybr.vue'
+
   export default {
     name : "againhelp" ,
     //导入混入对象 可以是多个,数组
     mixins : [ loginuserdatamix ] ,
+    components : {
+      mybr
+    } ,
     //数据模型
     data () {
       return {
