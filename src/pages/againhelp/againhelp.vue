@@ -9,7 +9,48 @@ Time: 19:44
 <template>
 
   <div>
-    codeing...
+    <van-panel v-if="replycount>0"
+               :key="index"
+               v-for="(item,index) in productlist"
+               :title="(index+1)+ '.工单:'+item.productno"
+               :status="'客户:'+item.custno">
+      <van-row>
+        <van-col span="24">
+          <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
+        </van-col>
+
+      </van-row>
+      <van-row>
+        <van-col span="24">
+          <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
+        </van-col>
+
+      </van-row>
+
+      <van-row>
+        <van-col span="14">
+          <span class="mytxt">{{  '求助人:'+item.username  }}</span>
+        </van-col>
+
+        <van-col style="text-align: right;"
+                 span="10">
+          <van-button style="padding-right: 10px;padding-bottom: 10px;"
+                      plain
+                      type="primary"
+                      @click="againhelpdata(item.productno,item.csexpectdate,item.objectId)"
+                      size="mini">再求助
+          </van-button>
+
+        </van-col>
+      </van-row>
+    </van-panel>
+
+    <van-panel v-if="replycount<=0">
+      <mybr/>
+      <mybr/>
+      <mybr/>
+      <view style="text-align: center;color: green;">空空也,快来求助吧!</view>
+    </van-panel>
   </div>
 
 </template>
@@ -53,7 +94,10 @@ Time: 19:44
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-
+      againhelpdata ( productno , csexpectdate , objectId ) {
+        //转向
+        this.gotoreplypage( productno , csexpectdate , objectId );
+      } ,
     } ,
     //计算属性
     computed : {

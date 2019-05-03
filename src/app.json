@@ -10,7 +10,8 @@
     "pages/querylist/main",
     "pages/detaildata/main",
     "pages/replydata/main",
-    "pages/againhelp/main"
+    "pages/againhelp/main",
+    "pages/againhelpdata/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

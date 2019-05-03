@@ -7,7 +7,7 @@
 <template>
 
   <div>
-    <!--    use-footer-slot-->
+
     <van-panel v-if="replycount>0"
                :key="index"
                v-for="(item,index) in productlist"

@@ -196,7 +196,7 @@ export function reply ( id , userid , username , pmsreplydate , addpmcreplydate 
  * @param csexpectdate
  * @returns {Promise<any>}
  */
-export function againhelp ( id , helplasttime , csexpectdate ) {
+export function againhelp ( id , helplasttime , csexpectdate , comment ) {
   return new Promise( ( resolve , reject ) => {
 
     const query = Bmob.Query( DlTable );
@@ -209,6 +209,8 @@ export function againhelp ( id , helplasttime , csexpectdate ) {
       res.set( "helptimes" , res.helptimes + 1 )
       res.set( "helplasttime" , helplasttime )
       res.set( "csexpectdate" , csexpectdate )
+      res.set( "comment" , comment )
+
       res.set( "pmsreplydate" , '' )
       res.set( "addpmcreplycomment" , '' )
 
