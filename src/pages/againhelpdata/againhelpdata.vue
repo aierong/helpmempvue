@@ -130,23 +130,23 @@ Time: 20:39
         // console.log( this.getloginuserid )
         // console.log( this.getloginusername )
 
-        if ( this.pmsreplydate ) {
+        if ( this.csexpectdate ) {
 
         }
         else {
-          Toast.fail( '复期请选择' );
+          Toast.fail( '交期请选择' );
 
           return;
         }
 
         //构建日志数据
         let objlog = {
-          logruntype : logruntype.reply ,
+          logruntype : logruntype.againhelp ,
           userid : userid ,
           username : username ,
           productno : this.userselectproductno ,
-          dates : nowstr ,
-          comment : this.addpmcreplycomment
+          dates : this.csexpectdate ,
+          comment : this.comment
         };
 
         //开始保存吧
@@ -159,12 +159,11 @@ Time: 20:39
         } );
 
         var result = await Promise.all( [
-          dlapi.reply( this.objectId ,
-            userid ,
-            username ,
-            this.pmsreplydate ,
+          dlapi.againhelp( this.objectId ,
             nowstr ,
-            this.addpmcreplycomment ) ,
+            this.csexpectdate ,
+
+            this.comment ) ,
           dllogapi.adddllog( objlog ) ,
           utils.runlongtims( 3000 )
         ] )
