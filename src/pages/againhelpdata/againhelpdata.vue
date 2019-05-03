@@ -179,7 +179,7 @@ Time: 20:39
         this.backpage();
       } ,
       backpage () {
-        wx.switchTab( { url : "../reply/main" } );
+        wx.switchTab( { url : "../againhelp/main" } );
       } ,
     } ,
     //计算属性
