@@ -95,20 +95,19 @@ Time: 22:55
     methods : {
 
       onselectdate () {
-        let that = this;
 
         wx.showActionSheet( {
           //按钮的文字数组，数组长度最大为 6 个,
           itemList : this.datelist ,
           //按钮的文字颜色
           itemColor : '#000000' ,
-          success : res => {
+          success : ( res ) => {
             //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
-            let selectval = that.datelist[ res.tapIndex ];
+            let selectval = this.datelist[ res.tapIndex ];
 
             console.log( selectval )
 
-            that.pmsreplydate = selectval;
+            this.pmsreplydate = selectval;
           }
         } );
       } ,
@@ -148,7 +147,7 @@ Time: 22:55
           userid : userid ,
           username : username ,
           productno : this.userselectproductno ,
-          dates : nowstr ,
+          dates : this.pmsreplydate ,
           comment : this.addpmcreplycomment
         };
 

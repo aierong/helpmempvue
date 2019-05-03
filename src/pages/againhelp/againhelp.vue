@@ -37,7 +37,7 @@ Time: 19:44
           <van-button style="padding-right: 10px;padding-bottom: 10px;"
                       plain
                       type="primary"
-                      @click="againhelpdata(item.productno,item.csexpectdate,item.objectId)"
+                      @click="againhelpdata(item.productno,item.objectId)"
                       size="mini">再求助
           </van-button>
 
@@ -94,9 +94,15 @@ Time: 19:44
           console.log( 'this.productlist' , this.productlist )
         } );
       } ,
-      againhelpdata ( productno , csexpectdate , objectId ) {
+      againhelpdata ( productno , objectId ) {
         //转向
-        this.gotoreplypage( productno , csexpectdate , objectId );
+        this.gotoagainhelppage( productno , objectId );
+      } ,
+      gotoagainhelppage ( productno , objectId ) {
+        const url = "../againhelpdata/main?productno=" + productno
+          + "&objectId=" + objectId;
+
+        wx.navigateTo( { url : url } )
       } ,
     } ,
     //计算属性
