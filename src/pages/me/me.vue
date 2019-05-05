@@ -36,15 +36,24 @@
         <br>查询
       </van-col>
       <van-col span="8">
+        <van-icon @click="FXclick"
+                  name="flower-o"
+                  size="36px"/>
+        <br>分享
+      </van-col>
+      <van-col span="8">
         <van-icon @click="exitclick"
                   name="exchange"
                   size="36px"/>
         <br>退出
       </van-col>
-      <van-col span="8">
-
-      </van-col>
     </van-row>
+
+
+    <van-action-sheet :show="show1"
+                      :actions="actions1"
+                      @close="onClose1"
+                      @select="onSelect1"/>
   </div>
 
 </template>
@@ -64,7 +73,16 @@
     //数据模型
     data () {
       return {
-        msg : ''
+        actions1 : [
+
+          {
+            name : '分享' ,
+            subname : '分享给好友' ,
+            openType : 'share'
+          } ,
+
+        ] ,
+        show1 : false ,
       }
     } ,
     //方法
@@ -106,14 +124,33 @@
       againhelplick () {
         wx.switchTab( { url : "../againhelp/main" } );
       } ,
+      FXclick () {
+        this.show1 = true;
+      } ,
+      onClose1 () {
+        this.show1 = false;
+      } ,
+      onSelect1 ( event ) {
+        // console.log( event )
+        let obj = event.mp.detail;
+
+        // console.log( obj )
+
+        //取到选择的值
+        let name = obj.name;
+
+        // console.log( name )
+
+        this.show1 = false;
+
+      } ,
       exitclick () {
         //弹窗提示一下
-        let that = this;
 
         wx.showModal( {
           title : '提示' ,
           content : '确定退出吗?' ,
-          success ( res ) {
+          success : ( res ) => {
             if ( res.confirm ) {
               // console.log('用户点击确定')
 
@@ -134,6 +171,13 @@
       //return this.data;
       //}
     } ,
+    onShareAppMessage () {
+      return {
+        title : '填单帮助我' ,
+        path : '/pages/index/main' ,
+        imageUrl : '/static/img/logo.png'
+      }
+    } ,
     //生命周期(mounted)
     mounted () {
       console.log( 'me mouted' )
@@ -147,7 +191,7 @@
     onShow () {
 
       console.log( 'me onShow' );
-    },
+    } ,
   }
 </script>
 

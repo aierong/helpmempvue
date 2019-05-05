@@ -3,7 +3,8 @@
   "usingComponents": {
     "van-row": "/static/vant/row/index",
     "van-col": "/static/vant/col/index",
-    "van-icon": "/static/vant/icon/index"
+    "van-icon": "/static/vant/icon/index",
+    "van-action-sheet": "/static/vant/action-sheet/index"
   }
 }
 
