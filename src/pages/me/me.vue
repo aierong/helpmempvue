@@ -49,11 +49,13 @@
       </van-col>
     </van-row>
 
-
+    <!--    @close="onCloseitem"-->
     <van-action-sheet :show="show1"
                       :actions="actions1"
-                      @close="onClose1"
-                      @select="onSelect1"/>
+
+                      @cancel="oncancel"
+                      cancel-text="取消"
+                      @select="onSelectitem"/>
   </div>
 
 </template>
@@ -127,10 +129,15 @@
       FXclick () {
         this.show1 = true;
       } ,
-      onClose1 () {
+      // onCloseitem () {
+      //   console.log( this.show1 )
+      //   this.show1 = false;
+      //
+      // } ,
+      oncancel () {
         this.show1 = false;
       } ,
-      onSelect1 ( event ) {
+      onSelectitem ( event ) {
         // console.log( event )
         let obj = event.mp.detail;
 
@@ -139,7 +146,7 @@
         //取到选择的值
         let name = obj.name;
 
-        // console.log( name )
+        console.log( name )
 
         this.show1 = false;
 
