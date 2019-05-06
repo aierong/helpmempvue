@@ -7,6 +7,7 @@
 <template>
 
   <div>
+    <mybr/>
     <van-row class="user-links">
       <van-col span="8">
         <van-icon @click="helpclick"
@@ -48,11 +49,32 @@
         <br>退出
       </van-col>
     </van-row>
+    <mybr/>
+    <div style="text-align: center;color: green;">我的数据</div>
+    <van-tabbar :fixed="isfixed"
+                :active="active1"
+                @change="ontabbarChange1">
 
-    <!--    @close="onCloseitem"-->
+      <van-tabbar-item @click="itemtabbarclick(0)"
+                       class="itemtabbar"
+                       icon="search"
+                       info="5">标签
+      </van-tabbar-item>
+      <van-tabbar-item @click="itemtabbarclick(1)"
+                       class="itemtabbar"
+                       icon="friends-o"
+                       info="5">标签
+      </van-tabbar-item>
+      <van-tabbar-item @click="itemtabbarclick(2)"
+                       class="itemtabbar"
+                       icon="setting-o"
+                       info="20">标签
+      </van-tabbar-item>
+    </van-tabbar>
+
+
     <van-action-sheet :show="show1"
                       :actions="actions1"
-
                       @cancel="oncancel"
                       cancel-text="取消"
                       @select="onSelectitem"/>
@@ -67,9 +89,13 @@
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
   import { mixmethods } from '@/mixin/commonmethods.js'
+  import mybr from '@/components/mybr.vue'
 
   export default {
     name : "me" ,
+    components : {
+      mybr
+    } ,
     //导入混入对象 可以是多个,数组
     mixins : [ loginuserdatamix , mixmethods ] ,
     //数据模型
@@ -85,10 +111,16 @@
 
         ] ,
         show1 : false ,
+
+        isfixed : false ,
+        active1 : -1 ,
       }
     } ,
     //方法
     methods : {
+      itemtabbarclick ( index ) {
+        console.log( 'ontabbarChange1' , index )
+      } ,
       //退出系统，
       ExitSystem () {
         // console.log( 'into ExitSystem' )
@@ -169,6 +201,12 @@
           }
         } )
 
+      } ,
+      ontabbarChange1 ( event ) {
+        // console.log( event.mp.detail )
+        // console.log( this.active1 )
+        //最好手动赋值一下,要不值不是最新的
+        this.active1 = event.mp.detail
       } ,
     } ,
     //计算属性
