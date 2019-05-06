@@ -276,7 +276,7 @@ export function getmyagainhelplist ( userid , counts ) {
   // console.log( 'arr' , arr )
   query.containedIn( "pmsreplydate" , arr );
 
-  const query1 = query.equalTo( "userid" , "==" , userid );
+  query.equalTo( "userid" , "==" , userid );
 
   //query.or( query1 , query2 );
 
@@ -289,6 +289,53 @@ export function getmyagainhelplist ( userid , counts ) {
   return query.find();
 }
 
+/**
+ * 我求助
+ * @param userid
+ * @returns {*|Promise|Promise<any>}
+ */
+export function getmycount ( userid ) {
+  const query = Bmob.Query( DlTable );
+
+  query.equalTo( "userid" , "==" , userid );
+
+  return query.count();
+}
+
+/**
+ * 求助我
+ * @param userid
+ * @returns {*|Promise|Promise<any>}
+ */
+export function gethelpmecount ( userid ) {
+  const query = Bmob.Query( DlTable );
+
+  const query1 = query.equalTo( "helppmc1" , "==" , userid );
+  const query2 = query.equalTo( "helppmc2" , "==" , userid );
+
+  query.or( query1 , query2 );
+
+  return query.count();
+}
+
+/**
+ * 待答复
+ * @param userid
+ * @returns {*|Promise|Promise<any>}
+ */
+export function getmyreplycount ( userid ) {
+  const query = Bmob.Query( DlTable );
+
+  query.equalTo( "isover" , "==" , false );
+  //还没有复期的
+  query.equalTo( "pmsreplydate" , "==" , '' );
+
+  const query1 = query.equalTo( "helppmc1" , "==" , userid );
+  const query2 = query.equalTo( "helppmc2" , "==" , userid );
+
+  query.or( query1 , query2 );
+
+  return query.count();
+}
 
 
-// 我求助  求助我 待答复

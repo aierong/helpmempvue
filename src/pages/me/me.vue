@@ -57,18 +57,18 @@
 
       <van-tabbar-item @click="itemtabbarclick(0)"
                        class="itemtabbar"
-                       icon="search"
-                       info="5">标签
+                       icon="friends-o"
+                       :info="mycount">我求助
       </van-tabbar-item>
       <van-tabbar-item @click="itemtabbarclick(1)"
                        class="itemtabbar"
                        icon="friends-o"
-                       info="5">标签
+                       :info="helpmecount">求助我
       </van-tabbar-item>
       <van-tabbar-item @click="itemtabbarclick(2)"
                        class="itemtabbar"
-                       icon="setting-o"
-                       info="20">标签
+                       icon="friends-o"
+                       :info="myreplycount">待答复
       </van-tabbar-item>
     </van-tabbar>
 
@@ -86,9 +86,12 @@
 <script>
   import * as constant from '@/common/constant.js'
 
+  import * as dlapi from '@/common/BmobApi/dl.js'
+
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
   import { mixmethods } from '@/mixin/commonmethods.js'
+
   import mybr from '@/components/mybr.vue'
 
   export default {
@@ -97,7 +100,10 @@
       mybr
     } ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix , mixmethods ] ,
+    mixins : [
+      loginuserdatamix ,
+      mixmethods
+    ] ,
     //数据模型
     data () {
       return {
@@ -114,6 +120,10 @@
 
         isfixed : false ,
         active1 : -1 ,
+
+        mycount : 0 ,
+        helpmecount : 0 ,
+        myreplycount : 0
       }
     } ,
     //方法
@@ -208,6 +218,20 @@
         //最好手动赋值一下,要不值不是最新的
         this.active1 = event.mp.detail
       } ,
+      async getcounts ( userid ) {
+        var result = await Promise.all( [
+          dlapi.getmycount( userid ) ,
+          dlapi.gethelpmecount( userid ) ,
+          dlapi.getmyreplycount( userid )
+        ] )
+
+        // console.log( result )
+        if ( result != null && result.length >= 3 ) {
+          this.mycount = result[ 0 ];
+          this.helpmecount = result[ 1 ];
+          this.myreplycount = result[ 2 ];
+        }
+      } ,
     } ,
     //计算属性
     computed : {
@@ -236,6 +260,8 @@
     onShow () {
 
       console.log( 'me onShow' );
+
+      this.getcounts( this.getloginuserid )
     } ,
   }
 </script>
