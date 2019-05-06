@@ -175,11 +175,33 @@ Time: 22:55
 
         // console.log( result )
         if ( result != null ) {
-          Toast.success( '成功' );
+          // Toast.success( '成功' );
+          wx.showToast( {
+            title : '成功' , //提示的内容,
+            icon : 'success' , //图标,
+            duration : 3000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+            success : res => {
+              // console.log( res )
+              this.backpage();
+            }
+          } );
+        }
+        else {
+          wx.showToast( {
+            title : '失败' , //提示的内容,
+
+            duration : 3000 , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+            success : res => {
+              // console.log( res )
+              this.backpage();
+            }
+          } );
         }
 
         //返回
-        this.backpage();
+        // this.backpage();
       } ,
       backpage () {
         wx.switchTab( { url : "../reply/main" } );
