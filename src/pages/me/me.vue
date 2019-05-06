@@ -129,7 +129,14 @@
     //方法
     methods : {
       itemtabbarclick ( index ) {
-        console.log( 'ontabbarChange1' , index )
+        // console.log( 'ontabbarChange1' , index )
+
+        if ( index == 2 ) {
+          this.gotoreply();
+        }
+        else {
+          this.gotolist();
+        }
       } ,
       //退出系统，
       ExitSystem () {
@@ -159,10 +166,22 @@
       } ,
       replyclick () {
 
+        this.gotoreply();
+      } ,
+      /**
+       * 转向待答复页面
+       */
+      gotoreply () {
         wx.switchTab( { url : "../reply/main" } );
       } ,
       queryclick () {
 
+        this.gotolist();
+      } ,
+      /**
+       * 查询页面
+       */
+      gotolist () {
         wx.switchTab( { url : "../querylist/main" } );
       } ,
       againhelplick () {
