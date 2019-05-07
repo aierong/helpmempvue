@@ -163,6 +163,9 @@ Time: 21:32
     } ,
     //方法
     methods : {
+      initdata () {
+        this.activeNames = [ "a" , "b" ]
+      } ,
       /**
        * 得时光轴数据
        */
@@ -236,6 +239,14 @@ Time: 21:32
 
       console.log( '组件index onShow' , this.userselectproductno )
 
+    } ,
+    onHide () {
+      console.log( '组件index onHide' );
+    } ,
+    onUnload () {
+      console.log( '组件index onUnload' );
+
+      this.initdata();
     } ,
   }
 </script>

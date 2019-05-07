@@ -222,11 +222,6 @@ Time: 22:55
     onLoad () {
       console.log( 'replydata onLoad' , this.userselectproductno )
 
-    } ,
-    onShow () {
-
-      console.log( 'replydata onShow' );
-
       //日期段 取回来
       this.getdatelist();
 
@@ -234,9 +229,20 @@ Time: 22:55
       this.pmsreplydate = this.$mp.query.csexpectdate
 
       this.objectId = this.$mp.query.objectId
+    } ,
+    onShow () {
+
+      // console.log( 'replydata onShow' );
 
       console.log( 'replydata onShow' , this.userselectproductno );
-    }
+    } ,
+    onHide () {
+      console.log( 'replydata onHide' );
+    } ,
+    onUnload () {
+      console.log( 'replydata onUnload' );
+
+    } ,
   }
 </script>
 
