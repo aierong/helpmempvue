@@ -55,3 +55,31 @@ export function getloglistbyproductno ( productno ) {
 
   return query.find();
 }
+
+/**
+ * 由工程单号删除
+ * @param productno
+ * @returns {Promise<any>}
+ */
+export function deletebyproductno ( productno ) {
+  return new Promise( ( resolve , reject ) => {
+    const query = Bmob.Query( DlLogTable );
+    query.equalTo( "productno" , "==" , productno );
+
+    query.find().then( res => {
+      //返回的是数组,没有找到就是空数组
+
+      res.destroyAll().then( todos => {
+        // 成功批量修改
+        // todos  返回的数组
+        // "success": { "msg": "ok"      }
+        // console.log( todos )
+        resolve( true );
+      } ).catch( errs => {
+        // console.log( errs )
+        resolve( false );
+      } );
+    } );
+
+  } );
+}

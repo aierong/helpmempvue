@@ -338,4 +338,34 @@ export function getmyreplycount ( userid ) {
   return query.count();
 }
 
+/**
+ * 由id删除
+ * @param id
+ * @returns {Promise<any>}
+ */
+export function deletebyid ( id ) {
+  return new Promise( ( resolve , reject ) => {
+    const query = Bmob.Query( DlTable );
 
+    query.destroy( id ).then( res => {
+      // 成功删除  返回 {msg: "ok"}
+      //id 错误或者不存在  返回 {code: 101, error: "object not found for a08b661111."}
+      console.log( res )
+      if ( res != null ) {
+        if ( res.msg == 'ok' ) {
+          resolve( true );
+        }
+        else {
+          resolve( false );
+        }
+
+      }
+      else {
+        resolve( false );
+      }
+    } ).catch( err => {
+      resolve( false );
+    } )
+  } );
+
+}
