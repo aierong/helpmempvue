@@ -37,7 +37,7 @@
     data () {
       return {
         SearchVal : '' ,
-
+        productlist : [] ,
       }
     } ,
     //方法
@@ -76,6 +76,25 @@
         else {
           return '求助我的单据'
         }
+      } ,
+      /**
+       * 列表数量
+       * @returns {number}
+       */
+      listcount () {
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          return this.productlist.length;
+        }
+
+        /**
+         *作者:  chenghao
+         *Date: 2019/4/25
+         *Time: 14:28
+         *功能: 没有就默认返回0
+
+         */
+
+        return 0;
       } ,
     } ,
     //生命周期(mounted)
