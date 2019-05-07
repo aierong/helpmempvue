@@ -93,6 +93,12 @@ html代码片段
     } ,
     //方法
     methods : {
+      initdata () {
+        //清空一下，以免记录上次的
+        this.SearchVal = '';
+
+        this.productlist = []
+      } ,
       backpage () {
         wx.navigateBack()
       } ,
@@ -161,18 +167,24 @@ html代码片段
     mounted () {
       console.log( 'selectproduct mouted' )
 
-      //清空一下，以免记录上次的
-      this.SearchVal = '';
-
-      this.getproductlist();
     } ,
     onLoad () {
       console.log( 'selectproduct onLoad' )
+
+      this.getproductlist();
     } ,
     onShow () {
 
       console.log( 'selectproduct onShow' );
-    }
+    } ,
+    onHide () {
+      console.log( 'selectproduct onHide' );
+    } ,
+    onUnload () {
+      console.log( 'selectproduct onUnload' );
+
+      this.initdata();
+    } ,
   }
 </script>
 
