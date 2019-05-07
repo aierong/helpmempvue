@@ -393,6 +393,13 @@
 
       console.log( 'helpmeadd onShow' );
     } ,
+    onHide () {
+      console.log( 'helpmeadd onHide' );
+    } ,
+    onUnload () {
+      console.log( 'helpmeadd onUnload' );
+
+    } ,
   }
 </script>
 

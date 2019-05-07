@@ -146,7 +146,14 @@
       console.log( 'reply onShow' );
 
       this.getproductlist();
-    }
+    } ,
+    onHide () {
+      console.log( 'reply onHide' );
+    } ,
+    onUnload () {
+      console.log( 'reply onUnload' );
+
+    } ,
   }
 </script>
 

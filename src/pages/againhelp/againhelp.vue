@@ -140,6 +140,13 @@ Time: 19:44
 
       this.getproductlist();
     } ,
+    onHide () {
+      console.log( 'againhelp onHide' );
+    } ,
+    onUnload () {
+      console.log( 'againhelp onUnload' );
+
+    } ,
   }
 </script>
 
