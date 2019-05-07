@@ -234,7 +234,9 @@ Time: 22:55
 
       // console.log( 'replydata onShow' );
 
-      console.log( 'replydata onShow' , this.userselectproductno );
+      console.log( 'replydata onShow' );
+
+      wx.setNavigationBarTitle( { title : this.userselectproductno + '复期操作' } )
     } ,
     onHide () {
       console.log( 'replydata onHide' );

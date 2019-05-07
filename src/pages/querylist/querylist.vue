@@ -7,27 +7,18 @@
 <template>
 
   <div>
-    <!--    列表-->
-
-    <!--    &lt;!&ndash;    <detaildata></detaildata>&ndash;&gt;-->
-    <!--    &lt;!&ndash;        <detail></detail>&ndash;&gt;-->
-    <!--    <button @click="dj">qqqqqqq</button>-->
-    codeing...
+    query
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // import detaildata from '@/components/detaildata/index.vue'
 
-  // import detail from '/pages/detaildata/detail.vue'
 
   export default {
     name : "querylist" ,
-    // components : {
-    //   detaildata
-    // } ,
+
     //数据模型
     data () {
       return {
@@ -45,10 +36,10 @@
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      userselectquerytype () {
+        return this.$store.state.userselectquerytype;
+
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {

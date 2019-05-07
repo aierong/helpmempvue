@@ -2,7 +2,7 @@ export default {
 
   user : null ,
 
-  userselectquerytype : 'my' ,
+  userselectquerytype : 'myhelp' ,
 
   //操作者选择的产品
   userselectproductdata : {

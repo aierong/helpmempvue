@@ -6,7 +6,7 @@
     "van-row": "/static/vant/row/index",
     "van-col": "/static/vant/col/index"
   },
-  "navigationBarTitleText": "选择产品"
+  "navigationBarTitleText": "请选择产品"
 }
 
 
