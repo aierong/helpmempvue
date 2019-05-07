@@ -60,7 +60,14 @@
     onShow () {
 
       console.log( 'querylist onShow' );
-    },
+    } ,
+    onHide () {
+      console.log( 'querylist onHide' );
+    } ,
+    onUnload () {
+      console.log( 'querylist onUnload' );
+
+    } ,
   }
 </script>
 
