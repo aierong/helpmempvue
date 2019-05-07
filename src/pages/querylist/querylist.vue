@@ -17,6 +17,11 @@
                   @click="onselecttype">切换类型
       </van-button>
     </van-field>
+    <van-search :value="SearchVal"
+                placeholder="请输入工程单搜索关键词"
+                show-action
+                @search="onSearch"
+                @cancel="onSearchCancel"/>
   </div>
 
 </template>
@@ -31,7 +36,8 @@
     //数据模型
     data () {
       return {
-        msg : ''
+        SearchVal : '' ,
+
       }
     } ,
     //方法
@@ -46,7 +52,16 @@
         this.$store.dispatch( 'UpdateUserSelectQueryType' , _data );
 
       } ,
+      onSearch ( event ) {
+        //要搜索的值
+        let val = event.mp.detail;
 
+        // 最好 把模型同步一下
+        this.SearchVal = val;
+      } ,
+      onSearchCancel () {
+        this.SearchVal = "";
+      } ,
     } ,
     //计算属性
     computed : {

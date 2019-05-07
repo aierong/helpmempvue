@@ -188,12 +188,6 @@
        */
       gotolist ( type ) {
 
-        // let _data = 'myhelp';
-        //
-        // if ( this.userselectquerytype == 'myhelp' ) {
-        //   _data = 'helpme'
-        // }
-
         this.$store.dispatch( 'UpdateUserSelectQueryType' , type );
 
         wx.switchTab( { url : "../querylist/main" } );
