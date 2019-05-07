@@ -209,6 +209,8 @@ Time: 20:39
       // console.log( 'againhelpdata onShow' );
 
       console.log( 'againhelpdata onShow' , this.userselectproductno );
+
+      wx.setNavigationBarTitle( { title : this.userselectproductno + '再次求助' } )
     } ,
     onHide () {
       console.log( 'againhelpdata onHide' );

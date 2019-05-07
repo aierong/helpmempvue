@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "再次求助操作",
+  "navigationBarTitleText": "再次求助",
   "usingComponents": {
     "van-button": "/static/vant/button/index",
     "van-icon": "/static/vant/icon/index",
