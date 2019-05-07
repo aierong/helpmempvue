@@ -18,7 +18,7 @@
       </van-button>
     </van-field>
     <van-search :value="SearchVal"
-                placeholder="请输入工程单搜索关键词"
+                placeholder="请输入工程单搜索"
                 show-action
                 @search="onSearch"
                 @cancel="onSearchCancel"/>
