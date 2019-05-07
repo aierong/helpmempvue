@@ -7,7 +7,16 @@
 <template>
 
   <div>
-    query
+    <van-field :value="userselectquerytypename"
+               label="查询类型"
+               disabled
+               use-button-slot>
+      <van-button slot="button"
+                  size="mini"
+                  type="primary"
+                  @click="onselecttype">切换类型
+      </van-button>
+    </van-field>
   </div>
 
 </template>
@@ -27,11 +36,16 @@
     } ,
     //方法
     methods : {
-      // dj () {
-      //   //代码搞这里
-      //   const url = "../replydata/main"
-      //   wx.navigateTo( { url : url } )
-      // } ,
+      onselecttype () {
+        let _data = 'myhelp';
+
+        if ( this.userselectquerytype == 'myhelp' ) {
+          _data = 'helpme'
+        }
+
+        this.$store.dispatch( 'UpdateUserSelectQueryType' , _data );
+
+      } ,
 
     } ,
     //计算属性
@@ -39,6 +53,14 @@
       userselectquerytype () {
         return this.$store.state.userselectquerytype;
 
+      } ,
+      userselectquerytypename () {
+        if ( this.userselectquerytype == 'myhelp' ) {
+          return '我求助的单据'
+        }
+        else {
+          return '求助我的单据'
+        }
       } ,
     } ,
     //生命周期(mounted)

@@ -135,7 +135,12 @@
           this.gotoreply();
         }
         else {
-          this.gotolist();
+          if ( index == 0 ) {
+            this.gotolist( 'myhelp' );
+          }
+          else {
+            this.gotolist( 'helpmy' );
+          }
         }
       } ,
       //退出系统，
@@ -176,12 +181,21 @@
       } ,
       queryclick () {
 
-        this.gotolist();
+        this.gotolist( 'myhelp' );
       } ,
       /**
        * 查询页面
        */
-      gotolist () {
+      gotolist ( type ) {
+
+        // let _data = 'myhelp';
+        //
+        // if ( this.userselectquerytype == 'myhelp' ) {
+        //   _data = 'helpme'
+        // }
+
+        this.$store.dispatch( 'UpdateUserSelectQueryType' , type );
+
         wx.switchTab( { url : "../querylist/main" } );
       } ,
       againhelplick () {
@@ -190,24 +204,20 @@
       FXclick () {
         this.show1 = true;
       } ,
-      // onCloseitem () {
-      //   console.log( this.show1 )
-      //   this.show1 = false;
-      //
-      // } ,
+
       oncancel () {
         this.show1 = false;
       } ,
       onSelectitem ( event ) {
         // console.log( event )
-        let obj = event.mp.detail;
+        // let obj = event.mp.detail;
 
         // console.log( obj )
 
         //取到选择的值
-        let name = obj.name;
+        // let name = obj.name;
 
-        console.log( name )
+        // console.log( name )
 
         this.show1 = false;
 
