@@ -21,12 +21,16 @@
       </van-cell-group>
     </van-checkbox-group>
 
-    <div class="msgtxt">{{ '可供选择用户'+usercounts+'人,最多可选'+maxmancounts+'人' }}</div>
-    <van-button size="large"
+    <div v-if="usercounts>0"
+         class="msgtxt">{{ '可供选择用户'+usercounts+'人,最多可选'+maxmancounts+'人' }}
+    </div>
+    <van-button v-if="usercounts>0"
+                size="large"
                 type="primary"
                 @click="selectuser">确定选择
     </van-button>
-    <van-button size="large"
+    <van-button v-if="usercounts>0"
+                size="large"
                 @click="backpage">返回
     </van-button>
 
@@ -69,6 +73,11 @@
     } ,
     //方法
     methods : {
+      initdata () {
+        //清空一下，以免记录上次的
+        this.selectval = [];
+        this.userlist = [];
+      } ,
       selectuser () {
         if ( this.selectval == null || this.selectval.length <= 0 ) {
           Toast.fail( '请选择求助对象' );
@@ -128,13 +137,6 @@
         return "";
       } ,
       getuserlist () {
-        // userapi.getuserlist( this.getloginuserid ).then( ( res ) => {
-        //   // console.log( res )
-
-        //   this.userlist = res;
-
-        //   // console.log( 'this.userlist' , this.userlist )
-        // } )
 
         Toast.loading( {
           duration : 0 ,
@@ -214,16 +216,21 @@
     } ,
     onLoad () {
       console.log( 'selectuser onLoad' )
-    } ,
-    onShow () {
-      //清空一下，以免记录上次的
-      this.selectval = [];
-      this.userlist = [];
 
       this.getuserlist();
+    } ,
+    onShow () {
 
       console.log( 'selectuser onShow' );
-    }
+    } ,
+    onHide () {
+      console.log( 'selectuser onHide' );
+    } ,
+    onUnload () {
+      console.log( 'selectuser onUnload' );
+
+      this.initdata();
+    } ,
   }
 </script>
 
