@@ -197,20 +197,26 @@ Time: 20:39
     onLoad () {
       console.log( 'againhelpdata onLoad' , this.userselectproductno )
 
-    } ,
-    onShow () {
-
-      console.log( 'againhelpdata onShow' );
-
       //日期段 取回来
       this.getdatelist();
 
       this.userselectproductno = this.$mp.query.productno
 
       this.objectId = this.$mp.query.objectId
+    } ,
+    onShow () {
+
+      // console.log( 'againhelpdata onShow' );
 
       console.log( 'againhelpdata onShow' , this.userselectproductno );
-    }
+    } ,
+    onHide () {
+      console.log( 'againhelpdata onHide' );
+    } ,
+    onUnload () {
+      console.log( 'againhelpdata onUnload' );
+
+    } ,
   }
 </script>
 
