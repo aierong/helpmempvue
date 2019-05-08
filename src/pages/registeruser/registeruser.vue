@@ -42,11 +42,6 @@
                 @click="backpage">返回
     </van-button>
 
-    <!--    "van-toast": "/static/vant/toast/index"-->
-    <!--    &lt;!&ndash;-->
-    <!--   注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
-    <!--   &ndash;&gt;-->
-    <!--    <van-toast id="van-toast"/>-->
 
   </div>
 
@@ -54,10 +49,6 @@
 
 <!-- js脚本代码片段 -->
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  // import Toast from '../../../static/vant/toast/toast';
 
   import * as userapi from '@/common/BmobApi/users.js'
 
