@@ -3,7 +3,9 @@
 功能:vue页
 -->
 
-<!-- html代码片段 -->
+<!--
+html代码片段
+-->
 <template>
 
   <div>
@@ -33,9 +35,7 @@
     <van-field :value="productinfo.itemno + '(' + productinfo.itemsname + ')' "
                label="物料"
                disabled/>
-    <!--    <van-field :value="productinfo.itemsname"-->
-    <!--               label="物料名称"-->
-    <!--               disabled/>-->
+
     <van-field :value="csexpectdate"
                label="期望交期"
                disabled
@@ -66,12 +66,7 @@
                disabled
                placeholder="请选择求助人2"
                use-button-slot>
-      <!--      这个选择按钮不用了，上面有一个-->
-      <!--      <van-button slot="button"-->
-      <!--                  size="mini"-->
-      <!--                  type="primary"-->
-      <!--                  @click="onselectuser2">选择-->
-      <!--      </van-button>-->
+
       <van-button slot="button"
                   size="mini"
                   type="warning"
@@ -100,21 +95,14 @@
                            @confirm="userselectdate"
                            @cancel="userselectdatecancel"/>
     </van-popup>
-    <!--    放最后，一个提示-->
-    <!--
-    注意要配一个van-toast,才会显示提示 ,默认id van-toast
-    -->
-    <van-toast id="van-toast"/>
+
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+
 
   import dayjs from 'dayjs'
 
@@ -124,6 +112,7 @@
   import * as constant from '@/common/constant.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import { logruntype } from '@/common/constant.js';
 
@@ -135,7 +124,10 @@
       mybr
     } ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      mixmethods
+    ] ,
     //数据模型
     data () {
       return {
@@ -146,8 +138,8 @@
         csexpectdate : '' ,
         comment : '' ,
 
-        //最多处理多少 100
-        maxsavecount : 5
+        //最多处理多少 未完成工程单
+        maxsavecount : 9
       }
     } ,
     //方法
@@ -165,9 +157,7 @@
       onselectuser1 () {
         this.gotouserselectpage();
       } ,
-      // onselectuser2 () {
-      //   this.gotouserselectpage();
-      // } ,
+
       gotouserselectpage () {
         //转向  用户选择页面
         const url = "../selectuser/main"
@@ -184,9 +174,6 @@
       } ,
       userselectdate ( event ) {
         const { detail } = event.mp;
-
-        // console.log( detail )
-        // console.log( currentTarget )
 
         let selectdate = new Date( detail );  //得到日期
         let _now2 = dayjs( selectdate );
@@ -261,8 +248,7 @@
 
           if ( isexists ) {
 
-            Toast.fail( '工程单号已经存在' );
-
+            this.ShowToastMsg( '工程单号已经存在' )
             return;
           }
 
@@ -272,15 +258,14 @@
 
           if ( counts > this.maxsavecount ) {
 
-            Toast.fail( '您的未完成工程单已超过' + this.maxsavecount + '个' );
-
+            this.ShowToastMsg( '您的未完成工程单已超过' + this.maxsavecount + '个' )
             return;
           }
 
         }
         else {
-          Toast.fail( '工程单号为空' );
 
+          this.ShowToastMsg( '工程单号为空' )
           return;
         }
 
@@ -289,9 +274,8 @@
 
         }
         else {
-          // console.log( '期望交期为空' )
-          Toast.fail( '期望交期为空' );
 
+          this.ShowToastMsg( '期望交期为空' )
           return;
         }
 
@@ -299,60 +283,38 @@
 
         }
         else {
-          Toast.fail( '求助人1为空' );
 
+          this.ShowToastMsg( '求助人1为空' )
           return;
         }
 
         //开始保存吧
-        Toast.loading( {
-          duration : 0 ,
-          //forbidClick	是否禁止背景点击
-          forbidClick : true ,
-          loadingType : 'spinner' ,
-          message : '保存中...'
+        wx.showLoading( {
+          title : '保存中...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
         } );
-
-        // dlapi.adddl( newdata ).then( ( res ) => {
-        //   console.log( 'res' , res );
-        //
-        //   //关闭提示
-        //   //Toast.clear		关闭提示
-        //   Toast.clear();
-        //
-        //   if ( res != null ) {
-        //     Toast.success( '成功' );
-        //   }
-        //   else {
-        //     Toast.fail( '失败' );
-        //   }
-        //
-        //   //保存完成，要清除一下数据
-        //   this.cleardata();
-        //
-        //   return;
-        // } )
 
         var result = await Promise.all( [
           dlapi.adddl( newdata ) ,
           dllogapi.adddllog( objlog ) ,
-          utils.runlongtims( 3000 )
+          utils.runlongtims( 2000 )
         ] )
 
-        Toast.clear();
+        // 取消加载动画
+        wx.hideLoading()
 
         // console.log( '2ge' , result )
         if ( result != null && result.length >= 2 ) {
           if ( result[ 0 ] != null && result[ 1 ] != null ) {
-            Toast.success( '成功' );
-
+            // Toast.success( '成功' );
+            this.ShowToastMsg( '成功' , true , 1500 )
             this.cleardata();
 
             return;
           }
         }
 
-        Toast.fail( '失败' );
+        this.ShowToastMsg( '失败' )
         this.cleardata();
 
         return;
