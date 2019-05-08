@@ -63,11 +63,18 @@
 
   import mybr from '@/components/mybr.vue'
 
+  import { mixmethods } from '@/mixin/commonmethods.js'
+
   export default {
     name : "registeruser" ,
     components : {
       mybr
     } ,
+    //导入混入对象 可以是多个,数组
+    mixins : [
+
+      mixmethods
+    ] ,
     //数据模型
     data () {
       return {
@@ -79,45 +86,39 @@
     } ,
     //方法
     methods : {
-      displaymsg ( title = '消息' , isicon = false , duration = 2000 ) {
-        wx.showToast( {
-          title : title , //提示的内容,
-          icon : !isicon ? 'none' : 'success' ,
-          duration : 2000 , //延迟时间,
-          mask : true , //显示透明蒙层，防止触摸穿透,
-
-        } );
-      } ,
+      /**
+       * 注册单击
+       */
       reg () {
 
         if ( !this.userid ) {
 
-          this.displaymsg( '请输手机号' )
+          this.ShowToastMsg( '请输手机号' )
 
           return;
         }
 
         if ( !this.username ) {
 
-          this.displaymsg( '请输入姓名' )
+          this.ShowToastMsg( '请输入姓名' )
           return;
         }
 
         if ( !this.pwd ) {
 
-          this.displaymsg( '请输入密码' )
+          this.ShowToastMsg( '请输入密码' )
           return;
         }
 
         if ( this.pwd != this.pwd2 ) {
 
-          this.displaymsg( '2次密码不一致' )
+          this.ShowToastMsg( '2次密码不一致' )
           return;
         }
 
         if ( this.userid.length != 11 ) {
 
-          this.displaymsg( '手机号码长度不正确' )
+          this.ShowToastMsg( '手机号码长度不正确' )
           return;
         }
 
@@ -125,11 +126,11 @@
 
           let result = await userapi.isexistsuserid( this.userid )
 
-          console.log( result )
+          // console.log( result )
 
           if ( result.isexists ) {
 
-            this.displaymsg( '手机号已存在' )
+            this.ShowToastMsg( '手机号已存在' )
             return
           }
           else {
@@ -164,7 +165,7 @@
             }
             else {
 
-              this.displaymsg( '失败' )
+              this.ShowToastMsg( '失败' )
 
               return
             }
