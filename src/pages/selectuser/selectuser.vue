@@ -34,30 +34,27 @@
                 @click="backpage">返回
     </van-button>
 
-    <!--
-    注意要配一个van-toast,才会显示提示 ,默认id van-toast
-    -->
-    <van-toast id="van-toast"/>
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+
 
   import * as userapi from '@/common/BmobApi/users.js'
   import * as utils from '@/common/utils.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   export default {
     name : "selectuser" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      mixmethods
+    ] ,
 
     //数据模型
     data () {
@@ -80,14 +77,14 @@
       } ,
       selectuser () {
         if ( this.selectval == null || this.selectval.length <= 0 ) {
-          Toast.fail( '请选择求助对象' );
-
+          // Toast.fail( '请选择求助对象' );
+          this.ShowToastMsg( '请选择求助对象' )
           return;
         }
 
         if ( this.selectval.length > this.maxmancounts ) {
-          Toast.fail( '最多选择' + this.maxmancounts + '个求助对象' );
-
+          // Toast.fail( '最多选择' + this.maxmancounts + '个求助对象' );
+          this.ShowToastMsg( '最多选择' + this.maxmancounts + '个求助对象' )
           return;
         }
 
@@ -138,14 +135,18 @@
       } ,
       getuserlist () {
 
-        Toast.loading( {
-          duration : 0 ,
-          //forbidClick	是否禁止背景点击
-          forbidClick : true ,
-          loadingType : 'spinner' ,
-          message : '挖数据...'
+        // Toast.loading( {
+        //   duration : 0 ,
+        //   //forbidClick	是否禁止背景点击
+        //   forbidClick : true ,
+        //   loadingType : 'spinner' ,
+        //   message : '挖数据...'
+        // } );
+        // 加载动画
+        wx.showLoading( {
+          title : '挖数据...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
         } );
-
         Promise.all( [
           userapi.getuserlist( this.getloginuserid ) ,
           utils.runlongtims( 1500 )
@@ -164,7 +165,9 @@
             }
           }
 
-          Toast.clear();
+          // Toast.clear();
+          // 取消加载动画
+          wx.hideLoading()
         } )
 
       } ,
