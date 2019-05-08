@@ -95,7 +95,7 @@
             this.productlist = [];
           }
 
-          console.log( 'this.productlist' , this.productlist )
+          // console.log( 'this.productlist' , this.productlist )
         } );
       } ,
       replydata ( productno , csexpectdate , objectId ) {

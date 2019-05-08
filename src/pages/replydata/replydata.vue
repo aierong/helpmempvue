@@ -39,21 +39,21 @@ Time: 22:55
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
 
-    <!--    放最后，一个提示-->
-    <!--
-    注意要配一个van-toast,才会显示提示 ,默认id van-toast
-    -->
-    <van-toast id="van-toast"/>
+    <!--    &lt;!&ndash;    放最后，一个提示&ndash;&gt;-->
+    <!--    &lt;!&ndash;-->
+    <!--    注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
+    <!--    &ndash;&gt;-->
+    <!--    <van-toast id="van-toast"/>-->
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+  // // 配置文件json也要配置,这里代码也要引用
+  // // 代码中也要引用
+  // // 注意引用路径
+  // import Toast from '../../../static/vant/toast/toast';
 
   import detaildata from '@/components/detaildata/index.vue'
   import * as dlapi from '@/common/BmobApi/dl.js'
@@ -64,6 +64,7 @@ Time: 22:55
   import mybr from '@/components/mybr.vue'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import { logruntype } from '@/common/constant.js';
 
@@ -72,7 +73,10 @@ Time: 22:55
   export default {
     name : "replydata" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      mixmethods
+    ] ,
     components : {
       detaildata ,
       mybr
@@ -105,7 +109,7 @@ Time: 22:55
             //tapIndex就是用户点击的按钮序号,从上到下的顺序,从0开始
             let selectval = this.datelist[ res.tapIndex ];
 
-            console.log( selectval )
+            // console.log( selectval )
 
             this.pmsreplydate = selectval;
           }
@@ -114,7 +118,7 @@ Time: 22:55
       getdatelist () {
         this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD , false )
 
-        console.log( 'this.datelist' , this.datelist )
+        // console.log( 'this.datelist' , this.datelist )
       } ,
       commentChange ( event ) {
         let vals = event.mp.detail;
@@ -136,8 +140,8 @@ Time: 22:55
 
         }
         else {
-          Toast.fail( '复期请选择' );
-
+          // Toast.fail( '复期请选择' );
+          this.ShowToastMsg( '复期请选择' )
           return;
         }
 
@@ -152,12 +156,17 @@ Time: 22:55
         };
 
         //开始保存吧
-        Toast.loading( {
-          duration : 0 ,
-          //forbidClick	是否禁止背景点击
-          forbidClick : true ,
-          loadingType : 'spinner' ,
-          message : '保存中...'
+        // Toast.loading( {
+        //   duration : 0 ,
+        //   //forbidClick	是否禁止背景点击
+        //   forbidClick : true ,
+        //   loadingType : 'spinner' ,
+        //   message : '保存中...'
+        // } );
+        // 加载动画
+        wx.showLoading( {
+          title : '保存中...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
         } );
 
         var result = await Promise.all( [
@@ -171,37 +180,58 @@ Time: 22:55
           utils.runlongtims( 3000 )
         ] )
 
-        Toast.clear();
+        // Toast.clear();
+        // 取消加载动画
+        wx.hideLoading()
+
+        let _duration = 2000;
 
         // console.log( result )
         if ( result != null ) {
           // Toast.success( '成功' );
+          // wx.showToast( {
+          //   title : '成功' , //提示的内容,
+          //   icon : 'success' , //图标,
+          //   duration : 3000 , //延迟时间,
+          //   mask : true , //显示透明蒙层，防止触摸穿透,
+          //   success : res => {
+          //     // console.log( res )
+          //     this.backpage();
+          //   }
+          // } );
+
           wx.showToast( {
             title : '成功' , //提示的内容,
             icon : 'success' , //图标,
-            duration : 3000 , //延迟时间,
+            duration : _duration , //延迟时间,
             mask : true , //显示透明蒙层，防止触摸穿透,
             success : res => {
-              // console.log( res )
-              this.backpage();
+              setInterval( () => {
+                //运行其他事情
+                this.backpage();
+
+              } , _duration );
             }
+
           } );
         }
         else {
           wx.showToast( {
             title : '失败' , //提示的内容,
-
-            duration : 3000 , //延迟时间,
+            icon : 'none' , //图标,
+            duration : _duration , //延迟时间,
             mask : true , //显示透明蒙层，防止触摸穿透,
             success : res => {
-              // console.log( res )
-              this.backpage();
+              setInterval( () => {
+                //运行其他事情
+                this.backpage();
+
+              } , _duration );
             }
+
           } );
         }
 
-        //返回
-        // this.backpage();
       } ,
       backpage () {
         wx.switchTab( { url : "../reply/main" } );
@@ -236,7 +266,8 @@ Time: 22:55
 
       console.log( 'replydata onShow' );
 
-      wx.setNavigationBarTitle( { title : this.userselectproductno + '复期操作' } )
+      // wx.setNavigationBarTitle( { title : this.userselectproductno + '复期操作' } )
+      this.setuppagetitle( this.userselectproductno + '复期操作' )
     } ,
     onHide () {
       console.log( 'replydata onHide' );
