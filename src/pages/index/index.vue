@@ -30,16 +30,16 @@
 注意要配一个van-toast,才会显示提示 ,默认id van-toast
 
 -->
-      <van-toast id="van-toast"/>
+      <!--      <van-toast id="van-toast"/>-->
     </div>
   </div>
 </template>
 
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+  // // 配置文件json也要配置,这里代码也要引用
+  // // 代码中也要引用
+  // // 注意引用路径
+  // import Toast from '../../../static/vant/toast/toast';
 
   import * as constant from '@/common/constant.js'
 
@@ -47,7 +47,26 @@
 
   import mybr from '@/components/mybr.vue'
 
+  import { mixmethods } from '@/mixin/commonmethods.js'
+
   export default {
+    name : "index" ,
+    //导入混入对象 可以是多个,数组
+    mixins : [
+
+      mixmethods
+    ] ,
+    //计算属性
+    computed : {
+      /**
+       * 有效天数
+       * @returns {default.computed.validday|(function())}
+       */
+      validday () {
+
+        return constant.validday;
+      }
+    } ,
     data () {
       return {
 
@@ -55,7 +74,6 @@
         userid : '' ,
         pwd : '' ,
 
-        validday : constant.validday
       }
     } ,
     components : {
@@ -95,15 +113,15 @@
         //检查数据有效性
         if ( !this.userid ) {
 
-          Toast.fail( '请输手机号' );
-
+          // Toast.fail( '请输手机号' );
+          this.ShowToastMsg( '请输手机号' )
           return;
         }
 
         if ( !this.pwd ) {
 
-          Toast.fail( '请输入密码' );
-
+          // Toast.fail( '请输入密码' );
+          this.ShowToastMsg( '请输入密码' )
           return;
         }
 
@@ -122,12 +140,14 @@
               username : res.data.username ,
               logintime : now
             };
+
             this.setStorageValue( userobj );
 
             this.SaveVuexAndSwitch( userobj )
           }
           else {
-            Toast.fail( '登录失败' );
+            // Toast.fail( '登录失败' );
+            this.ShowToastMsg( '登录失败' )
 
             return;
           }
@@ -141,13 +161,15 @@
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'index mounted' );
+
       let StorageValue = this.getStorageValue();
 
-      console.log( 'StorageValue' , StorageValue )
+      // console.log( 'StorageValue' , StorageValue )
 
       if ( StorageValue ) {
         // 取到值了
-        console.log( StorageValue )
+        // console.log( StorageValue )
 
         //取到值 判断是否过期
         var now = new Date();
@@ -177,6 +199,22 @@
 
         this.isvaliduser = false;
       }
+    } ,
+    onLoad () {
+      console.log( 'index onLoad' )
+
+    } ,
+    onShow () {
+
+      console.log( 'index onShow' );
+
+    } ,
+    onHide () {
+      console.log( 'index onHide' );
+    } ,
+    onUnload () {
+      console.log( 'index onUnload' );
+
     } ,
   }
 </script>

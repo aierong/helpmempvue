@@ -287,6 +287,13 @@
 
       this.getcounts( this.getloginuserid )
     } ,
+    onHide () {
+      console.log( 'me onHide' );
+    } ,
+    onUnload () {
+      console.log( 'me onUnload' );
+
+    } ,
   }
 </script>
 
