@@ -38,21 +38,21 @@ Time: 20:39
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
 
-    <!--    放最后，一个提示-->
-    <!--
-    注意要配一个van-toast,才会显示提示 ,默认id van-toast
-    -->
-    <van-toast id="van-toast"/>
+    <!--    &lt;!&ndash;    放最后，一个提示&ndash;&gt;-->
+    <!--    &lt;!&ndash;-->
+    <!--    注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
+    <!--    &ndash;&gt;-->
+    <!--    <van-toast id="van-toast"/>-->
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // 配置文件json也要配置,这里代码也要引用
-  // 代码中也要引用
-  // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+  // // 配置文件json也要配置,这里代码也要引用
+  // // 代码中也要引用
+  // // 注意引用路径
+  // import Toast from '../../../static/vant/toast/toast';
 
   import detaildata from '@/components/detaildata/index.vue'
   import * as dlapi from '@/common/BmobApi/dl.js'
@@ -63,6 +63,7 @@ Time: 20:39
   import mybr from '@/components/mybr.vue'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import { logruntype } from '@/common/constant.js';
 
@@ -71,7 +72,10 @@ Time: 20:39
   export default {
     name : "againhelpdata" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      mixmethods
+    ] ,
     components : {
       detaildata ,
       mybr
@@ -112,7 +116,7 @@ Time: 20:39
       getdatelist () {
         this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD , false )
 
-        console.log( 'this.datelist' , this.datelist )
+        // console.log( 'this.datelist' , this.datelist )
       } ,
       commentChange ( event ) {
         let vals = event.mp.detail;
@@ -134,8 +138,8 @@ Time: 20:39
 
         }
         else {
-          Toast.fail( '交期请选择' );
-
+          // Toast.fail( '交期请选择' );
+          this.ShowToastMsg( '请选择交期' )
           return;
         }
 
@@ -150,12 +154,18 @@ Time: 20:39
         };
 
         //开始保存吧
-        Toast.loading( {
-          duration : 0 ,
-          //forbidClick	是否禁止背景点击
-          forbidClick : true ,
-          loadingType : 'spinner' ,
-          message : '保存中...'
+        // Toast.loading( {
+        //   duration : 0 ,
+        //   //forbidClick	是否禁止背景点击
+        //   forbidClick : true ,
+        //   loadingType : 'spinner' ,
+        //   message : '保存中...'
+        // } );
+
+        // 加载动画
+        wx.showLoading( {
+          title : '加载中...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
         } );
 
         var result = await Promise.all( [
@@ -168,15 +178,48 @@ Time: 20:39
           utils.runlongtims( 3000 )
         ] )
 
-        Toast.clear();
-
+        // Toast.clear();
+        // 取消加载动画
+        wx.hideLoading()
         // console.log( result )
+
+        let _duration = 2000;
+
         if ( result != null ) {
-          Toast.success( '成功' );
+          wx.showToast( {
+            title : '成功' , //提示的内容,
+            icon : 'success' , //图标,
+            duration : _duration , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+            success : res => {
+              setInterval( () => {
+                //运行其他事情
+                this.backpage();
+
+              } , _duration );
+            }
+
+          } );
+        }
+        else {
+          wx.showToast( {
+            title : '失败' , //提示的内容,
+            icon : 'none' , //图标,
+            duration : _duration , //延迟时间,
+            mask : true , //显示透明蒙层，防止触摸穿透,
+            success : res => {
+              setInterval( () => {
+                //运行其他事情
+                this.backpage();
+
+              } , _duration );
+            }
+
+          } );
         }
 
         //返回
-        this.backpage();
+        // this.backpage();
       } ,
       backpage () {
         wx.switchTab( { url : "../againhelp/main" } );
@@ -210,7 +253,8 @@ Time: 20:39
 
       console.log( 'againhelpdata onShow' , this.userselectproductno );
 
-      wx.setNavigationBarTitle( { title : this.userselectproductno + '再次求助' } )
+      // wx.setNavigationBarTitle( { title : this.userselectproductno + '再次求助' } )
+      this.setuppagetitle( this.userselectproductno + '再次求助' )
     } ,
     onHide () {
       console.log( 'againhelpdata onHide' );
