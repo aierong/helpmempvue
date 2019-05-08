@@ -42,10 +42,11 @@
                 @click="backpage">返回
     </van-button>
 
-    <!--
-   注意要配一个van-toast,才会显示提示 ,默认id van-toast
-   -->
-    <van-toast id="van-toast"/>
+    <!--    "van-toast": "/static/vant/toast/index"-->
+    <!--    &lt;!&ndash;-->
+    <!--   注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
+    <!--   &ndash;&gt;-->
+    <!--    <van-toast id="van-toast"/>-->
 
   </div>
 
@@ -56,7 +57,7 @@
   // 配置文件json也要配置,这里代码也要引用
   // 代码中也要引用
   // 注意引用路径
-  import Toast from '../../../static/vant/toast/toast';
+  // import Toast from '../../../static/vant/toast/toast';
 
   import * as userapi from '@/common/BmobApi/users.js'
 
@@ -78,39 +79,45 @@
     } ,
     //方法
     methods : {
+      displaymsg ( title = '消息' , isicon = false , duration = 2000 ) {
+        wx.showToast( {
+          title : title , //提示的内容,
+          icon : !isicon ? 'none' : 'success' ,
+          duration : 2000 , //延迟时间,
+          mask : true , //显示透明蒙层，防止触摸穿透,
+
+        } );
+      } ,
       reg () {
+
         if ( !this.userid ) {
 
-          Toast.fail( '请输手机号' );
+          this.displaymsg( '请输手机号' )
 
           return;
         }
 
         if ( !this.username ) {
 
-          Toast.fail( '请输入姓名' );
-
+          this.displaymsg( '请输入姓名' )
           return;
         }
 
         if ( !this.pwd ) {
 
-          Toast.fail( '请输入密码' );
-
+          this.displaymsg( '请输入密码' )
           return;
         }
 
         if ( this.pwd != this.pwd2 ) {
 
-          Toast.fail( '2次密码不一致' );
-
+          this.displaymsg( '2次密码不一致' )
           return;
         }
 
         if ( this.userid.length != 11 ) {
 
-          Toast.fail( '手机号码长度不正确' );
-
+          this.displaymsg( '手机号码长度不正确' )
           return;
         }
 
@@ -122,8 +129,7 @@
 
           if ( result.isexists ) {
 
-            Toast.fail( '手机号已存在' );
-
+            this.displaymsg( '手机号已存在' )
             return
           }
           else {
@@ -133,30 +139,32 @@
               pwd : this.pwd
             } )
 
-            console.log( 'addresult' , addresult )
+            // console.log( 'addresult' , addresult )
 
             if ( addresult != null ) {
 
-              const toast = Toast.loading( {
-                duration : 0 ,
-                forbidClick : true ,
-                loadingType : 'spinner' ,
-                message : '成功'
+              let _duration = 3000;
+
+              wx.showToast( {
+                title : '成功' , //提示的内容,
+                icon : 'success' , //图标,
+                duration : _duration , //延迟时间,
+                mask : true , //显示透明蒙层，防止触摸穿透,
+                success : res => {
+                  setInterval( () => {
+
+                    this.backpage();
+
+                  } , _duration );
+                }
+
               } );
-
-              setInterval( () => {
-
-                //关闭提示
-                Toast.clear();
-
-                this.backpage();
-
-              } , 2000 );
 
               return;
             }
             else {
-              Toast.fail( '失败' );
+
+              this.displaymsg( '失败' )
 
               return
             }
@@ -192,6 +200,22 @@
     } ,
     //生命周期(mounted)
     mounted () {
+      console.log( 'registeruser mouted' )
+
+    } ,
+    onLoad () {
+      console.log( 'registeruser onLoad' )
+    } ,
+    onShow () {
+
+      console.log( 'registeruser onShow' );
+
+    } ,
+    onHide () {
+      console.log( 'registeruser onHide' );
+    } ,
+    onUnload () {
+      console.log( 'registeruser onUnload' );
 
     } ,
   }
