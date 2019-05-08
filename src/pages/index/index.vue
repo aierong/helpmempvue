@@ -23,23 +23,15 @@
                   type="primary"
                   @click="userlogin">登录
       </van-button>
-      <!--      style="text-align: right;color: green;"
-         -->
-      <div class="msgtxt">{{ '登录状态保存'+validday+'天' }}</div>
-      <!--
-注意要配一个van-toast,才会显示提示 ,默认id van-toast
 
--->
-      <!--      <van-toast id="van-toast"/>-->
+      <div class="msgtxt">{{ '登录状态保存'+validday+'天' }}</div>
+
     </div>
   </div>
 </template>
 
 <script>
-  // // 配置文件json也要配置,这里代码也要引用
-  // // 代码中也要引用
-  // // 注意引用路径
-  // import Toast from '../../../static/vant/toast/toast';
+
 
   import * as constant from '@/common/constant.js'
 
@@ -71,6 +63,7 @@
       return {
 
         isvaliduser : false ,
+
         userid : '' ,
         pwd : '' ,
 
@@ -80,6 +73,10 @@
       mybr
     } ,
     methods : {
+      initdata () {
+        this.userid = ''
+        this.pwd = ''
+      } ,
       useridChange ( event ) {
 
         this.userid = event.mp.detail
@@ -215,6 +212,7 @@
     onUnload () {
       console.log( 'index onUnload' );
 
+      this.initdata();
     } ,
   }
 </script>
