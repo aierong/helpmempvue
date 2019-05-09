@@ -15,62 +15,43 @@ html代码片段
                 @search="onSearch"
                 @cancel="onCancel"/>
 
-    <!--
-    desc="描述信息"
 
-:title="(index+1)+ '.工单:'+item.productno"
-               :status="'客户:'+item.custno"
-               use-footer-slot
-    -->
-    <van-panel :key="index"
-               v-for="(item,index) in SearchProductList">
+    <div style="margin-bottom: 6px;"
+         :key="index"
+         v-for="(item,index) in SearchProductList">
+      <van-panel>
 
-      <div>
-        <van-row>
-          <van-col span="14">
-            <!--            <div>{{ (index+1)+ '.工单:'+item.productno }}</div>-->
-            <span style="color: red;padding: 0px 1px 0px 10px;">{{ index+1 }}</span>
-            <span style="color: green;">{{  '.工单:'+item.productno }}</span>
-          </van-col>
+        <div>
+          <van-row>
+            <van-col span="14">
 
-          <van-col style="text-align: right;"
-                   span="10">
-            <!--            <span style="color: green;padding: 0px 10px 0px 0px;">{{ '客户:'+item.custno }}</span>-->
-            <van-button style="padding: 0px 10px 0px 0px;"
-                        plain
-                        type="primary"
-                        @click="selectdata(item)"
-                        size="mini">选择
-            </van-button>
-          </van-col>
-        </van-row>
-      </div>
-      <!--      <view class="txt">-->
-      <!--        {{ (index+1)+ '.工单:'+item.productno }} {{ '客户:'+item.custno }}-->
-      <!--      </view>-->
-      <view class="txt">
-        {{ '订单:' + item.pono +' 数量:' + item.poqty +' 客户:'+item.custno }}
-      </view>
-      <view class="txt">
-        {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
-      </view>
-      <!--
-      加个样式把按钮搞右边去
-      -->
-      <!--      <view style="text-align: right;"-->
-      <!--            slot="footer">-->
-      <!--        <van-button plain-->
-      <!--                    type="primary"-->
-      <!--                    @click="selectdata(item)"-->
-      <!--                    size="mini">选择-->
-      <!--        </van-button>-->
+              <span style="color: red;padding: 0px 1px 0px 10px;">{{ index+1 }}</span>
+              <span style="color: green;">{{  '.工单:'+item.productno }}</span>
+            </van-col>
 
-      <!--      </view>-->
-      <!--      <br><br>-->
-      <view style="text-align:center;padding: 0px 1px 0px 10px;">---------------------------------------
+            <van-col style="text-align: right;"
+                     span="10">
 
-      </view>
-    </van-panel>
+              <van-button style="padding: 0px 10px 0px 0px;"
+                          plain
+                          type="primary"
+                          @click="selectdata(item)"
+                          size="mini">选择
+              </van-button>
+            </van-col>
+          </van-row>
+        </div>
+
+        <view class="txt">
+          {{ '订单:' + item.pono +' 数量:' + item.poqty +' 客户:'+item.custno }}
+        </view>
+        <view class="txt">
+          {{ '产品:' + item.itemno + '(' + item.itemsname +')' }}
+        </view>
+
+      </van-panel>
+
+    </div>
   </div>
 
 </template>
@@ -78,9 +59,13 @@ html代码片段
 <!-- js脚本代码片段 -->
 <script>
   import * as dlapi from '@/common/BmobApi/dl.js'
+  // import mybr from '@/components/mybr.vue'
 
   export default {
     name : "selectproduct" ,
+    // components : {
+    //   mybr
+    // } ,
     //数据模型
     data () {
       return {
