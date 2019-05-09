@@ -8,3 +8,8 @@
 .itemtabbar {
   background-color: #f7f7f7;
 }
+
+/*设置这个 就是设置其的背景颜色*/
+.dark {
+  background-color: #fff;
+}

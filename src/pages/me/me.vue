@@ -7,21 +7,24 @@
 <template>
 
   <div>
-    <mybr/>
+    <div style="color: green;margin-left: 10px;font-size: large;">常用功能</div>
     <van-row class="user-links">
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="helpclick"
                   name="friends-o"
                   size="36px"/>
         <br>填求助
       </van-col>
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="replyclick"
                   name="comment-o"
                   size="36px"/>
         <br>待答复
       </van-col>
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="againhelplick"
                   name="smile-comment-o"
                   size="36px"/>
@@ -29,20 +32,24 @@
       </van-col>
 
     </van-row>
+    <mybr/>
     <van-row class="user-links">
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="queryclick"
                   name="search"
                   size="36px"/>
         <br>查询
       </van-col>
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="FXclick"
                   name="flower-o"
                   size="36px"/>
         <br>分享
       </van-col>
-      <van-col span="8">
+      <van-col custom-class="dark"
+               span="8">
         <van-icon @click="exitclick"
                   name="exchange"
                   size="36px"/>
@@ -50,7 +57,7 @@
       </van-col>
     </van-row>
     <mybr/>
-    <div style="text-align: center;color: green;">我的数据</div>
+    <div style="color: green;margin-left: 10px;font-size: large;">我的数据</div>
     <van-tabbar :fixed="isfixed"
                 :active="active1"
                 @change="ontabbarChange1">
