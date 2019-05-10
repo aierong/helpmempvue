@@ -24,29 +24,47 @@
                 @cancel="onSearchCancel"/>
 
 
-    <!--
-    use-slot	是否使用自定义内容的插槽
-    close 关闭弹窗
-    -->
     <van-dialog use-slot
                 :show="showdialog"
                 show-cancel-button
                 @close="onCloseDialog">
-      <!--      <view>dd</view> @change="onChange2"-->
-      <van-radio-group :value="radioval1"
-      >
+      <view class="dlgtitle">单据类型</view>
+      <van-radio-group :value="radioqueryval">
         <van-cell-group>
           <van-cell title="我求助的单据"
                     clickable
                     data-name="myhelp"
-                    @click="onClickCell">
+                    @click="onClickCellQuery">
             <van-radio name="myhelp"/>
           </van-cell>
           <van-cell title="求助我的单据"
                     clickable
                     data-name="helpmy"
-                    @click="onClickCell">
+                    @click="onClickCellQuery">
             <van-radio name="helpmy"/>
+          </van-cell>
+        </van-cell-group>
+      </van-radio-group>
+      <view class="dlgtitle">单据完成类型</view>
+      <van-radio-group :value="radiooverval">
+        <van-cell-group>
+          <van-cell title="全部"
+                    clickable
+                    data-name="all"
+                    @click="onClickCellOver">
+            <van-radio name="all"/>
+          </van-cell>
+          <van-cell title="未完成"
+                    clickable
+                    data-name="notover"
+                    @click="onClickCellOver">
+            <van-radio name="notover"/>
+          </van-cell>
+          <van-cell title="已完成"
+                    clickable
+                    data-name="over"
+                    @click="onClickCellOver">
+            <van-radio name="over"/>
           </van-cell>
         </van-cell-group>
       </van-radio-group>
@@ -74,20 +92,36 @@
 
         SearchVal : '' ,
         productlist : [] ,
+
+        runuserselectquery : {
+          querytype : '' ,
+          overtype : ''
+        }
       }
     } ,
     //方法
     methods : {
-      onClickCell ( ee ) {
+      onClickCellQuery ( ee ) {
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
 
-        // console.log( val )
+        console.log( val )
 
-        let obj = this.$store.state.userselectquery;
-        obj.querytype = val;
+        // let obj = this.$store.state.userselectquery;
+        // obj.querytype = val;
 
-        this.$store.dispatch( 'UpdateUserSelectQuery' , obj );
+        this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
+
+      } ,
+      onClickCellOver ( ee ) {
+        let val = ee.mp.currentTarget.dataset.name;
+
+        console.log( val )
+
+        // let obj = this.$store.state.userselectquery;
+        // obj.overtype = val;
+        // console.log( obj )
+        this.$store.dispatch( 'UpdateUserSelectOverType' , val );
 
       } ,
       onCloseDialog ( event ) {
@@ -96,8 +130,6 @@
           //点击了 确定按钮
           // console.log( '点击确定' )
 
-          //把选择的状态写入vuex
-
           //重新查询数据
         }
         else {
@@ -105,9 +137,24 @@
           // console.log( '点击取消' )
         }
 
+        //不管点确定 还是取消都要 运行
+        if ( this.userselectquery.overtype == this.runuserselectquery.overtype
+          && this.userselectquery.querytype == this.runuserselectquery.querytype ) {
+          //没有变化，不搞了
+        }
+        else {
+          //发生了变化
+
+          //刷新列表
+        }
+
         this.showdialog = false;
       } ,
       onselecttype () {
+        // this.runuserselectquery.isvalid = false;
+        this.runuserselectquery.overtype = this.userselectquery.overtype;
+        this.runuserselectquery.querytype = this.userselectquery.querytype;
+
         this.showdialog = true;
 
         // this.$store.dispatch( 'UpdateUserSelectQueryType' , _data );
@@ -126,8 +173,11 @@
     } ,
     //计算属性
     computed : {
-      radioval1 () {
+      radioqueryval () {
         return this.userselectquery.querytype;
+      } ,
+      radiooverval () {
+        return this.userselectquery.overtype;
       } ,
       userselectquery () {
         return this.$store.state.userselectquery;
@@ -147,7 +197,7 @@
           if ( this.userselectquery.overtype == 'all' ) {
             result = result + "(" + '全部' + ')';
           }
-          else if ( this.userselectquery.overtype == 'all' ) {
+          else if ( this.userselectquery.overtype == 'notover' ) {
             result = result + "(" + '未完成' + ')';
           }
           else {

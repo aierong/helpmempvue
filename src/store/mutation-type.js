@@ -12,5 +12,5 @@ export const ClearUserSelectHelpMan2 = 'ClearUserSelectHelpMan2'
 
 export const ClearUserSelectHelpManData = 'ClearUserSelectHelpManData'
 
-export const UpdateUserSelectQuery = "UpdateUserSelectQuery"
-
+export const UpdateUserSelectQueryType = "UpdateUserSelectQueryType"
+export const UpdateUserSelectOverType = "UpdateUserSelectOverType"
