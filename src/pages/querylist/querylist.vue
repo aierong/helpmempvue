@@ -23,7 +23,70 @@
                 @search="onSearch"
                 @cancel="onSearchCancel"/>
 
+    <!--    页面主体部分-->
+    <div style="margin-bottom: 6px;"
+         v-if="listcount>0"
+         :key="index"
+         v-for="(item,index) in productlist">
+      <van-panel :title="(index+1)+ '.工单:'+item.productno"
+                 :status="'客户:'+item.custno">
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
+          </van-col>
 
+        </van-row>
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
+          </van-col>
+
+        </van-row>
+
+        <van-row>
+          <van-col span="10">
+            <span class="mytxt">{{  '求助人:'+item.username  }}</span>
+          </van-col>
+
+          <van-col style="text-align: right;"
+                   span="14">
+            <van-button v-if="ismylist && !item.isover"
+                        style="margin-bottom: 10px;margin-right: 5px;"
+                        plain
+                        type="info"
+
+                        @click="overdata(item.productno,item.csexpectdate,item.objectId)"
+                        size="mini">完成
+            </van-button>
+            <van-button v-if="ismylist && !item.isover"
+                        style="margin-bottom: 10px;margin-right: 5px;"
+                        plain
+                        type="danger"
+
+                        @click="deletedata(item.productno,item.csexpectdate,item.objectId)"
+                        size="mini">删除
+            </van-button>
+            <van-button style="margin-bottom: 10px;margin-right: 10px;"
+                        plain
+                        type="primary"
+                        hairline
+                        round
+                        @click="alldata(item.productno,item.csexpectdate,item.objectId)"
+                        size="mini">详情
+            </van-button>
+
+          </van-col>
+        </van-row>
+      </van-panel>
+
+    </div>
+    <van-panel v-if="listcount<=0">
+      <mybr/>
+      <mybr/>
+      <mybr/>
+      <view style="text-align: center;color: green;">空空也,快叫上你的小伙伴求助吧!</view>
+    </van-panel>
+    <!--    弹窗-->
     <van-dialog use-slot
                 :show="showdialog"
                 show-cancel-button
@@ -80,11 +143,16 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import { loginuserdatamix } from '@/mixin/loginuserdata.js'
 
+  import * as dlapi from '@/common/BmobApi/dl.js'
 
   export default {
     name : "querylist" ,
-
+    //导入混入对象 可以是多个,数组
+    mixins : [
+      loginuserdatamix
+    ] ,
     //数据模型
     data () {
       return {
@@ -101,6 +169,33 @@
     } ,
     //方法
     methods : {
+      getproductlist () {
+
+        let initcount = 5;
+
+        dlapi.querylist( this.getloginuserid , this.userselectquery , 0 ).then( ( res ) => {
+          console.log( 're' , res )
+
+          if ( res != null && res.length > 0 ) {
+            this.productlist = res;
+          }
+          else {
+            this.productlist = [];
+          }
+
+          // console.log( 'this.productlist' , this.productlist )
+        } );
+      } ,
+      /*删除*/
+      deletedata () {
+
+      } ,
+      alldata () {
+
+      } ,
+      overdata () {
+
+      } ,
       onClickCellQuery ( ee ) {
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
@@ -145,8 +240,9 @@
         else {
           //发生了变化
 
-          console.log('变化')
+          console.log( '变化' )
           //刷新列表
+          this.getproductlist();
         }
 
         this.showdialog = false;
@@ -174,6 +270,13 @@
     } ,
     //计算属性
     computed : {
+      ismylist () {
+        if ( this.userselectquery.querytype == 'myhelp' ) {
+          return true;
+        }
+
+        return false;
+      } ,
       radioqueryval () {
         return this.userselectquery.querytype;
       } ,
@@ -241,6 +344,8 @@
     onShow () {
 
       console.log( 'querylist onShow' );
+
+      this.getproductlist();
     } ,
     onHide () {
       console.log( 'querylist onHide' );
