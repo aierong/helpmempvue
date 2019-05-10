@@ -40,3 +40,9 @@ mpvue实现帮助我
  
   
 ```
+
+
+
+**功能预览:**  
+
+![](mdresourcefile/ui1.png)
