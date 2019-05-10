@@ -7,43 +7,44 @@
 <template>
 
   <div>
+    <div style="margin-bottom: 6px;"
+         v-if="replycount>0"
+         :key="index"
+         v-for="(item,index) in productlist">
+      <van-panel :title="(index+1)+ '.工单:'+item.productno"
+                 :status="'客户:'+item.custno">
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
+          </van-col>
 
-    <van-panel v-if="replycount>0"
-               :key="index"
-               v-for="(item,index) in productlist"
-               :title="(index+1)+ '.工单:'+item.productno"
-               :status="'客户:'+item.custno">
-      <van-row>
-        <van-col span="24">
-          <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
-        </van-col>
+        </van-row>
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
+          </van-col>
 
-      </van-row>
-      <van-row>
-        <van-col span="24">
-          <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
-        </van-col>
+        </van-row>
 
-      </van-row>
+        <van-row>
+          <van-col span="14">
+            <span class="mytxt">{{  '求助人:'+item.username  }}</span>
+          </van-col>
 
-      <van-row>
-        <van-col span="14">
-          <span class="mytxt">{{  '求助人:'+item.username  }}</span>
-        </van-col>
+          <van-col style="text-align: right;"
+                   span="10">
+            <van-button style="padding-right: 10px;padding-bottom: 10px;"
+                        plain
+                        type="primary"
+                        @click="replydata(item.productno,item.csexpectdate,item.objectId)"
+                        size="mini">答复
+            </van-button>
 
-        <van-col style="text-align: right;"
-                 span="10">
-          <van-button style="padding-right: 10px;padding-bottom: 10px;"
-                      plain
-                      type="primary"
-                      @click="replydata(item.productno,item.csexpectdate,item.objectId)"
-                      size="mini">答复
-          </van-button>
-
-        </van-col>
-      </van-row>
-    </van-panel>
-
+          </van-col>
+        </van-row>
+      </van-panel>
+      <!--      <mybr/>-->
+    </div>
     <van-panel v-if="replycount<=0">
       <mybr/>
       <mybr/>
