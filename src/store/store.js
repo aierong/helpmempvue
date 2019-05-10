@@ -6,6 +6,8 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
+// import createLogger from 'vuex/dist/logger'
+
 // 声明使用vuex
 Vue.use( Vuex )
 
@@ -13,5 +15,7 @@ export default new Vuex.Store( {
   state ,
   actions ,
   getters ,
-  mutations
+  mutations ,
+  // plugins : [ createLogger() ],
+  plugins : []
 } )

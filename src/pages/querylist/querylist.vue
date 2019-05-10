@@ -82,7 +82,7 @@
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
 
-        console.log( val )
+        // console.log( val )
 
         let obj = this.$store.state.userselectquery;
         obj.querytype = val;
