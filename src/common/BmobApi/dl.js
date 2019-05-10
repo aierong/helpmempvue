@@ -369,3 +369,36 @@ export function deletebyid ( id ) {
   } );
 
 }
+
+export function querylist ( userid , userselectquery , querycounts ) {
+  const query = Bmob.Query( DlTable );
+
+  //
+  if ( userselectquery.overtype == 'notover' ) {
+    query.equalTo( "isover" , "==" , false );
+  }
+  else if ( userselectquery.overtype == 'over' ) {
+    query.equalTo( "isover" , "==" , true );
+  }
+
+  if ( userselectquery.querytype == 'myhelp' ) {
+    //查询自己单据
+    query.equalTo( "userid" , "==" , userid );
+  }
+  else {
+    //查询求助我的单据
+    const query1 = query.equalTo( "helppmc1" , "==" , userid );
+    const query2 = query.equalTo( "helppmc2" , "==" , userid );
+
+    query.or( query1 , query2 );
+  }
+
+  if ( querycounts > 0 ) {
+    query.limit( querycounts );
+  }
+
+  query.order( "-autokey" );
+
+  return query.find();
+
+}

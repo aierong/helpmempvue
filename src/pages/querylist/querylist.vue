@@ -43,6 +43,7 @@
     //方法
     methods : {
       onselecttype () {
+        //下面这个方法到时要重写
         let _data = 'myhelp';
 
         if ( this.userselectquerytype == 'myhelp' ) {
