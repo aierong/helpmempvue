@@ -2,7 +2,13 @@ export default {
 
   user : null ,
 
-  userselectquerytype : 'myhelp' ,
+  userselectquery : {
+    querytype : 'myhelp' ,
+    //全部 未完成 已完成
+    overtype : 'all'
+  } ,
+
+  // userselectquerytype : 'myhelp' ,
 
   //操作者选择的产品
   userselectproductdata : {

@@ -5,7 +5,7 @@ import {
   SetupUserSelectHelpManData ,
   ClearUserSelectHelpMan2 ,
   ClearUserSelectHelpManData ,
-  UpdateUserSelectQueryType ,
+  UpdateUserSelectQuery ,
 } from './mutation-type'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   ClearUserSelectHelpManData ( { commit } ) {
     commit( ClearUserSelectHelpManData )
   } ,
-  UpdateUserSelectQueryType ( { commit } , data ) {
-    commit( UpdateUserSelectQueryType , data )
+  UpdateUserSelectQuery ( { commit } , data ) {
+    commit( UpdateUserSelectQuery , data )
   }
 }

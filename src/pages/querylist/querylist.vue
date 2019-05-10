@@ -7,8 +7,8 @@
 <template>
 
   <div>
-    <van-field :value="userselectquerytypename"
-               label="查询类型"
+    <van-field :value="userselectquerydisplay"
+               label="查询条件:"
                disabled
                use-button-slot>
       <van-button slot="button"
@@ -65,16 +65,35 @@
     } ,
     //计算属性
     computed : {
-      userselectquerytype () {
-        return this.$store.state.userselectquerytype;
+      userselectquery () {
+        return this.$store.state.userselectquery;
 
       } ,
-      userselectquerytypename () {
-        if ( this.userselectquerytype == 'myhelp' ) {
-          return '我求助的单据'
+      userselectquerydisplay () {
+        var result = "";
+
+        if ( this.userselectquery != null ) {
+          if ( this.userselectquery.querytype == 'myhelp' ) {
+            result = "我求助的单据";
+          }
+          else {
+            result = "求助我的单据"
+          }
+
+          if ( this.userselectquery.overtype == 'all' ) {
+            result = result + "(" + '全部' + ')';
+          }
+          else if ( this.userselectquery.overtype == 'all' ) {
+            result = result + "(" + '未完成' + ')';
+          }
+          else {
+            result = result + "(" + '已完成' + ')';
+          }
+
+          return result
         }
         else {
-          return '求助我的单据'
+          return result
         }
       } ,
       /**

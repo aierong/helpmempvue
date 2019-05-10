@@ -5,7 +5,7 @@ import {
   SetupUserSelectHelpManData ,
   ClearUserSelectHelpMan2 ,
   ClearUserSelectHelpManData ,
-  UpdateUserSelectQueryType ,
+  UpdateUserSelectQuery ,
 } from './mutation-type'
 
 export default {
@@ -55,9 +55,9 @@ export default {
       helppmcname2 : ''
     }
   } ,
-  [ UpdateUserSelectQueryType ] ( state , type ) {
+  [ UpdateUserSelectQuery ] ( state , data ) {
 
-    state.userselectquerytype = type
+    state.userselectquery = data
 
   } ,
 }
