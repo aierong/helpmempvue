@@ -33,9 +33,11 @@
 
           <van-col style="text-align: right;"
                    span="10">
-            <van-button style="padding-right: 10px;padding-bottom: 10px;"
+            <van-button style="margin-bottom: 10px;margin-right: 10px;"
                         plain
                         type="primary"
+                        hairline
+                        round
                         @click="replydata(item.productno,item.csexpectdate,item.objectId)"
                         size="mini">答复
             </van-button>
@@ -43,7 +45,7 @@
           </van-col>
         </van-row>
       </van-panel>
-      <!--      <mybr/>-->
+
     </div>
     <van-panel v-if="replycount<=0">
       <mybr/>

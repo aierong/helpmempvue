@@ -9,42 +9,45 @@ Time: 19:44
 <template>
 
   <div>
-    <van-panel v-if="replycount>0"
-               :key="index"
-               v-for="(item,index) in productlist"
-               :title="(index+1)+ '.工单:'+item.productno"
-               :status="'客户:'+item.custno">
-      <van-row>
-        <van-col span="24">
-          <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
-        </van-col>
+    <div style="margin-bottom: 6px;"
+         v-if="replycount>0"
+         :key="index"
+         v-for="(item,index) in productlist">
+      <van-panel :title="(index+1)+ '.工单:'+item.productno"
+                 :status="'客户:'+item.custno">
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt"> {{ '订单:' + item.pono +' 数量:' + item.poqty }}</span>
+          </van-col>
 
-      </van-row>
-      <van-row>
-        <van-col span="24">
-          <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
-        </van-col>
+        </van-row>
+        <van-row>
+          <van-col span="24">
+            <span class="mytxt">{{ '产品:' + item.itemno + '(' + item.itemsname +')' }}</span>
+          </van-col>
 
-      </van-row>
+        </van-row>
 
-      <van-row>
-        <van-col span="14">
-          <span class="mytxt">{{  '求助人:'+item.username  }}</span>
-        </van-col>
+        <van-row>
+          <van-col span="14">
+            <span class="mytxt">{{  '求助人:'+item.username  }}</span>
+          </van-col>
 
-        <van-col style="text-align: right;"
-                 span="10">
-          <van-button style="padding-right: 10px;padding-bottom: 10px;"
-                      plain
-                      type="primary"
-                      @click="againhelpdata(item.productno,item.objectId)"
-                      size="mini">再求助
-          </van-button>
+          <van-col style="text-align: right;"
+                   span="10">
+            <van-button style="margin-bottom: 10px;margin-right: 10px;"
+                        plain
+                        type="primary"
+                        hairline
+                        round
+                        @click="againhelpdata(item.productno,item.objectId)"
+                        size="mini">再求助
+            </van-button>
 
-        </van-col>
-      </van-row>
-    </van-panel>
-
+          </van-col>
+        </van-row>
+      </van-panel>
+    </div>
     <van-panel v-if="replycount<=0">
       <mybr/>
       <mybr/>
