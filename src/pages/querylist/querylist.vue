@@ -144,14 +144,22 @@
 <!-- js脚本代码片段 -->
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
+  import { logruntype } from '@/common/constant.js';
+  import * as utils from '@/common/utils.js'
+  import * as constant from '@/common/constant.js'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
+  import * as dllogapi from '@/common/BmobApi/dllog.js'
+
+  import dayjs from 'dayjs'
 
   export default {
     name : "querylist" ,
     //导入混入对象 可以是多个,数组
     mixins : [
-      loginuserdatamix
+      loginuserdatamix ,
+      mixmethods
     ] ,
     //数据模型
     data () {
@@ -211,6 +219,54 @@
       alldata () {
 
       } ,
+      async OverCZ ( productno , objectId ) {
+
+        let userid = this.getloginuserid;
+        let username = this.getloginusername;
+
+        let now = new Date();
+        let nowstr = dayjs( now ).format( constant.DateFormatString );
+
+        //构建日志数据
+        let objlog = {
+          logruntype : logruntype.reply ,
+          userid : userid ,
+          username : username ,
+          productno : productno ,
+          //这个日期可以不记录
+          dates : '' ,
+          //完成 没有备注
+          comment : ''
+        };
+
+        // 加载动画
+        wx.showLoading( {
+          title : '保存中...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
+        } );
+
+        var result = await Promise.all( [
+          dlapi.over( objectId , nowstr ) ,
+          dllogapi.adddllog( objlog ) ,
+          utils.runlongtims( 1900 )
+        ] )
+
+        // Toast.clear();
+        // 取消加载动画
+        wx.hideLoading()
+
+        // console.log( 'result' , result )
+
+        if ( result != null ) {
+
+          this.ShowToastMsg( '成功' , true )
+
+          this.getproductlist();
+        }
+        else {
+          this.ShowToastMsg( '失败' )
+        }
+      } ,
       overdata ( item ) {
         //重要操作，还是先验证一下吧
 
@@ -225,6 +281,8 @@
           success : res => {
             if ( res.confirm ) {
               console.log( '用户点击确定' )
+
+              this.OverCZ( productno , id );
             }
             else if ( res.cancel ) {
               // console.log( '用户点击取消' )

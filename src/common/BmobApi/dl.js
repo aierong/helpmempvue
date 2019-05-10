@@ -197,7 +197,7 @@ export function reply ( id , userid , username , pmsreplydate , addpmcreplydate 
  * @param overdate
  * @returns {Promise<any>}
  */
-export function over ( id , userid , username , overdate ) {
+export function over ( id , overdate ) {
   return new Promise( ( resolve , reject ) => {
 
     const query = Bmob.Query( DlTable );
