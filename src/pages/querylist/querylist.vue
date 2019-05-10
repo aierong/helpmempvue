@@ -55,7 +55,7 @@
                         plain
                         type="info"
 
-                        @click="overdata(item.productno,item.csexpectdate,item.objectId)"
+                        @click="overdata(item)"
                         size="mini">完成
             </van-button>
             <van-button v-if="ismylist && !item.isover"
@@ -63,7 +63,7 @@
                         plain
                         type="danger"
 
-                        @click="deletedata(item.productno,item.csexpectdate,item.objectId)"
+                        @click="deletedata(item)"
                         size="mini">删除
             </van-button>
             <van-button style="margin-bottom: 10px;margin-right: 10px;"
@@ -187,14 +187,50 @@
         } );
       } ,
       /*删除*/
-      deletedata () {
+      deletedata ( item ) {
+        //重要操作，
 
+        //弹窗提示
+
+        let productno = item.productno;
+        let id = item.objectId;
+
+        wx.showModal( {
+          title : '提示' ,
+          content : '工程单:' + productno + '确定删除?' ,
+          success : res => {
+            if ( res.confirm ) {
+              console.log( '用户点击确定' )
+            }
+            else if ( res.cancel ) {
+              // console.log( '用户点击取消' )
+            }
+          }
+        } )
       } ,
       alldata () {
 
       } ,
-      overdata () {
+      overdata ( item ) {
+        //重要操作，还是先验证一下吧
 
+        //弹窗提示
+
+        let productno = item.productno;
+        let id = item.objectId;
+
+        wx.showModal( {
+          title : '提示' ,
+          content : '' + productno + '确定完成吗?' ,
+          success : res => {
+            if ( res.confirm ) {
+              console.log( '用户点击确定' )
+            }
+            else if ( res.cancel ) {
+              // console.log( '用户点击取消' )
+            }
+          }
+        } )
       } ,
       onClickCellQuery ( ee ) {
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
