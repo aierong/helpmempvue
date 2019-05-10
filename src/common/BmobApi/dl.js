@@ -190,6 +190,39 @@ export function reply ( id , userid , username , pmsreplydate , addpmcreplydate 
 }
 
 /**
+ * 完成
+ * @param id
+ * @param userid
+ * @param username
+ * @param overdate
+ * @returns {Promise<any>}
+ */
+export function over ( id , userid , username , overdate ) {
+  return new Promise( ( resolve , reject ) => {
+
+    const query = Bmob.Query( DlTable );
+    //这里 设置  列的数据
+
+    query.set( 'id' , id ) //需要修改的objectId
+
+    query.set( "isover" , true )
+
+    query.set( "overdate" , overdate )
+
+    query.save().then( res => {
+      //console.log( res )
+
+      resolve( res );
+
+    } ).catch( err => {
+      //console.log( err )
+
+      resolve( null );
+    } )
+  } );
+}
+
+/**
  * 再次求助
  * @param id
  * @param helplasttime

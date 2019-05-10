@@ -93,5 +93,9 @@ export function getlogruntypedesc ( logruntypecode ) {
     return '再求助'
   }
 
+  if ( logruntypecode == logruntype.over ) {
+    return '完成'
+  }
+
   return '';
 }

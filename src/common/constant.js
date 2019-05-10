@@ -14,9 +14,11 @@ export const DlLogTable = "dllog";
 //日志表数据类型
 export const logruntype = {
   add : 'add' ,
+  //修改好像暂时没用
   update : 'update' ,
   reply : 'reply' ,
-  againhelp : 'againhelp'
+  againhelp : 'againhelp' ,
+  over : 'over'
 };
 
 //本地存储的名称
