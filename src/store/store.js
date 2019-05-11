@@ -11,7 +11,7 @@ import createLogger from 'vuex/dist/logger'
 // 声明使用vuex
 Vue.use( Vuex )
 
-const debug = process.env.NODE_ENV !== 'production'
+const isdebug = process.env.NODE_ENV !== 'production'
 // console.log( 'debug' , debug )
 
 export default new Vuex.Store( {
@@ -20,5 +20,5 @@ export default new Vuex.Store( {
   getters ,
   mutations ,
 
-  plugins : debug ? [ createLogger() ] : [] // 在开发环境下，配置日志插件。
+  plugins : isdebug ? [ createLogger() ] : [] // 在开发环境下，配置日志 。
 } )
