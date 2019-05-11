@@ -27,7 +27,7 @@
     <div style="margin-bottom: 6px;"
          v-if="listcount>0"
          :key="index"
-         v-for="(item,index) in productlist">
+         v-for="(item,index) in SearchProductList">
       <van-panel :title="(index+1)+ '.工单:'+item.productno"
                  :status="'客户:'+item.custno">
         <van-row>
@@ -400,6 +400,27 @@
     } ,
     //计算属性
     computed : {
+      SearchProductList () {
+        if ( this.SearchVal ) {
+          if ( this.productlist != null && this.productlist.length > 0 ) {
+            let result = this.productlist.filter( ( value , index , array ) => {
+              let _productno = value.productno;
+              if ( _productno ) {
+                return _productno.includes( this.SearchVal ); // 返回
+              }
+              else {
+                return false;
+              }
+
+            } );
+
+            return result;
+          }
+
+        }
+
+        return this.productlist;
+      } ,
       ismylist () {
         if ( this.userselectquery.querytype == 'myhelp' ) {
           return true;
