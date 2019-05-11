@@ -71,7 +71,7 @@
                         type="primary"
                         hairline
                         round
-                        @click="alldata(item.productno,item.csexpectdate,item.objectId)"
+                        @click="alldata(item)"
                         size="mini">详情
             </van-button>
 
@@ -248,8 +248,12 @@
           this.ShowToastMsg( '失败' )
         }
       } ,
-      alldata () {
+      alldata ( item ) {
+        let productno = item.productno;
 
+        const url = "../detaildata/main?productno=" + productno
+
+        wx.navigateTo( { url : url } )
       } ,
       async OverCZ ( productno , objectId ) {
 
