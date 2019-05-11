@@ -143,10 +143,17 @@
         }
         else {
           if ( index == 0 ) {
-            this.gotolist( 'myhelp' );
+            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+
+            this.gotolist();
           }
           else {
-            this.gotolist( 'helpmy' );
+
+            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'helpmy' );
+            this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+
+            this.gotolist();
           }
         }
       } ,
@@ -166,12 +173,7 @@
 
         wx.reLaunch( { url : url } );
       } ,
-      // //设置页面标题
-      // setuppagetitle () {
-      //   let _title = this.getloginusername + '的主页'
-      //
-      //   wx.setNavigationBarTitle( { title : _title } );
-      // } ,
+
       helpclick () {
 
         wx.switchTab( { url : "../helpmeadd/main" } );
@@ -187,15 +189,15 @@
         wx.switchTab( { url : "../reply/main" } );
       } ,
       queryclick () {
+        this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+        this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
 
-        this.gotolist( 'myhelp' );
+        this.gotolist();
       } ,
       /**
        * 查询页面
        */
-      gotolist ( type ) {
-
-        this.$store.dispatch( 'UpdateUserSelectQueryType' , type );
+      gotolist () {
 
         wx.switchTab( { url : "../querylist/main" } );
       } ,
