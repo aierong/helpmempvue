@@ -208,13 +208,45 @@
           content : '工程单:' + productno + '确定删除?' ,
           success : res => {
             if ( res.confirm ) {
-              console.log( '用户点击确定' )
+              // console.log( '用户点击确定' )
+
+              this.DeleteCZ( id , productno )
             }
             else if ( res.cancel ) {
               // console.log( '用户点击取消' )
             }
           }
         } )
+      } ,
+      async DeleteCZ ( objectId , productno ) {
+
+        // 加载动画
+        wx.showLoading( {
+          title : '保存中...' ,
+          mask : true , //显示透明蒙层，防止触摸穿透
+        } );
+
+        var result = await Promise.all( [
+          dlapi.deletebyid( objectId ) ,
+          dllogapi.deletebyproductno( productno ) ,
+          utils.runlongtims( 2000 )
+        ] )
+
+        // Toast.clear();
+        // 取消加载动画
+        wx.hideLoading()
+
+        // console.log( 'result' , result )
+
+        if ( result != null ) {
+
+          this.ShowToastMsg( '成功' , true )
+
+          this.getproductlist();
+        }
+        else {
+          this.ShowToastMsg( '失败' )
+        }
       } ,
       alldata () {
 
