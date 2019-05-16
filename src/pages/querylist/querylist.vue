@@ -54,7 +54,7 @@
                         style="margin-bottom: 10px;margin-right: 5px;"
                         plain
                         type="info"
-                        @click="overdata(item)"
+                        @click="overdata(item,index)"
                         size="mini">完成
             </van-button>
             <van-button v-if="ismylist && !item.isover"
@@ -184,7 +184,7 @@
           this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
-          this.autokeylist ,
+          [] ,
           false ).then( ( res ) => {
           console.log( 're' , res )
 
@@ -260,7 +260,7 @@
 
         wx.navigateTo( { url : url } )
       } ,
-      async OverCZ ( productno , objectId ) {
+      async OverCZ ( productno , objectId , index ) {
 
         let userid = this.getloginuserid;
         let username = this.getloginusername;
@@ -270,7 +270,7 @@
 
         //构建日志数据
         let objlog = {
-          logruntype : logruntype.reply ,
+          logruntype : logruntype.over ,
           userid : userid ,
           username : username ,
           productno : productno ,
@@ -302,13 +302,18 @@
 
           this.ShowToastMsg( '成功' , true )
 
-          this.getproductlist( 5 );
+          //this.getproductlist( 5 );  //不重新加载所有数据,直接修改这条数据
+          let obj = await dlapi.getproductbyproductno( productno );
+
+          if ( obj != null ) {
+            this.$set( this.productlist , index , obj );
+          }
         }
         else {
           this.ShowToastMsg( '失败' )
         }
       } ,
-      overdata ( item ) {
+      overdata ( item , index ) {
         //重要操作，还是先验证一下吧
 
         //弹窗提示
@@ -323,7 +328,7 @@
             if ( res.confirm ) {
               console.log( '用户点击确定' )
 
-              this.OverCZ( productno , id );
+              this.OverCZ( productno , id , index );
             }
             else if ( res.cancel ) {
               // console.log( '用户点击取消' )

@@ -172,15 +172,21 @@ Time: 21:32
       getstepdata () {
         dllogapi.getloglistbyproductno( this.userselectproductno ).then( ( res ) => {
 
+          console.log( res , 'resdata' )
+
           this.stepdata = []
           this.activesteps = 0;
 
           if ( res != null && res.length > 0 ) {
             for ( let item of res ) {
               let _desc = '操作:'
-                + utils.getlogruntypedesc( item.logruntype )
-                + '   '
-                + ( ( item.logruntype == 'add' || item.logruntype == 'againhelp' ) ? '交期:' : '复期:' ) + item.dates;
+                + utils.getlogruntypedesc( item.logruntype );
+
+              if ( item.logruntype == 'add'
+                || item.logruntype == 'againhelp'
+                || item.logruntype == 'reply' ) {
+                _desc = _desc + '  ' + ( ( item.logruntype == 'add' || item.logruntype == 'againhelp' ) ? '交期:' : '复期:' ) + item.dates;
+              }
 
               let obj = {
                 text : item.createdAt + '(' + item.username + ')' ,
