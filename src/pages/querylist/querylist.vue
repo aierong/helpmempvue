@@ -159,6 +159,34 @@
       loginuserdatamix ,
       mixmethods
     ] ,
+    onPullDownRefresh () {
+      // console.log( '开始刷' )
+
+      // setTimeout( () => {
+      //   var now = new Date();
+      //   let shu = now.getTime()
+      //
+      //   console.log( 'stop' )
+      //
+      //   wx.stopPullDownRefresh()
+      // } , 1000 )
+
+      ;( async () => {
+        // console.log( 'start' );
+
+        let arr = await this.addproductlist( 2 );
+
+        // console.log( arr )
+
+        if ( arr != null && arr.length > 0 ) {
+          this.productlist.unshift( ...arr )
+        }
+
+        // console.log( 'end' );
+
+        wx.stopPullDownRefresh()
+      } )();
+    } ,
     //数据模型
     data () {
       return {
@@ -179,19 +207,7 @@
       initdata () {
         this.productlist = [];
       } ,
-      onPullDownRefresh () {
-        console.log( '开始刷' )
 
-        setTimeout( () => {
-          var now = new Date();
-          let shu = now.getTime()
-
-          console.log( 'stop' )
-
-          wx.stopPullDownRefresh()
-        } , 1000 )
-
-      } ,
       refreshlist () {
 
         let querycounts = 5;
@@ -218,23 +234,22 @@
 
         // let initcount = 5;
 
-        dlapi.querylist( this.getloginuserid ,
+        return dlapi.querylist( this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
           this.autokeylist ,
-          false ).then( ( res ) => {
-          console.log( 're' , res )
+          false );
 
-          if ( res != null && res.length > 0 ) {
-            this.productlist = res;
-          }
-          else {
-            this.productlist = [];
-          }
+        // if ( res != null && res.length > 0 ) {
+        //   //this.productlist = res;
+        // }
+        // else {
+        //   //this.productlist = [];
+        // }
 
-          // console.log( 'this.productlist' , this.productlist )
-        } );
+        // console.log( 'this.productlist' , this.productlist )
       } ,
+
       /*删除*/
       deletedata ( item , index ) {
         //重要操作，
@@ -258,7 +273,8 @@
             }
           }
         } )
-      } ,
+      }
+      ,
       async DeleteCZ ( index , objectId , productno ) {
 
         // 加载动画
@@ -289,14 +305,16 @@
         else {
           this.ShowToastMsg( '失败' )
         }
-      } ,
+      }
+      ,
       alldata ( item ) {
         let productno = item.productno;
 
         const url = "../detaildata/main?productno=" + productno
 
         wx.navigateTo( { url : url } )
-      } ,
+      }
+      ,
       async OverCZ ( productno , objectId , index ) {
 
         let userid = this.getloginuserid;
@@ -349,7 +367,8 @@
         else {
           this.ShowToastMsg( '失败' )
         }
-      } ,
+      }
+      ,
       overdata ( item , index ) {
         //重要操作，还是先验证一下吧
 
@@ -372,7 +391,8 @@
             }
           }
         } )
-      } ,
+      }
+      ,
       onClickCellQuery ( ee ) {
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
@@ -384,7 +404,8 @@
 
         this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
 
-      } ,
+      }
+      ,
       onClickCellOver ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
@@ -395,7 +416,8 @@
         // console.log( obj )
         this.$store.dispatch( 'UpdateUserSelectOverType' , val );
 
-      } ,
+      }
+      ,
       onCloseDialog ( event ) {
 
         if ( event.mp.detail === 'confirm' ) {
@@ -423,7 +445,8 @@
         }
 
         this.showdialog = false;
-      } ,
+      }
+      ,
       onselecttype () {
         // this.runuserselectquery.isvalid = false;
         this.runuserselectquery.overtype = this.userselectquery.overtype;
@@ -433,17 +456,20 @@
 
         // this.$store.dispatch( 'UpdateUserSelectQueryType' , _data );
 
-      } ,
+      }
+      ,
       onSearch ( event ) {
         //要搜索的值
         let val = event.mp.detail;
 
         // 最好 把模型同步一下
         this.SearchVal = val;
-      } ,
+      }
+      ,
       onSearchCancel () {
         this.SearchVal = "";
-      } ,
+      }
+      ,
     } ,
     //计算属性
     computed : {
@@ -467,24 +493,29 @@
         }
 
         return this.productlist;
-      } ,
+      }
+      ,
       ismylist () {
         if ( this.userselectquery.querytype == 'myhelp' ) {
           return true;
         }
 
         return false;
-      } ,
+      }
+      ,
       radioqueryval () {
         return this.userselectquery.querytype;
-      } ,
+      }
+      ,
       radiooverval () {
         return this.userselectquery.overtype;
-      } ,
+      }
+      ,
       userselectquery () {
         return this.$store.state.userselectquery;
 
-      } ,
+      }
+      ,
       userselectquerydisplay () {
         var result = "";
 
@@ -511,7 +542,8 @@
         else {
           return result
         }
-      } ,
+      }
+      ,
       /**
        * 列表数量
        * @returns {number}
@@ -530,7 +562,8 @@
          */
 
         return 0;
-      } ,
+      }
+      ,
       /**
        * autokey列表
        * @returns {Array}
@@ -546,30 +579,37 @@
         }
 
         return arr;
-      } ,
-    } ,
+      }
+      ,
+    }
+    ,
     //生命周期(mounted)
     mounted () {
       console.log( 'querylist mouted' )
-    } ,
+    }
+    ,
     onLoad () {
       console.log( 'querylist onLoad' )
-    } ,
+    }
+    ,
     onShow () {
 
       console.log( 'querylist onShow' );
 
       this.refreshlist();
-    } ,
+    }
+    ,
     onHide () {
       this.initdata();
 
       console.log( 'querylist onHide' );
-    } ,
+    }
+    ,
     onUnload () {
       console.log( 'querylist onUnload' );
 
-    } ,
+    }
+    ,
   }
 </script>
 
