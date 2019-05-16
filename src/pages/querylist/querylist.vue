@@ -176,6 +176,19 @@
     } ,
     //方法
     methods : {
+      onPullDownRefresh () {
+        console.log( '开始刷' )
+
+        setTimeout( () => {
+          var now = new Date();
+          let shu = now.getTime()
+
+          console.log( 'stop' )
+
+          wx.stopPullDownRefresh()
+        } , 1000 )
+
+      } ,
       getproductlist ( querycounts = 5 ) {
 
         // let initcount = 5;
