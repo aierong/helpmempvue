@@ -177,11 +177,11 @@
     } ,
     //方法
     methods : {
-      getproductlist () {
+      getproductlist ( querycounts = 5 ) {
 
-        let initcount = 5;
+        // let initcount = 5;
 
-        dlapi.querylist( this.getloginuserid , this.userselectquery , 0 ).then( ( res ) => {
+        dlapi.querylist( this.getloginuserid , this.userselectquery , querycounts , [] , false ).then( ( res ) => {
           console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
@@ -242,7 +242,7 @@
 
           this.ShowToastMsg( '成功' , true )
 
-          this.getproductlist();
+          this.getproductlist( 5 );
         }
         else {
           this.ShowToastMsg( '失败' )
@@ -297,7 +297,7 @@
 
           this.ShowToastMsg( '成功' , true )
 
-          this.getproductlist();
+          this.getproductlist( 5 );
         }
         else {
           this.ShowToastMsg( '失败' )
@@ -372,7 +372,7 @@
 
           console.log( '变化' )
           //刷新列表
-          this.getproductlist();
+          this.getproductlist( 5 );
         }
 
         this.showdialog = false;
@@ -496,7 +496,7 @@
 
       console.log( 'querylist onShow' );
 
-      this.getproductlist();
+      this.getproductlist( 5 );
     } ,
     onHide () {
       console.log( 'querylist onHide' );

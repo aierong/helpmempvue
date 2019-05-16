@@ -403,10 +403,18 @@ export function deletebyid ( id ) {
 
 }
 
-export function querylist ( userid , userselectquery , querycounts ) {
+/**
+ * 查询列表
+ * @param userid
+ * @param userselectquery
+ * @param querycounts
+ * @param autokeylist
+ * @param isasc
+ * @returns {*|Promise|Promise<any>}
+ */
+export function querylist ( userid , userselectquery , querycounts , autokeylist , isasc ) {
   const query = Bmob.Query( DlTable );
 
-  //
   if ( userselectquery.overtype == 'notover' ) {
     query.equalTo( "isover" , "==" , false );
   }
@@ -430,7 +438,17 @@ export function querylist ( userid , userselectquery , querycounts ) {
     query.limit( querycounts );
   }
 
-  query.order( "-autokey" );
+  if ( autokeylist != null && autokeylist.length > 0 ) {
+    //把这些id 排除了
+    query.notContainedIn( "autokey" , autokeylist );
+  }
+
+  if ( isasc ) {
+    query.order( "autokey" );
+  }
+  else {
+    query.order( "-autokey" );
+  }
 
   return query.find();
 
