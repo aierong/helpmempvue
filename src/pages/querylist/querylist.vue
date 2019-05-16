@@ -176,6 +176,9 @@
     } ,
     //方法
     methods : {
+      initdata () {
+        this.productlist = [];
+      } ,
       onPullDownRefresh () {
         console.log( '开始刷' )
 
@@ -189,15 +192,36 @@
         } , 1000 )
 
       } ,
-      getproductlist ( querycounts = 5 ) {
+      refreshlist () {
 
-        // let initcount = 5;
+        let querycounts = 5;
 
-        dlapi.querylist(
-          this.getloginuserid ,
+        dlapi.querylist( this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
           [] ,
+          false ).then( ( res ) => {
+          console.log( 're' , res )
+
+          if ( res != null && res.length > 0 ) {
+            this.productlist = res;
+          }
+          else {
+            this.productlist = [];
+          }
+
+          // console.log( 'this.productlist' , this.productlist )
+        } );
+      } ,
+
+      addproductlist ( querycounts = 2 ) {
+
+        // let initcount = 5;
+
+        dlapi.querylist( this.getloginuserid ,
+          this.userselectquery ,
+          querycounts ,
+          this.autokeylist ,
           false ).then( ( res ) => {
           console.log( 're' , res )
 
@@ -395,7 +419,7 @@
 
           console.log( '变化' )
           //刷新列表
-          this.getproductlist( 5 );
+          this.refreshlist();
         }
 
         this.showdialog = false;
@@ -535,9 +559,11 @@
 
       console.log( 'querylist onShow' );
 
-      this.getproductlist( 5 );
+      this.refreshlist();
     } ,
     onHide () {
+      this.initdata();
+
       console.log( 'querylist onHide' );
     } ,
     onUnload () {
