@@ -54,7 +54,6 @@
                         style="margin-bottom: 10px;margin-right: 5px;"
                         plain
                         type="info"
-
                         @click="overdata(item)"
                         size="mini">完成
             </van-button>
@@ -62,8 +61,7 @@
                         style="margin-bottom: 10px;margin-right: 5px;"
                         plain
                         type="danger"
-
-                        @click="deletedata(item)"
+                        @click="deletedata(item,index)"
                         size="mini">删除
             </van-button>
             <van-button style="margin-bottom: 10px;margin-right: 10px;"
@@ -167,6 +165,7 @@
         showdialog : false ,
 
         SearchVal : '' ,
+        //产品列表
         productlist : [] ,
 
         runuserselectquery : {
@@ -181,7 +180,12 @@
 
         // let initcount = 5;
 
-        dlapi.querylist( this.getloginuserid , this.userselectquery , querycounts , [] , false ).then( ( res ) => {
+        dlapi.querylist(
+          this.getloginuserid ,
+          this.userselectquery ,
+          querycounts ,
+          this.autokeylist ,
+          false ).then( ( res ) => {
           console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
@@ -195,7 +199,7 @@
         } );
       } ,
       /*删除*/
-      deletedata ( item ) {
+      deletedata ( item , index ) {
         //重要操作，
 
         //弹窗提示
@@ -210,7 +214,7 @@
             if ( res.confirm ) {
               // console.log( '用户点击确定' )
 
-              this.DeleteCZ( id , productno )
+              this.DeleteCZ( index , id , productno )
             }
             else if ( res.cancel ) {
               // console.log( '用户点击取消' )
@@ -218,7 +222,7 @@
           }
         } )
       } ,
-      async DeleteCZ ( objectId , productno ) {
+      async DeleteCZ ( index , objectId , productno ) {
 
         // 加载动画
         wx.showLoading( {
@@ -242,7 +246,8 @@
 
           this.ShowToastMsg( '成功' , true )
 
-          this.getproductlist( 5 );
+          //this.getproductlist( 5 );  不用去取数据，直接删除这条记录
+          this.$delete( this.productlist , index )
         }
         else {
           this.ShowToastMsg( '失败' )
@@ -483,6 +488,22 @@
          */
 
         return 0;
+      } ,
+      /**
+       * autokey列表
+       * @returns {Array}
+       */
+      autokeylist () {
+        let arr = [];
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+
+          this.productlist.forEach( ( value , index , array ) => {
+            arr.push( value.autokey )
+          } );
+
+        }
+
+        return arr;
       } ,
     } ,
     //生命周期(mounted)
