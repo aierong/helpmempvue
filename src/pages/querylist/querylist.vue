@@ -580,6 +580,19 @@
 
         return max;
       } ,
+      minautokey () {
+        let min = -1;
+
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          let initval = this.productlist[ 0 ].autokey; //把第一个给初始值
+
+          min = this.productlist.reduce( ( total , currentValue , currentIndex , arr ) => {
+            return total < currentValue.autokey ? total : currentValue.autokey;
+          } , initval )
+        }
+
+        return min;
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
