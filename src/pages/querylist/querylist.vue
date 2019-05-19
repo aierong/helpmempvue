@@ -163,17 +163,33 @@
     //上拉触底刷新
     onReachBottom () {
       console.log( '开始刷' )
-      var now = new Date();
-      let shu = now.getTime()
+      // var now = new Date();
+      // let shu = now.getTime()
 
       // this.list.push( shu )
+
+      ;( async () => {
+
+        let arr = await this.addproductlist( 2 , true );
+
+        console.log( 'shang' , arr )
+        if ( arr != null && arr.length > 0 ) {
+          this.productlist.push( ...arr )
+
+          this.isshowdowntxt = false;
+        }
+        else {
+          this.isshowdowntxt = true;
+        }
+
+      } )();
     } ,
     //下拉刷新
     onPullDownRefresh () {
 
       ;( async () => {
 
-        let arr = await this.addproductlist( 2 );
+        let arr = await this.addproductlist( 2 , false );
 
         if ( arr != null && arr.length > 0 ) {
           this.productlist.unshift( ...arr )
@@ -215,6 +231,7 @@
           querycounts ,
           [] ,
           false ).then( ( res ) => {
+
           console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
@@ -230,13 +247,13 @@
         } );
       } ,
 
-      addproductlist ( querycounts = 2 ) {
+      addproductlist ( querycounts = 2 , isasc = false ) {
 
         return dlapi.querylist( this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
           this.autokeylist ,
-          false );
+          isasc );
 
       } ,
       /*删除*/
@@ -549,6 +566,19 @@
         }
 
         return arr;
+      } ,
+      maxautokey () {
+        let max = -1;
+
+        if ( this.productlist != null && this.productlist.length > 0 ) {
+          let initval = this.productlist[ 0 ].autokey; //把第一个给初始值
+
+          max = this.productlist.reduce( ( total , currentValue , currentIndex , arr ) => {
+            return total > currentValue.autokey ? total : currentValue.autokey;
+          } , initval )
+        }
+
+        return max;
       } ,
     } ,
     //生命周期(mounted)

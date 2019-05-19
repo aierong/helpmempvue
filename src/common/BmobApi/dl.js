@@ -453,3 +453,46 @@ export function querylist ( userid , userselectquery , querycounts , autokeylist
   return query.find();
 
 }
+
+export function querylistnew ( userid , userselectquery , querycounts , maxminautokey , isdown ) {
+  const query = Bmob.Query( DlTable );
+
+  if ( userselectquery.overtype == 'notover' ) {
+    query.equalTo( "isover" , "==" , false );
+  }
+  else if ( userselectquery.overtype == 'over' ) {
+    query.equalTo( "isover" , "==" , true );
+  }
+
+  if ( userselectquery.querytype == 'myhelp' ) {
+    //查询自己单据
+    query.equalTo( "userid" , "==" , userid );
+  }
+  else {
+    //查询求助我的单据
+    const query1 = query.equalTo( "helppmc1" , "==" , userid );
+    const query2 = query.equalTo( "helppmc2" , "==" , userid );
+
+    query.or( query1 , query2 );
+  }
+
+  if ( isdown ) {
+    query.equalTo( "autokey" , "<" , maxminautokey );
+  }
+  else {
+    query.equalTo( "autokey" , ">" , maxminautokey );
+  }
+
+  if ( querycounts > 0 && isdown ) {
+    //下拉刷新 不做限制，全部取回来
+    //上拉触底，限制数量
+    query.limit( querycounts );
+  }
+
+  // query.order( "autokey" );
+
+  query.order( "-autokey" );
+
+  return query.find();
+
+}
