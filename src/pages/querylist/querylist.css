@@ -12,3 +12,10 @@
 .mytxt {
   padding: 0px 10px 0px 10px;
 }
+
+
+.downtxt {
+  text-align: center;
+  font-size: small;
+  color: green;
+}

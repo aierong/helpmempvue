@@ -2,6 +2,7 @@
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
   "navigationBarTitleText": "查询列表",
+  "onReachBottomDistance": 50,
   "usingComponents": {
     "van-panel": "/static/vant/panel/index",
     "van-button": "/static/vant/button/index",

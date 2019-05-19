@@ -42,7 +42,6 @@
           </van-col>
 
         </van-row>
-
         <van-row>
           <van-col span="10">
             <span class="mytxt">{{  '求助人:'+item.username  }}</span>
@@ -76,7 +75,9 @@
           </van-col>
         </van-row>
       </van-panel>
-
+    </div>
+    <div v-if="isshowdowntxt"
+         class="downtxt">---我是底线---
     </div>
     <van-panel v-if="listcount<=0">
       <mybr/>
@@ -159,30 +160,24 @@
       loginuserdatamix ,
       mixmethods
     ] ,
-    onPullDownRefresh () {
-      // console.log( '开始刷' )
+    //上拉触底刷新
+    onReachBottom () {
+      console.log( '开始刷' )
+      var now = new Date();
+      let shu = now.getTime()
 
-      // setTimeout( () => {
-      //   var now = new Date();
-      //   let shu = now.getTime()
-      //
-      //   console.log( 'stop' )
-      //
-      //   wx.stopPullDownRefresh()
-      // } , 1000 )
+      // this.list.push( shu )
+    } ,
+    //下拉刷新
+    onPullDownRefresh () {
 
       ;( async () => {
-        // console.log( 'start' );
 
         let arr = await this.addproductlist( 2 );
-
-        // console.log( arr )
 
         if ( arr != null && arr.length > 0 ) {
           this.productlist.unshift( ...arr )
         }
-
-        // console.log( 'end' );
 
         wx.stopPullDownRefresh()
       } )();
@@ -190,7 +185,10 @@
     //数据模型
     data () {
       return {
+        //显示对话框
         showdialog : false ,
+
+        isshowdowntxt : false ,
 
         SearchVal : '' ,
         //产品列表
@@ -226,7 +224,9 @@
             this.productlist = [];
           }
 
-          // console.log( 'this.productlist' , this.productlist )
+          //把 最下面的 底下提示取消
+          this.isshowdowntxt = false;
+
         } );
       } ,
 
