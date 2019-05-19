@@ -162,11 +162,20 @@
     ] ,
     //上拉触底刷新
     onReachBottom () {
-      console.log( '开始刷' )
+
       // var now = new Date();
       // let shu = now.getTime()
 
       // this.list.push( shu )
+
+      if ( this.isshowdowntxt ) {
+        console.log( '不用刷数据' )
+
+        return;
+      }
+      else {
+        console.log( '开始刷数据' )
+      }
 
       ;( async () => {
 
@@ -228,9 +237,7 @@
 
         dlapi.querylist( this.getloginuserid ,
           this.userselectquery ,
-          querycounts ,
-          [] ,
-          false ).then( ( res ) => {
+          querycounts ).then( ( res ) => {
 
           console.log( 're' , res )
 
@@ -247,18 +254,18 @@
         } );
       } ,
 
-      addproductlist ( querycounts = 2 , isasc = false ) {
+      addproductlist ( querycounts = 2 , isdown = false ) {
 
-        return dlapi.querylist( this.getloginuserid ,
+        return dlapi.querylistnew( this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
-          this.autokeylist ,
-          isasc );
+          isdown ? this.minautokey : this.maxautokey ,
+          isdown );
 
       } ,
       /*删除*/
       deletedata ( item , index ) {
-        //重要操作，
+        //重要操作
 
         //弹窗提示
 

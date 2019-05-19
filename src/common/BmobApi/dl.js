@@ -400,7 +400,6 @@ export function deletebyid ( id ) {
       resolve( false );
     } )
   } );
-
 }
 
 /**
@@ -412,7 +411,7 @@ export function deletebyid ( id ) {
  * @param isasc
  * @returns {*|Promise|Promise<any>}
  */
-export function querylist ( userid , userselectquery , querycounts , autokeylist , isasc ) {
+export function querylist ( userid , userselectquery , querycounts ) {
   const query = Bmob.Query( DlTable );
 
   if ( userselectquery.overtype == 'notover' ) {
@@ -438,22 +437,20 @@ export function querylist ( userid , userselectquery , querycounts , autokeylist
     query.limit( querycounts );
   }
 
-  if ( autokeylist != null && autokeylist.length > 0 ) {
-    //把这些id 排除了
-    query.notContainedIn( "autokey" , autokeylist );
-  }
-
-  if ( isasc ) {
-    query.order( "autokey" );
-  }
-  else {
-    query.order( "-autokey" );
-  }
+  query.order( "-autokey" );
 
   return query.find();
-
 }
 
+/**
+ * 查询列表
+ * @param userid
+ * @param userselectquery
+ * @param querycounts
+ * @param maxminautokey
+ * @param isdown
+ * @returns {*|Promise|Promise<any>}
+ */
 export function querylistnew ( userid , userselectquery , querycounts , maxminautokey , isdown ) {
   const query = Bmob.Query( DlTable );
 
@@ -489,10 +486,7 @@ export function querylistnew ( userid , userselectquery , querycounts , maxminau
     query.limit( querycounts );
   }
 
-  // query.order( "autokey" );
-
   query.order( "-autokey" );
 
   return query.find();
-
 }
