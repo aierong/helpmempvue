@@ -232,22 +232,12 @@
 
       addproductlist ( querycounts = 2 ) {
 
-        // let initcount = 5;
-
         return dlapi.querylist( this.getloginuserid ,
           this.userselectquery ,
           querycounts ,
           this.autokeylist ,
           false );
 
-        // if ( res != null && res.length > 0 ) {
-        //   //this.productlist = res;
-        // }
-        // else {
-        //   //this.productlist = [];
-        // }
-
-        // console.log( 'this.productlist' , this.productlist )
       } ,
 
       /*删除*/
