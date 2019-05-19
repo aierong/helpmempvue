@@ -379,9 +379,7 @@
         }
       } ,
       overdata ( item , index ) {
-        //重要操作，还是先验证一下吧
-
-        //弹窗提示
+        //重要操作，还是先验证一下吧  //弹窗提示
 
         let productno = item.productno;
         let id = item.objectId;
@@ -405,18 +403,17 @@
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
 
-        console.log( val )
+        // console.log( val )
 
         // let obj = this.$store.state.userselectquery;
         // obj.querytype = val;
 
         this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
-
       } ,
       onClickCellOver ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
-        console.log( val )
+        // console.log( val )
 
         // let obj = this.$store.state.userselectquery;
         // obj.overtype = val;
