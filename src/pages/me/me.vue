@@ -80,7 +80,7 @@
 
 
     <van-action-sheet :show="showaction"
-                      :actions="actions1"
+                      :actions="actionslist"
                       @cancel="oncancel"
                       cancel-text="取消"
                       @select="onSelectitem"/>
@@ -113,7 +113,7 @@
     //数据模型
     data () {
       return {
-        actions1 : [
+        actionslist : [
           {
             name : '分享' ,
             subname : '分享给好友' ,
