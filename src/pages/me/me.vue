@@ -200,7 +200,6 @@
     //方法
     methods : {
       itemtabbarclick ( index ) {
-        // console.log( 'ontabbarChange1' , index )
 
         if ( index >= 4 ) {
           this.gotoreply();
@@ -222,7 +221,7 @@
           else if ( index == 3 ) {
 
             this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
+            this.$store.dispatch( 'UpdateUserSelectOverType' , 'notover' );
 
             this.gotolist();
           }
