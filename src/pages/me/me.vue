@@ -67,7 +67,7 @@
                span="8">
         <van-icon @click="itemtabbarclick(1)"
                   name="user-o"
-                  color="red"
+                  color="green"
                   :info="mycount"
                   size="36px"/>
         <br>我求助
@@ -76,7 +76,7 @@
                span="8">
         <van-icon @click="itemtabbarclick(2)"
                   name="user-o"
-                  color="red"
+                  color="green"
                   :info="mycountover"
                   size="36px"/>
         <br>我求助(完成)
@@ -85,7 +85,7 @@
                span="8">
         <van-icon @click="itemtabbarclick(3)"
                   name="user-o"
-                  color="red"
+                  color="green"
                   :info="mycountnotover"
                   size="36px"/>
         <br>我求助(未完)
@@ -98,7 +98,7 @@
                span="8">
         <van-icon @click="itemtabbarclick(4)"
                   name="smile-o"
-                  color="red"
+                  color="green"
                   :info="helpmecount"
                   size="36px"/>
         <br>求助我
@@ -107,7 +107,7 @@
                span="8">
         <van-icon @click="FXclick"
                   name="smile-o"
-                  color="red"
+                  color="green"
                   :info="itemtabbarclick(5)"
                   size="36px"/>
         <br>求助我(完成)
@@ -116,7 +116,7 @@
                span="8">
         <van-icon @click="itemtabbarclick(6)"
                   name="smile-o"
-                  color="red"
+                  color="green"
                   :info="helpmecountnotover"
                   size="36px"/>
         <br>求助我(未完)
