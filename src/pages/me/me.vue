@@ -105,10 +105,10 @@
       </van-col>
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="FXclick"
+        <van-icon @click="itemtabbarclick(5)"
                   name="smile-o"
                   color="green"
-                  :info="itemtabbarclick(5)"
+                  :info="helpmecountover"
                   size="36px"/>
         <br>求助我(完成)
       </van-col>
