@@ -59,29 +59,8 @@
     </van-row>
     <mybr/>
     <div style="color: green;margin-left: 10px;font-size: large;">我的数据</div>
-    <!--    <van-tabbar :fixed="isfixed"-->
-    <!--                :active="active1"-->
-    <!--                @change="ontabbarChange1">-->
-    <!--      <van-tabbar-item @click="itemtabbarclick(0)"-->
-    <!--                       class="itemtabbar"-->
-    <!--                       icon="friends-o"-->
-    <!--                       :info="mycount">我求助-->
-    <!--      </van-tabbar-item>-->
-    <!--      <van-tabbar-item @click="itemtabbarclick(1)"-->
-    <!--                       class="itemtabbar"-->
-    <!--                       icon="friends-o"-->
-    <!--                       :info="helpmecount">求助我-->
-    <!--      </van-tabbar-item>-->
-    <!--      <van-tabbar-item @click="itemtabbarclick(2)"-->
-    <!--                       class="itemtabbar"-->
-    <!--                       icon="friends-o"-->
-    <!--                       :info="myreplycount">待答复-->
-    <!--      </van-tabbar-item>-->
-    <!--    </van-tabbar>-->
 
-    <!--    "van-tabbar": "/static/vant/tabbar/index",-->
-    <!--    "van-tabbar-item": "/static/vant/tabbar-item/index"-->
-    <!--    -->
+
     <mybr/>
     <van-row class="user-links">
       <van-col custom-class="dark"
@@ -226,20 +205,27 @@
       itemtabbarclick ( index ) {
         // console.log( 'ontabbarChange1' , index )
 
-        if ( index == 2 ) {
+        if ( index >= 4 ) {
           this.gotoreply();
         }
         else {
-          if ( index == 0 ) {
+          if ( index == 1 ) {
             this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
             this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
 
             this.gotolist();
           }
-          else {
+          else if ( index == 2 ) {
 
-            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'helpmy' );
-            this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
+
+            this.gotolist();
+          }
+          else if ( index == 3 ) {
+
+            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
 
             this.gotolist();
           }
