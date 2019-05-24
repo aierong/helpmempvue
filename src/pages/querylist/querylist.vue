@@ -598,12 +598,28 @@
         return min;
       } ,
     } ,
+
     //生命周期(mounted)
     mounted () {
       console.log( 'querylist mouted' )
+
+      // App对象，主要有onLaunch, onShow和onHide。
+
+      // Page对象，主要有onLoad, onShow, onReady, onHide和onUnload。
+
+      //beforeCreate -> created -> onLaunch/onLoad -> onShow -> onReady -> beforeMount -> mounted -> ...
+    } ,
+    beforeCreate () {
+      console.log( 'querylist beforeCreate' )
+    } ,
+    created () {
+      console.log( 'querylist created' )
     } ,
     onLoad () {
       console.log( 'querylist onLoad' )
+    } ,
+    onReady () {
+      console.log( 'querylist onReady' )
     } ,
     onShow () {
 

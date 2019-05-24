@@ -61,7 +61,6 @@
     <van-tabbar :fixed="isfixed"
                 :active="active1"
                 @change="ontabbarChange1">
-
       <van-tabbar-item @click="itemtabbarclick(0)"
                        class="itemtabbar"
                        icon="friends-o"
@@ -284,11 +283,20 @@
       console.log( 'me mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'me beforeCreate' )
+    } ,
+    created () {
+      console.log( 'me created' )
+    } ,
     onLoad () {
       console.log( 'me onLoad' )
 
       let _title = this.getloginusername + '的主页';
       this.setuppagetitle( _title );
+    } ,
+    onReady () {
+      console.log( 'me onReady' )
     } ,
     onShow () {
 
