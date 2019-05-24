@@ -206,6 +206,12 @@
       console.log( 'selectuser mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'selectuser beforeCreate' )
+    } ,
+    created () {
+      console.log( 'selectuser created' )
+    } ,
     onLoad () {
       console.log( 'selectuser onLoad' )
 
@@ -214,6 +220,9 @@
     onShow () {
 
       console.log( 'selectuser onShow' );
+    } ,
+    onReady () {
+      console.log( 'selectuser onReady' )
     } ,
     onHide () {
       console.log( 'selectuser onHide' );
