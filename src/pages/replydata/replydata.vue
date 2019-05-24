@@ -39,21 +39,14 @@ Time: 22:55
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
 
-    <!--    &lt;!&ndash;    放最后，一个提示&ndash;&gt;-->
-    <!--    &lt;!&ndash;-->
-    <!--    注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
-    <!--    &ndash;&gt;-->
-    <!--    <van-toast id="van-toast"/>-->
+
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // // 配置文件json也要配置,这里代码也要引用
-  // // 代码中也要引用
-  // // 注意引用路径
-  // import Toast from '../../../static/vant/toast/toast';
+
 
   import detaildata from '@/components/detaildata/index.vue'
   import * as dlapi from '@/common/BmobApi/dl.js'
@@ -84,14 +77,14 @@ Time: 22:55
     //数据模型
     data () {
       return {
-        //CJ424205635
+
         userselectproductno : '' ,
 
         datelist : [] ,
 
         pmsreplydate : '' ,
         addpmcreplycomment : '' ,
-        // csexpectdate : '' ,
+
         objectId : ''
       }
     } ,
@@ -132,15 +125,11 @@ Time: 22:55
         let userid = this.getloginuserid;
         let username = this.getloginusername;
 
-        // console.log( this.objectId )
-        // console.log( this.getloginuserid )
-        // console.log( this.getloginusername )
-
         if ( this.pmsreplydate ) {
 
         }
         else {
-          // Toast.fail( '复期请选择' );
+
           this.ShowToastMsg( '复期请选择' )
           return;
         }
@@ -155,14 +144,6 @@ Time: 22:55
           comment : this.addpmcreplycomment
         };
 
-        //开始保存吧
-        // Toast.loading( {
-        //   duration : 0 ,
-        //   //forbidClick	是否禁止背景点击
-        //   forbidClick : true ,
-        //   loadingType : 'spinner' ,
-        //   message : '保存中...'
-        // } );
         // 加载动画
         wx.showLoading( {
           title : '保存中...' ,
@@ -180,7 +161,6 @@ Time: 22:55
           utils.runlongtims( 3000 )
         ] )
 
-        // Toast.clear();
         // 取消加载动画
         wx.hideLoading()
 
@@ -188,17 +168,6 @@ Time: 22:55
 
         // console.log( result )
         if ( result != null ) {
-          // Toast.success( '成功' );
-          // wx.showToast( {
-          //   title : '成功' , //提示的内容,
-          //   icon : 'success' , //图标,
-          //   duration : 3000 , //延迟时间,
-          //   mask : true , //显示透明蒙层，防止触摸穿透,
-          //   success : res => {
-          //     // console.log( res )
-          //     this.backpage();
-          //   }
-          // } );
 
           wx.showToast( {
             title : '成功' , //提示的内容,
@@ -246,11 +215,17 @@ Time: 22:55
     } ,
     //生命周期(mounted)
     mounted () {
-      console.log( 'replydata mouted' , this.userselectproductno )
+      console.log( 'replydata mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'replydata beforeCreate' )
+    } ,
+    created () {
+      console.log( 'replydata created' )
+    } ,
     onLoad () {
-      console.log( 'replydata onLoad' , this.userselectproductno )
+      console.log( 'replydata onLoad' )
 
       //日期段 取回来
       this.getdatelist();
@@ -262,12 +237,12 @@ Time: 22:55
     } ,
     onShow () {
 
-      // console.log( 'replydata onShow' );
-
       console.log( 'replydata onShow' );
 
-      // wx.setNavigationBarTitle( { title : this.userselectproductno + '复期操作' } )
       this.setuppagetitle( this.userselectproductno + '复期操作' )
+    } ,
+    onReady () {
+      console.log( 'replydata onReady' )
     } ,
     onHide () {
       console.log( 'replydata onHide' );

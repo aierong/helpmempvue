@@ -41,7 +41,6 @@
 <!-- js脚本代码片段 -->
 <script>
 
-
   import * as userapi from '@/common/BmobApi/users.js'
   import * as utils from '@/common/utils.js'
 
@@ -77,13 +76,14 @@
       } ,
       selectuser () {
         if ( this.selectval == null || this.selectval.length <= 0 ) {
-          // Toast.fail( '请选择求助对象' );
+
           this.ShowToastMsg( '请选择求助对象' )
+
           return;
         }
 
         if ( this.selectval.length > this.maxmancounts ) {
-          // Toast.fail( '最多选择' + this.maxmancounts + '个求助对象' );
+
           this.ShowToastMsg( '最多选择' + this.maxmancounts + '个求助对象' )
           return;
         }
@@ -112,9 +112,6 @@
       backpage () {
         wx.navigateBack()
 
-        // wx.switchTab( {
-        //   url : "../helpmeadd/main"
-        // } );
       } ,
       /**
        * 得用户名称
@@ -135,13 +132,6 @@
       } ,
       getuserlist () {
 
-        // Toast.loading( {
-        //   duration : 0 ,
-        //   //forbidClick	是否禁止背景点击
-        //   forbidClick : true ,
-        //   loadingType : 'spinner' ,
-        //   message : '挖数据...'
-        // } );
         // 加载动画
         wx.showLoading( {
           title : '挖数据...' ,
@@ -149,7 +139,7 @@
         } );
         Promise.all( [
           userapi.getuserlist( this.getloginuserid ) ,
-          utils.runlongtims( 1500 )
+          utils.runlongtims( 800 )
         ] ).then( ( values ) => {
           //values是数组
           this.userlist = values[ 0 ];
@@ -165,7 +155,6 @@
             }
           }
 
-          // Toast.clear();
           // 取消加载动画
           wx.hideLoading()
         } )

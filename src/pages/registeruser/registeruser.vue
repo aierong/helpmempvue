@@ -42,7 +42,6 @@
                 @click="backpage">返回
     </van-button>
 
-
   </div>
 
 </template>
@@ -117,8 +116,6 @@
 
           let result = await userapi.isexistsuserid( this.userid )
 
-          // console.log( result )
-
           if ( result.isexists ) {
 
             this.ShowToastMsg( '手机号已存在' )
@@ -130,8 +127,6 @@
               username : this.username ,
               pwd : this.pwd
             } )
-
-            // console.log( 'addresult' , addresult )
 
             if ( addresult != null ) {
 
@@ -195,6 +190,12 @@
       console.log( 'registeruser mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'registeruser beforeCreate' )
+    } ,
+    created () {
+      console.log( 'registeruser created' )
+    } ,
     onLoad () {
       console.log( 'registeruser onLoad' )
     } ,
@@ -202,6 +203,9 @@
 
       console.log( 'registeruser onShow' );
 
+    } ,
+    onReady () {
+      console.log( 'registeruser onReady' )
     } ,
     onHide () {
       console.log( 'registeruser onHide' );

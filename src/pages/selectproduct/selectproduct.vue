@@ -15,7 +15,6 @@ html代码片段
                 @search="onSearch"
                 @cancel="onCancel"/>
 
-
     <div style="margin-bottom: 6px;"
          :key="index"
          v-for="(item,index) in SearchProductList">
@@ -59,13 +58,10 @@ html代码片段
 <!-- js脚本代码片段 -->
 <script>
   import * as dlapi from '@/common/BmobApi/dl.js'
-  // import mybr from '@/components/mybr.vue'
 
   export default {
     name : "selectproduct" ,
-    // components : {
-    //   mybr
-    // } ,
+
     //数据模型
     data () {
       return {
@@ -102,7 +98,6 @@ html代码片段
 
         this.productlist = dlapi.getproductlist( this.maxcounts )
 
-        // console.log( this.productlist )
       } ,
       selectdata ( item ) {
         //逻辑说明: 把数据存储在 vuex，并且返回
