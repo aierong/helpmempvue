@@ -182,9 +182,6 @@
         ] ,
         showaction : false ,
 
-        // isfixed : false ,
-        // active1 : -1 ,
-
         //我求助的单据数量 (所有的)
         mycount : 0 ,
         //我求助的单据数量 (完成的)
@@ -306,11 +303,7 @@
           }
         } )
       } ,
-      // ontabbarChange1 ( event ) {
-      //
-      //   //最好手动赋值一下,要不值不是最新的
-      //   this.active1 = event.mp.detail
-      // } ,
+
       async getcounts ( userid ) {
         var result = await Promise.all( [
           dlapi.getmycount( userid , 2 ) ,

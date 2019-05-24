@@ -234,10 +234,7 @@ html代码片段
           dates : newdata.csexpectdate ,
           comment : newdata.comment
         };
-        // console.log( 'newdata' , newdata )
-        // console.log( 'objlog' , objlog )
 
-        // return;
 
         //开始做判断了
         if ( newdata.productno ) {
@@ -254,8 +251,6 @@ html代码片段
 
           let counts = await dlapi.getontworkcounts( this.getloginuserid );
 
-          // console.log( 'counts' , counts )
-
           if ( counts > this.maxsavecount ) {
 
             this.ShowToastMsg( '您的未完成工程单已超过' + this.maxsavecount + '个' )
@@ -269,7 +264,6 @@ html代码片段
           return;
         }
 
-        // console.log( 'newdata.csexpectdate' , newdata.csexpectdate )
         if ( newdata.csexpectdate ) {
 
         }

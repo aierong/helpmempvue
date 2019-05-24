@@ -8,7 +8,6 @@
 
   <div>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
-
   </div>
 
 </template>
@@ -32,7 +31,7 @@
     //数据模型
     data () {
       return {
-        //CJ424205635
+
         userselectproductno : '' ,
       }
     } ,
@@ -49,15 +48,23 @@
     mounted () {
       console.log( 'detaildata mounted' )
     } ,
+    beforeCreate () {
+      console.log( 'detaildata beforeCreate' )
+    } ,
+    created () {
+      console.log( 'detaildata created' )
+    } ,
     onLoad () {
       console.log( 'detaildata onLoad' )
 
       this.userselectproductno = this.$mp.query.productno
     } ,
+    onReady () {
+      console.log( 'detaildata onReady' )
+    } ,
     onShow () {
       console.log( 'detaildata onShow' )
 
-      // wx.setNavigationBarTitle( { title : this.userselectproductno + '复期操作' } )
       this.setuppagetitle( this.userselectproductno + '详情' )
     } ,
     onHide () {

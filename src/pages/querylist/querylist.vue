@@ -163,19 +163,14 @@
     //上拉触底刷新
     onReachBottom () {
 
-      // var now = new Date();
-      // let shu = now.getTime()
-
-      // this.list.push( shu )
-
       if ( this.isshowdowntxt ) {
-        console.log( '不用刷数据' )
+        // console.log( '不用刷数据' )
 
         return;
       }
-      else {
-        console.log( '开始刷数据' )
-      }
+      // else {
+      //   // console.log( '开始刷数据' )
+      // }
 
       ;( async () => {
 
@@ -301,11 +296,8 @@
           utils.runlongtims( 2000 )
         ] )
 
-        // Toast.clear();
         // 取消加载动画
         wx.hideLoading()
-
-        // console.log( 'result' , result )
 
         if ( result != null ) {
 
@@ -357,11 +349,8 @@
           utils.runlongtims( 1900 )
         ] )
 
-        // Toast.clear();
         // 取消加载动画
         wx.hideLoading()
-
-        // console.log( 'result' , result )
 
         if ( result != null ) {
 
@@ -403,21 +392,11 @@
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
 
-        // console.log( val )
-
-        // let obj = this.$store.state.userselectquery;
-        // obj.querytype = val;
-
         this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
       } ,
       onClickCellOver ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
-        // console.log( val )
-
-        // let obj = this.$store.state.userselectquery;
-        // obj.overtype = val;
-        // console.log( obj )
         this.$store.dispatch( 'UpdateUserSelectOverType' , val );
 
       } ,
@@ -455,8 +434,6 @@
         this.runuserselectquery.querytype = this.userselectquery.querytype;
 
         this.showdialog = true;
-
-        // this.$store.dispatch( 'UpdateUserSelectQueryType' , _data );
 
       } ,
       onSearch ( event ) {

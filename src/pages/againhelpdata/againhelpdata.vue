@@ -38,21 +38,14 @@ Time: 20:39
     <mybr/>
     <detaildata :userselectproductno="userselectproductno"></detaildata>
 
-    <!--    &lt;!&ndash;    放最后，一个提示&ndash;&gt;-->
-    <!--    &lt;!&ndash;-->
-    <!--    注意要配一个van-toast,才会显示提示 ,默认id van-toast-->
-    <!--    &ndash;&gt;-->
-    <!--    <van-toast id="van-toast"/>-->
+
   </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-  // // 配置文件json也要配置,这里代码也要引用
-  // // 代码中也要引用
-  // // 注意引用路径
-  // import Toast from '../../../static/vant/toast/toast';
+
 
   import detaildata from '@/components/detaildata/index.vue'
   import * as dlapi from '@/common/BmobApi/dl.js'
@@ -114,9 +107,11 @@ Time: 20:39
         } );
       } ,
       getdatelist () {
-        this.datelist = utils.getdatelist( true , 6 , constant.DateFormatStringYMD , false )
+        this.datelist = utils.getdatelist( true ,
+          6 ,
+          constant.DateFormatStringYMD ,
+          false )
 
-        // console.log( 'this.datelist' , this.datelist )
       } ,
       commentChange ( event ) {
         let vals = event.mp.detail;
@@ -130,15 +125,11 @@ Time: 20:39
         let userid = this.getloginuserid;
         let username = this.getloginusername;
 
-        // console.log( this.objectId )
-        // console.log( this.getloginuserid )
-        // console.log( this.getloginusername )
-
         if ( this.csexpectdate ) {
 
         }
         else {
-          // Toast.fail( '交期请选择' );
+
           this.ShowToastMsg( '请选择交期' )
           return;
         }
@@ -152,15 +143,6 @@ Time: 20:39
           dates : this.csexpectdate ,
           comment : this.comment
         };
-
-        //开始保存吧
-        // Toast.loading( {
-        //   duration : 0 ,
-        //   //forbidClick	是否禁止背景点击
-        //   forbidClick : true ,
-        //   loadingType : 'spinner' ,
-        //   message : '保存中...'
-        // } );
 
         // 加载动画
         wx.showLoading( {
@@ -178,10 +160,8 @@ Time: 20:39
           utils.runlongtims( 3000 )
         ] )
 
-        // Toast.clear();
         // 取消加载动画
         wx.hideLoading()
-        // console.log( result )
 
         let _duration = 2000;
 
@@ -218,8 +198,6 @@ Time: 20:39
           } );
         }
 
-        //返回
-        // this.backpage();
       } ,
       backpage () {
         wx.switchTab( { url : "../againhelp/main" } );
@@ -237,6 +215,12 @@ Time: 20:39
       console.log( 'againhelpdata mouted' , this.userselectproductno )
 
     } ,
+    beforeCreate () {
+      console.log( 'againhelpdata beforeCreate' )
+    } ,
+    created () {
+      console.log( 'againhelpdata created' )
+    } ,
     onLoad () {
       console.log( 'againhelpdata onLoad' , this.userselectproductno )
 
@@ -247,13 +231,13 @@ Time: 20:39
 
       this.objectId = this.$mp.query.objectId
     } ,
+    onReady () {
+      console.log( 'againhelpdata onReady' )
+    } ,
     onShow () {
-
-      // console.log( 'againhelpdata onShow' );
 
       console.log( 'againhelpdata onShow' , this.userselectproductno );
 
-      // wx.setNavigationBarTitle( { title : this.userselectproductno + '再次求助' } )
       this.setuppagetitle( this.userselectproductno + '再次求助' )
     } ,
     onHide () {

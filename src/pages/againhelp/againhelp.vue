@@ -134,6 +134,12 @@ Time: 19:44
     mounted () {
       console.log( 'againhelp mouted' )
     } ,
+    beforeCreate () {
+      console.log( 'againhelp beforeCreate' )
+    } ,
+    created () {
+      console.log( 'againhelp created' )
+    } ,
     onLoad () {
       console.log( 'againhelp onLoad' )
     } ,
@@ -142,6 +148,9 @@ Time: 19:44
       console.log( 'againhelp onShow' );
 
       this.getproductlist();
+    } ,
+    onReady () {
+      console.log( 'againhelp onReady' )
     } ,
     onHide () {
       console.log( 'againhelp onHide' );
