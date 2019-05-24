@@ -154,9 +154,8 @@
           }
         }
       } ,
-      //退出系统，
+      //退出系统
       ExitSystem () {
-        // console.log( 'into ExitSystem' )
 
         //清除本地存储
         wx.removeStorageSync( constant.StorageName )
@@ -204,7 +203,6 @@
       FXclick () {
         this.showaction = true;
       } ,
-
       oncancel () {
         this.showaction = false;
       } ,
@@ -260,6 +258,7 @@
       //return this.data;
       //}
     } ,
+    //分享
     onShareAppMessage () {
       return {
         title : '填单帮助我' ,
