@@ -79,7 +79,7 @@
     </van-tabbar>
 
 
-    <van-action-sheet :show="show1"
+    <van-action-sheet :show="showaction"
                       :actions="actions1"
                       @cancel="oncancel"
                       cancel-text="取消"
@@ -114,15 +114,13 @@
     data () {
       return {
         actions1 : [
-
           {
             name : '分享' ,
             subname : '分享给好友' ,
             openType : 'share'
           } ,
-
         ] ,
-        show1 : false ,
+        showaction : false ,
 
         isfixed : false ,
         active1 : -1 ,
@@ -204,24 +202,15 @@
         wx.switchTab( { url : "../againhelp/main" } );
       } ,
       FXclick () {
-        this.show1 = true;
+        this.showaction = true;
       } ,
 
       oncancel () {
-        this.show1 = false;
+        this.showaction = false;
       } ,
       onSelectitem ( event ) {
-        // console.log( event )
-        // let obj = event.mp.detail;
 
-        // console.log( obj )
-
-        //取到选择的值
-        // let name = obj.name;
-
-        // console.log( name )
-
-        this.show1 = false;
+        this.showaction = false;
 
       } ,
       exitclick () {
