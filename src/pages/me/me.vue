@@ -345,7 +345,6 @@
         return this.helpmecount - this.helpmecountover;
       } ,
     } ,
-
     //生命周期(mounted)
     mounted () {
       console.log( 'me mouted' )

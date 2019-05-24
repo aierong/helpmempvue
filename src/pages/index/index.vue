@@ -153,9 +153,6 @@
 
     } ,
 
-    created () {
-      // let app = getApp()
-    } ,
     //生命周期(mounted)
     mounted () {
       console.log( 'index mounted' );
@@ -197,6 +194,12 @@
         this.isvaliduser = false;
       }
     } ,
+    beforeCreate () {
+      console.log( 'index beforeCreate' )
+    } ,
+    created () {
+      console.log( 'index created' )
+    } ,
     onLoad () {
       console.log( 'index onLoad' )
 
@@ -206,6 +209,9 @@
       console.log( 'index onShow' );
 
     } ,
+    onReady () {
+      console.log( 'index onReady' )
+    } ,
     onHide () {
       console.log( 'index onHide' );
     } ,
@@ -213,7 +219,7 @@
       console.log( 'index onUnload' );
 
       this.initdata();
-    } ,
+    }
   }
 </script>
 
