@@ -86,7 +86,7 @@
     <van-row class="user-links">
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="helpclick"
+        <van-icon @click="itemtabbarclick(1)"
                   name="user-o"
                   color="red"
                   :info="mycount"
@@ -95,7 +95,7 @@
       </van-col>
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="replyclick"
+        <van-icon @click="itemtabbarclick(2)"
                   name="user-o"
                   color="red"
                   :info="mycountover"
@@ -104,7 +104,7 @@
       </van-col>
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="againhelplick"
+        <van-icon @click="itemtabbarclick(3)"
                   name="user-o"
                   color="red"
                   :info="mycountnotover"
@@ -117,7 +117,7 @@
     <van-row class="user-links">
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="queryclick"
+        <van-icon @click="itemtabbarclick(4)"
                   name="smile-o"
                   color="red"
                   :info="helpmecount"
@@ -129,13 +129,13 @@
         <van-icon @click="FXclick"
                   name="smile-o"
                   color="red"
-                  :info="helpmecountover"
+                  :info="itemtabbarclick(5)"
                   size="36px"/>
         <br>求助我(完成)
       </van-col>
       <van-col custom-class="dark"
                span="8">
-        <van-icon @click="exitclick"
+        <van-icon @click="itemtabbarclick(6)"
                   name="smile-o"
                   color="red"
                   :info="helpmecountnotover"
@@ -176,6 +176,21 @@
       loginuserdatamix ,
       mixmethods
     ] ,
+    //下拉刷新
+    onPullDownRefresh () {
+
+      this.getcounts( this.getloginuserid )
+
+      wx.stopPullDownRefresh()
+    } ,
+    //分享
+    onShareAppMessage () {
+      return {
+        title : '填单帮助我' ,
+        path : '/pages/index/main' ,
+        imageUrl : '/static/img/logo.png'
+      }
+    } ,
     //数据模型
     data () {
       return {
@@ -188,8 +203,8 @@
         ] ,
         showaction : false ,
 
-        isfixed : false ,
-        active1 : -1 ,
+        // isfixed : false ,
+        // active1 : -1 ,
 
         //我求助的单据数量 (所有的)
         mycount : 0 ,
@@ -304,14 +319,12 @@
             }
           }
         } )
-
       } ,
-      ontabbarChange1 ( event ) {
-        // console.log( event.mp.detail )
-        // console.log( this.active1 )
-        //最好手动赋值一下,要不值不是最新的
-        this.active1 = event.mp.detail
-      } ,
+      // ontabbarChange1 ( event ) {
+      //
+      //   //最好手动赋值一下,要不值不是最新的
+      //   this.active1 = event.mp.detail
+      // } ,
       async getcounts ( userid ) {
         var result = await Promise.all( [
           dlapi.getmycount( userid , 2 ) ,
@@ -346,14 +359,7 @@
         return this.helpmecount - this.helpmecountover;
       } ,
     } ,
-    //分享
-    onShareAppMessage () {
-      return {
-        title : '填单帮助我' ,
-        path : '/pages/index/main' ,
-        imageUrl : '/static/img/logo.png'
-      }
-    } ,
+
     //生命周期(mounted)
     mounted () {
       console.log( 'me mouted' )
@@ -370,6 +376,8 @@
 
       let _title = this.getloginusername + '的主页';
       this.setuppagetitle( _title );
+
+      this.getcounts( this.getloginuserid )
     } ,
     onReady () {
       console.log( 'me onReady' )
@@ -378,7 +386,6 @@
 
       console.log( 'me onShow' );
 
-      this.getcounts( this.getloginuserid )
     } ,
     onHide () {
       console.log( 'me onHide' );
