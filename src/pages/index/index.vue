@@ -1,7 +1,6 @@
 <template>
   <div>
 
-
     <div v-if="!isvaliduser">
       <van-nav-bar right-text="注册"
                    @clickright="onClickRight"/>
@@ -110,14 +109,12 @@
         //检查数据有效性
         if ( !this.userid ) {
 
-          // Toast.fail( '请输手机号' );
           this.ShowToastMsg( '请输手机号' )
           return;
         }
 
         if ( !this.pwd ) {
 
-          // Toast.fail( '请输入密码' );
           this.ShowToastMsg( '请输入密码' )
           return;
         }
@@ -170,10 +167,8 @@
 
         if ( StorageValue.logintime ) {
           let validtime = new Date( StorageValue.logintime );
-          // console.log( 'validtime' , validtime )
-          validtime.setDate( validtime.getDate() + this.validday );
 
-          // console.log( 'validtime' , validtime )
+          validtime.setDate( validtime.getDate() + this.validday );
 
           if ( now.getTime() <= validtime.getTime() ) {
             this.isvaliduser = true;

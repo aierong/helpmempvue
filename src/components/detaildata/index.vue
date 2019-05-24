@@ -233,17 +233,23 @@ Time: 21:32
     //生命周期(mounted)
     mounted () {
 
-      console.log( '组件index mouted' , this.userselectproductno )
+      console.log( '组件index mouted' )
 
+    } ,
+    beforeCreate () {
+      console.log( '组件index beforeCreate' )
+    } ,
+    created () {
+      console.log( '组件index created' )
     } ,
     onLoad () {
 
-      console.log( '组件index onLoad ' , this.userselectproductno )
+      console.log( '组件index onLoad ' )
 
     } ,
     onShow () {
 
-      console.log( '组件index onShow' , this.userselectproductno )
+      console.log( '组件index onShow' )
 
     } ,
     onHide () {

@@ -348,12 +348,21 @@ html代码片段
     mounted () {
       console.log( 'helpmeadd mouted' )
     } ,
+    beforeCreate () {
+      console.log( 'helpmeadd beforeCreate' )
+    } ,
+    created () {
+      console.log( 'helpmeadd created' )
+    } ,
     onLoad () {
       console.log( 'helpmeadd onLoad' )
     } ,
     onShow () {
 
       console.log( 'helpmeadd onShow' );
+    } ,
+    onReady () {
+      console.log( 'helpmeadd onReady' )
     } ,
     onHide () {
       console.log( 'helpmeadd onHide' );
