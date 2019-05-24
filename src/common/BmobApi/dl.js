@@ -325,12 +325,21 @@ export function getmyagainhelplist ( userid , counts ) {
 /**
  * 我求助
  * @param userid
+ * @param overtype 完成类型  2全部 1完成的 0未完成的
  * @returns {*|Promise|Promise<any>}
  */
-export function getmycount ( userid ) {
+export function getmycount ( userid , overtype = 2 ) {
   const query = Bmob.Query( DlTable );
 
   query.equalTo( "userid" , "==" , userid );
+
+  if ( overtype == 1 ) {
+    query.equalTo( "isover" , "==" , true );
+  }
+
+  if ( overtype == 0 ) {
+    query.equalTo( "isover" , "==" , false );
+  }
 
   return query.count();
 }
@@ -338,10 +347,19 @@ export function getmycount ( userid ) {
 /**
  * 求助我
  * @param userid
+ * @param overtype 完成类型  2全部 1完成的 0未完成的
  * @returns {*|Promise|Promise<any>}
  */
-export function gethelpmecount ( userid ) {
+export function gethelpmecount ( userid , overtype = 2 ) {
   const query = Bmob.Query( DlTable );
+
+  if ( overtype == 1 ) {
+    query.equalTo( "isover" , "==" , true );
+  }
+
+  if ( overtype == 0 ) {
+    query.equalTo( "isover" , "==" , false );
+  }
 
   const query1 = query.equalTo( "helppmc1" , "==" , userid );
   const query2 = query.equalTo( "helppmc2" , "==" , userid );

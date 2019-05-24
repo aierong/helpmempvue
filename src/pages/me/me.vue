@@ -20,6 +20,7 @@
                span="8">
         <van-icon @click="replyclick"
                   name="comment-o"
+                  :info="myreplycount"
                   size="36px"/>
         <br>待答复
       </van-col>
@@ -58,26 +59,91 @@
     </van-row>
     <mybr/>
     <div style="color: green;margin-left: 10px;font-size: large;">我的数据</div>
-    <van-tabbar :fixed="isfixed"
-                :active="active1"
-                @change="ontabbarChange1">
-      <van-tabbar-item @click="itemtabbarclick(0)"
-                       class="itemtabbar"
-                       icon="friends-o"
-                       :info="mycount">我求助
-      </van-tabbar-item>
-      <van-tabbar-item @click="itemtabbarclick(1)"
-                       class="itemtabbar"
-                       icon="friends-o"
-                       :info="helpmecount">求助我
-      </van-tabbar-item>
-      <van-tabbar-item @click="itemtabbarclick(2)"
-                       class="itemtabbar"
-                       icon="friends-o"
-                       :info="myreplycount">待答复
-      </van-tabbar-item>
-    </van-tabbar>
+    <!--    <van-tabbar :fixed="isfixed"-->
+    <!--                :active="active1"-->
+    <!--                @change="ontabbarChange1">-->
+    <!--      <van-tabbar-item @click="itemtabbarclick(0)"-->
+    <!--                       class="itemtabbar"-->
+    <!--                       icon="friends-o"-->
+    <!--                       :info="mycount">我求助-->
+    <!--      </van-tabbar-item>-->
+    <!--      <van-tabbar-item @click="itemtabbarclick(1)"-->
+    <!--                       class="itemtabbar"-->
+    <!--                       icon="friends-o"-->
+    <!--                       :info="helpmecount">求助我-->
+    <!--      </van-tabbar-item>-->
+    <!--      <van-tabbar-item @click="itemtabbarclick(2)"-->
+    <!--                       class="itemtabbar"-->
+    <!--                       icon="friends-o"-->
+    <!--                       :info="myreplycount">待答复-->
+    <!--      </van-tabbar-item>-->
+    <!--    </van-tabbar>-->
 
+    <!--    "van-tabbar": "/static/vant/tabbar/index",-->
+    <!--    "van-tabbar-item": "/static/vant/tabbar-item/index"-->
+    <!--    -->
+    <mybr/>
+    <van-row class="user-links">
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="helpclick"
+                  name="user-o"
+                  color="red"
+                  :info="mycount"
+                  size="36px"/>
+        <br>我求助
+      </van-col>
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="replyclick"
+                  name="user-o"
+                  color="red"
+                  :info="mycountover"
+                  size="36px"/>
+        <br>我求助(完成)
+      </van-col>
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="againhelplick"
+                  name="user-o"
+                  color="red"
+                  :info="mycountnotover"
+                  size="36px"/>
+        <br>我求助(未完)
+      </van-col>
+
+    </van-row>
+    <mybr/>
+    <van-row class="user-links">
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="queryclick"
+                  name="smile-o"
+                  color="red"
+                  :info="helpmecount"
+                  size="36px"/>
+        <br>求助我
+      </van-col>
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="FXclick"
+                  name="smile-o"
+                  color="red"
+                  :info="helpmecountover"
+                  size="36px"/>
+        <br>求助我(完成)
+      </van-col>
+      <van-col custom-class="dark"
+               span="8">
+        <van-icon @click="exitclick"
+                  name="smile-o"
+                  color="red"
+                  :info="helpmecountnotover"
+                  size="36px"/>
+        <br>求助我(未完)
+      </van-col>
+    </van-row>
+    <mybr/>
 
     <van-action-sheet :show="showaction"
                       :actions="actionslist"
@@ -125,8 +191,18 @@
         isfixed : false ,
         active1 : -1 ,
 
+        //我求助的单据数量 (所有的)
         mycount : 0 ,
+        //我求助的单据数量 (完成的)
+        mycountover : 0 ,
+        //mycountnotover : 0 ,
+
+        //求助我的单据数量 (所有的)
         helpmecount : 0 ,
+        //求助我的单据数量 (完成的)
+        helpmecountover : 0 ,
+        //helpmecountnotover : 0 ,
+
         myreplycount : 0
       }
     } ,
@@ -238,25 +314,37 @@
       } ,
       async getcounts ( userid ) {
         var result = await Promise.all( [
-          dlapi.getmycount( userid ) ,
-          dlapi.gethelpmecount( userid ) ,
+          dlapi.getmycount( userid , 2 ) ,
+          dlapi.getmycount( userid , 1 ) ,
+          dlapi.gethelpmecount( userid , 2 ) ,
+          dlapi.gethelpmecount( userid , 1 ) ,
           dlapi.getmyreplycount( userid )
         ] )
 
         // console.log( result )
-        if ( result != null && result.length >= 3 ) {
+        if ( result != null && result.length >= 5 ) {
           this.mycount = result[ 0 ];
-          this.helpmecount = result[ 1 ];
-          this.myreplycount = result[ 2 ];
+          this.mycountover = result[ 1 ];
+
+          this.helpmecount = result[ 2 ];
+          this.helpmecountover = result[ 3 ];
+
+          this.myreplycount = result[ 4 ];
         }
       } ,
     } ,
     //计算属性
     computed : {
-      //name() {
-      //代码搞这里
-      //return this.data;
-      //}
+      //我求助的单据数量 (未完成的)
+      mycountnotover () {
+        // 全部减去完成的
+        return this.mycount - this.mycountover;
+      } ,
+      //求助我的单据数量 (未完成的)
+      helpmecountnotover () {
+        // 全部减去完成的
+        return this.helpmecount - this.helpmecountover;
+      } ,
     } ,
     //分享
     onShareAppMessage () {
