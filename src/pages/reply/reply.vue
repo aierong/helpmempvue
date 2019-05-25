@@ -77,7 +77,8 @@
     //数据模型
     data () {
       return {
-        productlist : [] ,
+
+        productlist : []
 
       }
     } ,
@@ -98,7 +99,6 @@
             this.productlist = [];
           }
 
-          // console.log( 'this.productlist' , this.productlist )
         } );
       } ,
       replydata ( productno , csexpectdate , objectId ) {

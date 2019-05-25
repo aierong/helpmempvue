@@ -239,7 +239,7 @@ Time: 22:55
 
       console.log( 'replydata onShow' );
 
-      this.setuppagetitle( this.userselectproductno + '复期操作' )
+      this.setuppagetitle( this.userselectproductno + '复期' )
     } ,
     onReady () {
       console.log( 'replydata onReady' )
