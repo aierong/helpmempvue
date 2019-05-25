@@ -295,6 +295,12 @@ export function getmyreply ( userid , counts , autokeylist ) {
   return query.find();
 }
 
+/**
+ * 再次求助列表
+ * @param userid
+ * @param counts
+ * @returns {*|Promise|Promise<any>}
+ */
 export function getmyagainhelplist ( userid , counts ) {
   const query = Bmob.Query( DlTable );
 
@@ -302,12 +308,9 @@ export function getmyagainhelplist ( userid , counts ) {
   //还没有复期的
   query.equalTo( "pmsreplydate" , "!=" , '' );
 
-  // if ( autokeylist != null && autokeylist.length > 0 ) {
-  //   query.notContainedIn( "autokey" , autokeylist );
-  // }
   let arr = utils.getdatelist( false , 250 , constant.DateFormatStringYMD , true );
   // console.log( 'arr' , arr )
-  query.containedIn( "pmsreplydate" , arr );
+  query.notContainedIn( "pmsreplydate" , arr );
 
   query.equalTo( "userid" , "==" , userid );
 
