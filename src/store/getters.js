@@ -12,9 +12,16 @@ const getloginusername = ( state ) => {
   return '';
 }
 
+const getissaveok = ( state ) => {
+
+  return state.issaveok;
+
+}
+
 export default {
 
   getloginuserid ,
   getloginusername ,
+  getissaveok
 
 }

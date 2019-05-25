@@ -135,6 +135,9 @@
 
         return 0;
       } ,
+      getissaveok () {
+        return this.$store.getters.getissaveok;
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
@@ -149,12 +152,21 @@
     } ,
     onLoad () {
       console.log( 'reply onLoad' )
+
+      this.getproductlist();
     } ,
     onShow () {
 
       console.log( 'reply onShow' );
 
-      this.getproductlist();
+      // console.log( 'getissaveok' , this.getissaveok )
+
+      //操作成功 ，我们刷新一下
+      if ( this.getissaveok ) {
+        this.getproductlist();
+
+        this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+      }
     } ,
     onReady () {
       console.log( 'reply onReady' )
