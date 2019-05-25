@@ -148,6 +148,12 @@ html代码片段
       console.log( 'selectproduct mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'selectproduct beforeCreate' )
+    } ,
+    created () {
+      console.log( 'selectproduct created' )
+    } ,
     onLoad () {
       console.log( 'selectproduct onLoad' )
 
@@ -156,6 +162,9 @@ html代码片段
     onShow () {
 
       console.log( 'selectproduct onShow' );
+    } ,
+    onReady () {
+      console.log( 'selectproduct onReady' )
     } ,
     onHide () {
       console.log( 'selectproduct onHide' );

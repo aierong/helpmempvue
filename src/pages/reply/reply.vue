@@ -141,6 +141,12 @@
       console.log( 'reply mouted' )
 
     } ,
+    beforeCreate () {
+      console.log( 'reply beforeCreate' )
+    } ,
+    created () {
+      console.log( 'reply created' )
+    } ,
     onLoad () {
       console.log( 'reply onLoad' )
     } ,
@@ -149,6 +155,9 @@
       console.log( 'reply onShow' );
 
       this.getproductlist();
+    } ,
+    onReady () {
+      console.log( 'reply onReady' )
     } ,
     onHide () {
       console.log( 'reply onHide' );

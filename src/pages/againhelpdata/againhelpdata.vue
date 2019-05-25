@@ -212,7 +212,7 @@ Time: 20:39
     } ,
     //生命周期(mounted)
     mounted () {
-      console.log( 'againhelpdata mouted' , this.userselectproductno )
+      console.log( 'againhelpdata mouted' )
 
     } ,
     beforeCreate () {
@@ -222,7 +222,7 @@ Time: 20:39
       console.log( 'againhelpdata created' )
     } ,
     onLoad () {
-      console.log( 'againhelpdata onLoad' , this.userselectproductno )
+      console.log( 'againhelpdata onLoad' )
 
       //日期段 取回来
       this.getdatelist();
@@ -236,7 +236,7 @@ Time: 20:39
     } ,
     onShow () {
 
-      console.log( 'againhelpdata onShow' , this.userselectproductno );
+      console.log( 'againhelpdata onShow' );
 
       this.setuppagetitle( this.userselectproductno + '再次求助' )
     } ,
