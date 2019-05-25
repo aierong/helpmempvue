@@ -74,6 +74,13 @@
     components : {
       mybr
     } ,
+    //下拉刷新
+    onPullDownRefresh () {
+
+      this.getproductlist()
+
+      wx.stopPullDownRefresh()
+    } ,
     //数据模型
     data () {
       return {
@@ -87,10 +94,10 @@
 
       getproductlist () {
 
-        let initcount = 5;
+        // let initcount = 5;
 
-        dlapi.getmyreply( this.getloginuserid , initcount , [] ).then( ( res ) => {
-          console.log( 're' , res )
+        dlapi.getmyreply( this.getloginuserid , 0 , [] ).then( ( res ) => {
+          // console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
             this.productlist = res;
