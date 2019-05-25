@@ -61,6 +61,8 @@ Time: 19:44
 <!-- js脚本代码片段 -->
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { commoncomputed } from '@/mixin/commoncomputed.js'
+
   import * as dlapi from '@/common/BmobApi/dl.js'
 
   import mybr from '@/components/mybr.vue'
@@ -68,24 +70,34 @@ Time: 19:44
   export default {
     name : "againhelp" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      commoncomputed
+    ] ,
     components : {
       mybr
+    } ,
+    //下拉刷新
+    onPullDownRefresh () {
+
+      this.getproductlist()
+
+      wx.stopPullDownRefresh()
     } ,
     //数据模型
     data () {
       return {
-        productlist : [] ,
+        productlist : []
       }
     } ,
     //方法
     methods : {
       getproductlist () {
 
-        let initcount = 5;
+        // let initcount = 5;
 
-        dlapi.getmyagainhelplist( this.getloginuserid , initcount ).then( ( res ) => {
-          console.log( 're' , res )
+        dlapi.getmyagainhelplist( this.getloginuserid , 0 ).then( ( res ) => {
+          // console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
             this.productlist = res;
@@ -94,7 +106,7 @@ Time: 19:44
             this.productlist = [];
           }
 
-          console.log( 'this.productlist' , this.productlist )
+          // console.log( 'this.productlist' , this.productlist )
         } );
       } ,
       againhelpdata ( productno , objectId ) {
@@ -142,12 +154,20 @@ Time: 19:44
     } ,
     onLoad () {
       console.log( 'againhelp onLoad' )
+
+      this.getproductlist();
     } ,
     onShow () {
 
       console.log( 'againhelp onShow' );
 
-      this.getproductlist();
+      //操作成功 ，我们刷新一下
+      if ( this.getissaveok ) {
+        this.getproductlist();
+
+        this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+      }
+      // this.getproductlist();
     } ,
     onReady () {
       console.log( 'againhelp onReady' )

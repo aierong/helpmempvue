@@ -61,6 +61,7 @@
 <!-- js脚本代码片段 -->
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+  import { commoncomputed } from '@/mixin/commoncomputed.js'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as utils from '@/common/utils.js'
@@ -70,7 +71,10 @@
   export default {
     name : "reply" ,
     //导入混入对象 可以是多个,数组
-    mixins : [ loginuserdatamix ] ,
+    mixins : [
+      loginuserdatamix ,
+      commoncomputed
+    ] ,
     components : {
       mybr
     } ,
@@ -142,9 +146,7 @@
 
         return 0;
       } ,
-      getissaveok () {
-        return this.$store.getters.getissaveok;
-      } ,
+
     } ,
     //生命周期(mounted)
     mounted () {

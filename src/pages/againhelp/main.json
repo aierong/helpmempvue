@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "我的再次请求",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
   "usingComponents": {
     "van-panel": "/static/vant/panel/index",
     "van-button": "/static/vant/button/index",
