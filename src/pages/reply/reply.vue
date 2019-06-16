@@ -168,7 +168,7 @@
 
       console.log( 'reply onShow' );
 
-      // console.log( 'getissaveok' , this.getissaveok )
+      // console.log( 'this.getissaveok' , this.getissaveok )
 
       //操作成功 ，我们刷新一下
       if ( this.getissaveok ) {
