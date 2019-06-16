@@ -351,7 +351,7 @@
     onLoad () {
       console.log( 'me onLoad' )
 
-      let _title = this.getloginusername + '的主页';
+      let _title = this.getloginusername + '主页';
       this.setuppagetitle( _title );
 
       this.getcounts( this.getloginuserid )
