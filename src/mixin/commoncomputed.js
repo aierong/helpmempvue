@@ -7,7 +7,7 @@
 import { mapGetters } from 'vuex'
 
 export const commoncomputed = {
-  //
+
   computed : {
 
     ...mapGetters( {
