@@ -56,6 +56,7 @@ export default {
       helppmc2 : '' ,
       helppmcname2 : ''
     }
+
   } ,
   [ UpdateUserSelectQueryType ] ( state , data ) {
 
