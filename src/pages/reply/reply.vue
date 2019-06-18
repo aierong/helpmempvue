@@ -62,6 +62,7 @@
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { commoncomputed } from '@/mixin/commoncomputed.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as utils from '@/common/utils.js'
@@ -73,7 +74,8 @@
     //导入混入对象 可以是多个,数组
     mixins : [
       loginuserdatamix ,
-      commoncomputed
+      commoncomputed ,
+      mixmethods
     ] ,
     components : {
       mybr
@@ -174,7 +176,8 @@
       if ( this.getissaveok ) {
         this.getproductlist();
 
-        this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+        // this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+        this.UpdateIsSaveOkToFslse();
       }
     } ,
     onReady () {
@@ -184,6 +187,7 @@
       console.log( 'reply onHide' );
     } ,
     onUnload () {
+
       console.log( 'reply onUnload' );
 
     } ,

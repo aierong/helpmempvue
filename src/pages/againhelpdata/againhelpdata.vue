@@ -173,7 +173,8 @@ Time: 20:39
             mask : true , //显示透明蒙层，防止触摸穿透,
             success : res => {
               //标记一下 修改成功，主页面好刷新
-              this.$store.dispatch( 'UpdateSaveOk' , true );
+              // this.$store.dispatch( 'UpdateSaveOk' , true );
+              this.UpdateIsSaveOkToTrue();
 
               setInterval( () => {
                 //运行其他事情
@@ -192,7 +193,8 @@ Time: 20:39
             mask : true , //显示透明蒙层，防止触摸穿透,
             success : res => {
               //标记一下 修改失败
-              this.$store.dispatch( 'UpdateSaveOk' , false );
+              // this.$store.dispatch( 'UpdateSaveOk' , false );
+              this.UpdateIsSaveOkToFslse();
 
               setInterval( () => {
                 //运行其他事情

@@ -58,6 +58,7 @@ Time: 22:55
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { mixmethods } from '@/mixin/commonmethods.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import { logruntype } from '@/common/constant.js';
 
@@ -68,6 +69,7 @@ Time: 22:55
     //导入混入对象 可以是多个,数组
     mixins : [
       loginuserdatamix ,
+      mixmethods ,
       mixmethods
     ] ,
     components : {
@@ -177,7 +179,8 @@ Time: 22:55
             success : res => {
 
               //标记一下 修改成功，主页面好刷新
-              this.$store.dispatch( 'UpdateSaveOk' , true );
+              // this.$store.dispatch( 'UpdateSaveOk' , true );
+              this.UpdateIsSaveOkToTrue();
 
               setInterval( () => {
                 //运行其他事情
@@ -196,7 +199,8 @@ Time: 22:55
             mask : true , //显示透明蒙层，防止触摸穿透,
             success : res => {
               //标记一下 修改失败
-              this.$store.dispatch( 'UpdateSaveOk' , false );
+              // this.$store.dispatch( 'UpdateSaveOk' , false );
+              this.UpdateIsSaveOkToFslse();
 
               setInterval( () => {
                 //运行其他事情

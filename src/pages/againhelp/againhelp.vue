@@ -62,6 +62,7 @@ Time: 19:44
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { commoncomputed } from '@/mixin/commoncomputed.js'
+  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import * as dlapi from '@/common/BmobApi/dl.js'
 
@@ -72,7 +73,8 @@ Time: 19:44
     //导入混入对象 可以是多个,数组
     mixins : [
       loginuserdatamix ,
-      commoncomputed
+      commoncomputed ,
+      mixmethods
     ] ,
     components : {
       mybr
@@ -165,7 +167,8 @@ Time: 19:44
       if ( this.getissaveok ) {
         this.getproductlist();
 
-        this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+        //this.$store.dispatch( 'UpdateSaveOk' , false );  //恢复状态
+        this.UpdateIsSaveOkToFslse();  ////恢复状态
       }
       // this.getproductlist();
     } ,

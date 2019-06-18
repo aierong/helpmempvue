@@ -3,6 +3,8 @@
  功能: js脚本
  */
 
+import { mapActions } from 'vuex'
+
 export const mixmethods = {
 
   methods : {
@@ -30,5 +32,18 @@ export const mixmethods = {
 
       } );
     } ,
+    UpdateIsSaveOkToFslse () {
+      this.UpdateSaveOk( false );
+    } ,
+    UpdateIsSaveOkToTrue () {
+      this.UpdateSaveOk( true );
+    } ,
+    // UpdateIsSaveOk ( isok ) {
+    //   this.UpdateSaveOk( isok );
+    // } ,
+    ...mapActions( {
+      UpdateSaveOk : 'UpdateSaveOk' // 将 `this.addasync()` 映射为 `this.$store.dispatch('incrementAsync')`
+    } ) ,
+
   } ,
 }
