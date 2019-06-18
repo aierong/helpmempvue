@@ -13,8 +13,6 @@ export default {
   isrefreshquerylist : true ,
 
   //操作者选择的数据类型
-
-  //
   userselectquery : {
     // 我求助的单据:myhelp    求助我的单据:helpmy
     querytype : 'myhelp' ,
