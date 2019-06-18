@@ -21,7 +21,9 @@ const getissaveok = ( state ) => {
 export default {
 
   getloginuserid ,
+
   getloginusername ,
+
   getissaveok
 
 }

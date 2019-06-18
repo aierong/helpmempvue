@@ -2,6 +2,9 @@ export default {
 
   user : null ,
 
+  /**
+   * 是保存ok
+   */
   issaveok : false ,
 
   //操作者选择的数据类型
