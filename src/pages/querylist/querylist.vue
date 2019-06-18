@@ -145,7 +145,8 @@
   import { commoncomputed } from '@/mixin/commoncomputed.js'
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { mixmethods } from '@/mixin/commonmethods.js'
-  // import { logruntype } from '@/common/constant.js'
+
+  import { logruntype } from '@/common/constant.js';
 
   import * as utils from '@/common/utils.js'
   import * as constant from '@/common/constant.js'
@@ -330,7 +331,7 @@
 
         //构建日志数据
         let objlog = {
-          logruntype : constant.logruntype.over ,
+          logruntype : logruntype.over ,
           userid : userid ,
           username : username ,
           productno : productno ,
