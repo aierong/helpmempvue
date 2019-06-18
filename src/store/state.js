@@ -13,9 +13,12 @@ export default {
   isrefreshquerylist : true ,
 
   //操作者选择的数据类型
+
+  //
   userselectquery : {
+    // 我求助的单据:myhelp    求助我的单据:helpmy
     querytype : 'myhelp' ,
-    //全部 未完成 已完成
+    //全部:all     未完成:notover      已完成:over
     overtype : 'all'
   } ,
 

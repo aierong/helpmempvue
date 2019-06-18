@@ -267,6 +267,7 @@
 
         this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'all' );
 
+        this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
 
         this.gotolist();
       } ,
