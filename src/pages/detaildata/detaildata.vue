@@ -15,6 +15,7 @@
 <!-- js脚本代码片段 -->
 <script>
   import detaildata from '@/components/detaildata/index.vue'
+
   import { mixmethods } from '@/mixin/commonmethods.js'
 
   export default {
@@ -23,8 +24,10 @@
     mixins : [
 
       mixmethods
+
     ] ,
     components : {
+
       detaildata
 
     } ,
@@ -33,6 +36,7 @@
       return {
 
         userselectproductno : '' ,
+
       }
     } ,
     //方法
@@ -71,6 +75,7 @@
       console.log( 'detaildata onHide' );
     } ,
     onUnload () {
+
       console.log( 'detaildata onUnload' );
 
     } ,
