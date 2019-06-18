@@ -7,7 +7,8 @@ import {
   ClearUserSelectHelpManData ,
   UpdateUserSelectQueryType ,
   UpdateUserSelectOverType ,
-  UpdateSaveOk
+  UpdateSaveOk ,
+  UpdateRefreshQueryList
 } from './mutation-type'
 
 export default {
@@ -71,6 +72,11 @@ export default {
   [ UpdateSaveOk ] ( state , isok ) {
 
     state.issaveok = isok
+
+  } ,
+  [ UpdateRefreshQueryList ] ( state , isrefresh ) {
+
+    state.isrefreshquerylist = isrefresh
 
   } ,
 }

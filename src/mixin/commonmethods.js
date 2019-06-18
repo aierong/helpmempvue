@@ -38,12 +38,19 @@ export const mixmethods = {
     UpdateIsSaveOkToTrue () {
       this.UpdateSaveOk( true );
     } ,
+    UpdateRefreshQueryListToFslse () {
+      this.UpdateRefreshQueryList( false );
+    } ,
+    UpdateRefreshQueryListToTrue () {
+      this.UpdateRefreshQueryList( true );
+    } ,
     UpdateUserSelectQueryTypeAndOverType ( querytype , overtype ) {
       this.UpdateUserSelectQueryType( querytype );
       this.UpdateUserSelectOverType( overtype );
     } ,
     ...mapActions( {
       UpdateSaveOk : 'UpdateSaveOk' , //
+      UpdateRefreshQueryList : 'UpdateRefreshQueryList' ,
       UpdateUserSelectQueryType : 'UpdateUserSelectQueryType' ,
       UpdateUserSelectOverType : 'UpdateUserSelectOverType'
     } ) ,

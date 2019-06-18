@@ -16,3 +16,5 @@ export const UpdateUserSelectQueryType = "UpdateUserSelectQueryType"
 export const UpdateUserSelectOverType = "UpdateUserSelectOverType"
 
 export const UpdateSaveOk = "UpdateSaveOk"
+
+export const UpdateRefreshQueryList = "UpdateRefreshQueryList"

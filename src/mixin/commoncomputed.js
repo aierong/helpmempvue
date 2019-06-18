@@ -13,7 +13,8 @@ export const commoncomputed = {
     ...mapGetters( {
       //是保存成功状态
       // 如果你想将一个 getter 属性另取一个名字，使用对象形式
-      getissaveok : 'getissaveok'
+      getissaveok : 'getissaveok' ,
+      getisrefreshquerylist : 'getisrefreshquerylist'
 
     } ) ,
   } ,

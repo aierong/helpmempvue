@@ -58,7 +58,6 @@ Time: 22:55
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { mixmethods } from '@/mixin/commonmethods.js'
-  import { mixmethods } from '@/mixin/commonmethods.js'
 
   import { logruntype } from '@/common/constant.js';
 

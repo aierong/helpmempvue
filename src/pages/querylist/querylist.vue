@@ -142,9 +142,10 @@
 
 <!-- js脚本代码片段 -->
 <script>
+  import { commoncomputed } from '@/mixin/commoncomputed.js'
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { mixmethods } from '@/mixin/commonmethods.js'
-  import { logruntype } from '@/common/constant.js'
+  // import { logruntype } from '@/common/constant.js'
 
   import * as utils from '@/common/utils.js'
   import * as constant from '@/common/constant.js'
@@ -159,7 +160,8 @@
     //导入混入对象 可以是多个,数组
     mixins : [
       loginuserdatamix ,
-      mixmethods
+      mixmethods ,
+      commoncomputed
     ] ,
     //上拉触底刷新
     onReachBottom () {
@@ -315,7 +317,7 @@
         let productno = item.productno;
 
         const url = "../detaildata/main?productno=" + productno
-
+        //转到详细页面
         wx.navigateTo( { url : url } )
       } ,
       async OverCZ ( productno , objectId , index ) {
@@ -328,7 +330,7 @@
 
         //构建日志数据
         let objlog = {
-          logruntype : logruntype.over ,
+          logruntype : constant.logruntype.over ,
           userid : userid ,
           username : username ,
           productno : productno ,
@@ -599,7 +601,11 @@
 
       console.log( 'querylist onShow' );
 
-      this.refreshlist();
+      if ( this.getisrefreshquerylist ) {
+        this.refreshlist();
+
+        this.UpdateRefreshQueryListToFslse(); //恢复状态
+      }
     } ,
     onHide () {
       // this.initdata();

@@ -7,6 +7,11 @@ export default {
    */
   issaveok : false ,
 
+  /**
+   * 是刷新查询列表
+   */
+  isrefreshquerylist : true ,
+
   //操作者选择的数据类型
   userselectquery : {
     querytype : 'myhelp' ,
