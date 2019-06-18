@@ -140,7 +140,6 @@
   import * as dlapi from '@/common/BmobApi/dl.js'
 
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
-
   import { mixmethods } from '@/mixin/commonmethods.js'
 
   import mybr from '@/components/mybr.vue'
@@ -206,22 +205,27 @@
         }
         else {
           if ( index == 1 ) {
-            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'all' );
 
             this.gotolist();
           }
           else if ( index == 2 ) {
 
-            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
+            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
+
+            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'over' );
 
             this.gotolist();
           }
           else if ( index == 3 ) {
 
-            this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            this.$store.dispatch( 'UpdateUserSelectOverType' , 'notover' );
+            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'notover' );
+
+            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'notover' );
 
             this.gotolist();
           }
@@ -258,8 +262,11 @@
         wx.switchTab( { url : "../reply/main" } );
       } ,
       queryclick () {
-        this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-        this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+        // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+        // this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+
+        this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'all' );
+
 
         this.gotolist();
       } ,

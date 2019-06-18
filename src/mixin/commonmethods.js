@@ -38,11 +38,14 @@ export const mixmethods = {
     UpdateIsSaveOkToTrue () {
       this.UpdateSaveOk( true );
     } ,
-    // UpdateIsSaveOk ( isok ) {
-    //   this.UpdateSaveOk( isok );
-    // } ,
+    UpdateUserSelectQueryTypeAndOverType ( querytype , overtype ) {
+      this.UpdateUserSelectQueryType( querytype );
+      this.UpdateUserSelectOverType( overtype );
+    } ,
     ...mapActions( {
-      UpdateSaveOk : 'UpdateSaveOk' // 将 `this.addasync()` 映射为 `this.$store.dispatch('incrementAsync')`
+      UpdateSaveOk : 'UpdateSaveOk' , //
+      UpdateUserSelectQueryType : 'UpdateUserSelectQueryType' ,
+      UpdateUserSelectOverType : 'UpdateUserSelectOverType'
     } ) ,
 
   } ,

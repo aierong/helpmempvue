@@ -144,7 +144,8 @@
 <script>
   import { loginuserdatamix } from '@/mixin/loginuserdata.js'
   import { mixmethods } from '@/mixin/commonmethods.js'
-  import { logruntype } from '@/common/constant.js';
+  import { logruntype } from '@/common/constant.js'
+
   import * as utils from '@/common/utils.js'
   import * as constant from '@/common/constant.js'
 
@@ -392,13 +393,14 @@
         // ee.mp.currentTarget.dataset.name 可以取到  van-cell 中设置的 data-name="v2"
         let val = ee.mp.currentTarget.dataset.name;
 
-        this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
+        // this.$store.dispatch( 'UpdateUserSelectQueryType' , val );
+        this.UpdateUserSelectQueryType( val );
       } ,
       onClickCellOver ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
-        this.$store.dispatch( 'UpdateUserSelectOverType' , val );
-
+        // this.$store.dispatch( 'UpdateUserSelectOverType' , val );
+        this.UpdateUserSelectOverType( val );
       } ,
       onCloseDialog ( event ) {
 
@@ -600,11 +602,12 @@
       this.refreshlist();
     } ,
     onHide () {
-      this.initdata();
+      // this.initdata();
 
       console.log( 'querylist onHide' );
     } ,
     onUnload () {
+
       console.log( 'querylist onUnload' );
 
     } ,
