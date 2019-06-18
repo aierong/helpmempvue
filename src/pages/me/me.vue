@@ -200,36 +200,59 @@
     methods : {
       itemtabbarclick ( index ) {
 
-        if ( index >= 4 ) {
-          this.gotoreply();
+        if ( index == 1 ) {
+          // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+          // this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
+          this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'all' );
+
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
+
+          this.gotolist();
         }
-        else {
-          if ( index == 1 ) {
-            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'all' );
-            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'all' );
+        else if ( index == 2 ) {
 
-            this.gotolist();
-          }
-          else if ( index == 2 ) {
+          // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+          // this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
 
-            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'over' );
+          this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'over' );
 
-            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'over' );
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
 
-            this.gotolist();
-          }
-          else if ( index == 3 ) {
-
-            // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
-            // this.$store.dispatch( 'UpdateUserSelectOverType' , 'notover' );
-
-            this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'notover' );
-
-            this.gotolist();
-          }
+          this.gotolist();
         }
+        else if ( index == 3 ) {
+
+          // this.$store.dispatch( 'UpdateUserSelectQueryType' , 'myhelp' );
+          // this.$store.dispatch( 'UpdateUserSelectOverType' , 'notover' );
+
+          this.UpdateUserSelectQueryTypeAndOverType( 'myhelp' , 'notover' );
+
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
+
+          this.gotolist();
+        }
+        else if ( index == 4 ) {
+          this.UpdateUserSelectQueryTypeAndOverType( 'helpmy' , 'all' );
+
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
+
+          this.gotolist();
+        }
+        else if ( index == 5 ) {
+          this.UpdateUserSelectQueryTypeAndOverType( 'helpmy' , 'over' );
+
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
+
+          this.gotolist();
+        }
+        else if ( index == 6 ) {
+          this.UpdateUserSelectQueryTypeAndOverType( 'helpmy' , 'notover' );
+
+          this.UpdateRefreshQueryListToTrue();  //通知列表窗体要刷新
+
+          this.gotolist();
+        }
+
       } ,
       //退出系统
       ExitSystem () {
