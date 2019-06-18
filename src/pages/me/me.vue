@@ -60,7 +60,6 @@
     <mybr/>
     <div style="color: green;margin-left: 10px;font-size: large;">我的数据</div>
 
-
     <mybr/>
     <van-row class="user-links">
       <van-col custom-class="dark"
@@ -123,6 +122,16 @@
       </van-col>
     </van-row>
     <mybr/>
+    <div style="color: green;margin-left: 10px;font-size: large;">我的图表</div>
+    <div class="container">
+      <!--      <button @click="initChart">生成图表(可以多次点击)</button>-->
+      <div class="wrap">
+        <mpvue-echarts lazyLoad
+                       :echarts="echarts"
+                       :onInit="handleInit"
+                       ref="echarts"/>
+      </div>
+    </div>
 
     <van-action-sheet :show="showaction"
                       :actions="actionslist"
@@ -144,10 +153,25 @@
 
   import mybr from '@/components/mybr.vue'
 
+  import * as echarts from 'echarts/dist/echarts.simple.min'
+  import mpvueEcharts from 'mpvue-echarts'
+
+  let chart = null
+
+  // var dataStyle = {
+  //   normal : {
+  //     label : {
+  //       //显示标签
+  //       show : true
+  //     }
+  //   }
+  // };
+
   export default {
     name : "me" ,
     components : {
-      mybr
+      mybr ,
+      mpvueEcharts
     } ,
     //导入混入对象 可以是多个,数组
     mixins : [
@@ -193,7 +217,11 @@
         helpmecountover : 0 ,
         //helpmecountnotover : 0 ,
 
-        myreplycount : 0
+        myreplycount : 0 ,
+
+        //图表的
+        option : null ,
+        echarts
       }
     } ,
     //方法
@@ -352,7 +380,80 @@
           this.helpmecountover = result[ 3 ];
 
           this.myreplycount = result[ 4 ];
+
+          this.initChart();
         }
+      } ,
+
+      initChart () {
+
+        // let arr = [
+        //   this.mycount , this.mycountover , this.mycountnotover ,
+        //   4 , 5 , 7
+        // ];
+
+        let arr = this.numarray;
+
+        this.option = {
+
+          tooltip : {
+            show : true ,
+            trigger : 'item'
+          } ,
+          legend : {
+            data : [ '分布情况' ]
+          } ,
+          grid : {
+            left : 20 ,
+            right : 20 ,
+            bottom : 15 ,
+            top : 40 ,
+            containLabel : true
+          } ,
+          xAxis : [
+            {
+              type : 'value'
+            }
+          ] ,
+          yAxis : [
+            {
+              type : 'category' ,
+
+              data : [
+                '我求助' , '我求助(完成)' , '我求助(未完)' ,
+                '求助我' , '求助我(完成)' , '求助我(未完)'
+              ]
+            }
+          ] ,
+          series : [
+            {
+              name : '分布情况' ,
+              type : 'bar' ,
+              label : {
+                normal : {
+                  show : true ,
+                  position : 'inside'
+                }
+              } ,
+              //data : [ 15 , 18 , 13 , 13 , 10 ] ,
+              data : arr ,
+
+            }
+
+          ]
+        }
+        this.$refs.echarts.init()
+      } ,
+      handleInit ( canvas , width , height ) {
+        chart = echarts.init( canvas , null , {
+          width : width ,
+          height : height
+        } )
+
+        canvas.setChart( chart )
+        chart.setOption( this.option )
+
+        return chart
       } ,
     } ,
     //计算属性
@@ -367,11 +468,18 @@
         // 全部减去完成的
         return this.helpmecount - this.helpmecountover;
       } ,
+      numarray () {
+        return [
+          this.mycount , this.mycountover , this.mycountnotover ,
+          this.helpmecount , this.helpmecountover , this.helpmecountnotover
+        ];
+      } ,
     } ,
     //生命周期(mounted)
     mounted () {
       console.log( 'me mouted' )
 
+      // this.initChart();
     } ,
     beforeCreate () {
       console.log( 'me beforeCreate' )
@@ -386,6 +494,8 @@
       this.setuppagetitle( _title );
 
       this.getcounts( this.getloginuserid )
+
+      // this.initChart();
     } ,
     onReady () {
       console.log( 'me onReady' )
