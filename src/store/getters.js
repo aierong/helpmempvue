@@ -13,9 +13,7 @@ const getloginusername = ( state ) => {
 }
 
 const getissaveok = ( state ) => {
-
   return state.issaveok;
-
 }
 
 export default {
