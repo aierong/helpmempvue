@@ -177,14 +177,26 @@
       // }
 
       ;( async () => {
+        //每次搞2个
+        let rscount = 2;
+        let arr = await this.addproductlist( rscount , true );
 
-        let arr = await this.addproductlist( 2 , true );
+        // console.log( 'shang' , arr )
 
-        console.log( 'shang' , arr )
         if ( arr != null && arr.length > 0 ) {
-          this.productlist.push( ...arr )
+          let arrlens = arr.length;
 
-          this.isshowdowntxt = false;
+          if ( lens > 0 ) {
+            this.productlist.push( ...arr )
+
+            //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
+            this.isshowdowntxt = arrlens < rscount;
+
+          }
+          else {
+            this.isshowdowntxt = true;
+          }
+
         }
         else {
           this.isshowdowntxt = true;
