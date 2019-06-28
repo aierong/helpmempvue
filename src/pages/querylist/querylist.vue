@@ -77,7 +77,7 @@
       </van-panel>
     </div>
     <div v-if="isshowdowntxt"
-         class="downtxt">---我是底线---
+         class="downtxt">---我是存在底线的---
     </div>
     <van-panel v-if="listcount<=0">
       <mybr/>
@@ -196,8 +196,9 @@
     onPullDownRefresh () {
 
       ;( async () => {
-
-        let arr = await this.addproductlist( 2 , false );
+        //每次搞2个
+        let rscount = 2;
+        let arr = await this.addproductlist( rscount , false );
 
         if ( arr != null && arr.length > 0 ) {
           this.productlist.unshift( ...arr )
