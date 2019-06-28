@@ -4,7 +4,6 @@
   font-size: small;
 }
 
-
 .txt {
   padding: 0px 10px 0px 10px;
 }
@@ -13,9 +12,9 @@
   padding: 0px 10px 0px 10px;
 }
 
-
 .downtxt {
   text-align: center;
-  font-size: small;
+  font-size: smaller;
   color: green;
+  margin-bottom: 10px;
 }

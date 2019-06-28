@@ -83,7 +83,7 @@
       <mybr/>
       <mybr/>
       <mybr/>
-      <view style="text-align: center;color: green;">空空也,快叫上你的小伙伴求助吧!</view>
+      <view style="text-align: center;color: green;">空空也,快去求助吧!</view>
     </van-panel>
     <!--    弹窗-->
     <van-dialog use-slot
@@ -165,54 +165,50 @@
       commoncomputed
     ] ,
     //上拉触底刷新
-    onReachBottom () {
+    async onReachBottom () {
 
       if ( this.isshowdowntxt ) {
         //   '不用刷数据'
         return;
       }
 
-      ;( async () => {
-        //每次搞2个
-        let rscount = 2;
-        let arr = await this.addproductlist( rscount , true );
+      //每次搞2个
+      let rscount = 2;
+      let arr = await this.addproductlist( rscount , true );
 
-        // console.log( 'shang' , arr )
+      // console.log( 'shang' , arr )
 
-        if ( arr != null && arr.length > 0 ) {
-          let arrlens = arr.length;
+      if ( arr != null && arr.length > 0 ) {
+        let arrlens = arr.length;
 
-          if ( arrlens > 0 ) {
-            this.productlist.push( ...arr )
+        if ( arrlens > 0 ) {
+          this.productlist.push( ...arr )
 
-            //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
-            this.isshowdowntxt = arrlens < rscount;
-          }
-          else {
-            this.isshowdowntxt = true;
-          }
+          //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
+          this.isshowdowntxt = arrlens < rscount;
         }
         else {
           this.isshowdowntxt = true;
         }
+      }
+      else {
+        this.isshowdowntxt = true;
+      }
 
-      } )();
     } ,
     //下拉刷新
-    onPullDownRefresh () {
+    async onPullDownRefresh () {
 
-      ;( async () => {
+      //每次搞2个
+      let rscount = 2;
+      let arr = await this.addproductlist( rscount , false );
 
-        //每次搞2个
-        let rscount = 2;
-        let arr = await this.addproductlist( rscount , false );
+      if ( arr != null && arr.length > 0 ) {
+        this.productlist.unshift( ...arr )
+      }
 
-        if ( arr != null && arr.length > 0 ) {
-          this.productlist.unshift( ...arr )
-        }
+      wx.stopPullDownRefresh()
 
-        wx.stopPullDownRefresh()
-      } )();
     } ,
     //数据模型
     data () {
@@ -592,7 +588,6 @@
     //生命周期(mounted)
     mounted () {
       console.log( 'querylist mouted' )
-
     } ,
     beforeCreate () {
       console.log( 'querylist beforeCreate' )
@@ -607,7 +602,6 @@
       console.log( 'querylist onReady' )
     } ,
     onShow () {
-
       console.log( 'querylist onShow' );
 
       if ( this.getisrefreshquerylist ) {
@@ -622,9 +616,7 @@
       console.log( 'querylist onHide' );
     } ,
     onUnload () {
-
       console.log( 'querylist onUnload' );
-
     } ,
   }
 </script>
