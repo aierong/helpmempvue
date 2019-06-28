@@ -202,6 +202,7 @@
     onPullDownRefresh () {
 
       ;( async () => {
+
         //每次搞2个
         let rscount = 2;
         let arr = await this.addproductlist( rscount , false );
