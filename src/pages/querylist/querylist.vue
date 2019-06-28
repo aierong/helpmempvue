@@ -168,13 +168,9 @@
     onReachBottom () {
 
       if ( this.isshowdowntxt ) {
-        // console.log( '不用刷数据' )
-
+        //   '不用刷数据'
         return;
       }
-      // else {
-      //   // console.log( '开始刷数据' )
-      // }
 
       ;( async () => {
         //每次搞2个
@@ -186,17 +182,15 @@
         if ( arr != null && arr.length > 0 ) {
           let arrlens = arr.length;
 
-          if ( lens > 0 ) {
+          if ( arrlens > 0 ) {
             this.productlist.push( ...arr )
 
             //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
             this.isshowdowntxt = arrlens < rscount;
-
           }
           else {
             this.isshowdowntxt = true;
           }
-
         }
         else {
           this.isshowdowntxt = true;
