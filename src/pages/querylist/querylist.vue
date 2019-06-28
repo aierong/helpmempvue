@@ -83,7 +83,7 @@
       <mybr/>
       <mybr/>
       <mybr/>
-      <view style="text-align: center;color: green;">空空也,快去求助吧!</view>
+      <view style="text-align: center;color: green;">{{ nulltxt }}</view>
     </van-panel>
     <!--    弹窗-->
     <van-dialog use-slot
@@ -225,7 +225,9 @@
         runuserselectquery : {
           querytype : '' ,
           overtype : ''
-        }
+        } ,
+
+        nulltxt : '空空也,快去求助吧!'
       }
     } ,
     //方法
