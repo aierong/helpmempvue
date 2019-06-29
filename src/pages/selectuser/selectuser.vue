@@ -22,7 +22,7 @@
     </van-checkbox-group>
 
     <div v-if="usercounts>0"
-         class="msgtxt">{{ '可供选择用户'+usercounts+'人,最多可选'+maxmancounts+'人' }}
+         class="msgtxt">{{ '可供选择'+usercounts+'人,最多可选'+maxmancounts+'人' }}
     </div>
     <van-button v-if="usercounts>0"
                 size="large"
