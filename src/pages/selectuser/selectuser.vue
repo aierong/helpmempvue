@@ -9,6 +9,14 @@
 <template>
 
   <div>
+    <!--
+    checkbox-group 中刷新数据后之前选中的没有选中状态
+
+    所以这里，暂时不用搜索功能了
+
+    参考:
+    https://github.com/youzan/vant-weapp/issues/1486
+    -->
     <!--    <van-search :value="SearchVal"-->
     <!--                placeholder="请输入搜索"-->
     <!--                show-action-->
