@@ -25,9 +25,9 @@
 
     <!--    页面主体部分-->
     <div style="margin-bottom: 6px;"
-         v-if="listcount>0"
-         :key="index"
-         v-for="(item,index) in SearchProductList">
+         v-if="!isshownulllisttxt && listcount>0"
+         v-for="(item,index) in SearchProductList"
+         :key="index">
       <van-panel :title="(index+1)+ '.工单:'+item.productno"
                  :status="'客户:'+item.custno">
         <van-row>
@@ -75,11 +75,13 @@
           </van-col>
         </van-row>
       </van-panel>
+
+      <div v-if="isshowdowntxt"
+           class="downtxt">---我是存在底线的---
+      </div>
     </div>
-    <div v-if="isshowdowntxt"
-         class="downtxt">---我是存在底线的---
-    </div>
-    <van-panel v-if="listcount<=0">
+
+    <van-panel v-if="isshownulllisttxt">
       <mybr/>
       <mybr/>
       <mybr/>
@@ -165,50 +167,51 @@
       commoncomputed
     ] ,
     //上拉触底刷新
-    async onReachBottom () {
+    onReachBottom () {
 
       if ( this.isshowdowntxt ) {
         //   '不用刷数据'
         return;
       }
 
-      //每次搞2个
-      let rscount = 2;
-      let arr = await this.addproductlist( rscount , true );
+      ;( async () => {
+        //每次搞2个
+        let rscount = 2;
+        let arr = await this.addproductlist( rscount , true );
 
-      // console.log( 'shang' , arr )
+        // console.log( 'shang' , arr )
 
-      if ( arr != null && arr.length > 0 ) {
-        let arrlens = arr.length;
+        if ( arr != null && arr.length > 0 ) {
+          let arrlens = arr.length;
 
-        if ( arrlens > 0 ) {
-          this.productlist.push( ...arr )
+          if ( arrlens > 0 ) {
+            this.productlist.push( ...arr )
 
-          //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
-          this.isshowdowntxt = arrlens < rscount;
+            //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
+            this.isshowdowntxt = arrlens < rscount;
+          }
+          else {
+            this.isshowdowntxt = true;
+          }
         }
         else {
           this.isshowdowntxt = true;
         }
-      }
-      else {
-        this.isshowdowntxt = true;
-      }
-
+      } )();
     } ,
     //下拉刷新
-    async onPullDownRefresh () {
+    onPullDownRefresh () {
+      ;( async () => {
+        //每次搞2个
+        let rscount = 2;
+        let arr = await this.addproductlist( rscount , false );
 
-      //每次搞2个
-      let rscount = 2;
-      let arr = await this.addproductlist( rscount , false );
+        if ( arr != null && arr.length > 0 ) {
+          this.productlist.unshift( ...arr )
+        }
 
-      if ( arr != null && arr.length > 0 ) {
-        this.productlist.unshift( ...arr )
-      }
-
-      wx.stopPullDownRefresh()
-
+        wx.stopPullDownRefresh()
+      } )();
     } ,
     //数据模型
     data () {
@@ -217,6 +220,8 @@
         showdialog : false ,
         //显示上拉到底提示文本
         isshowdowntxt : false ,
+        //是显示空表格提示文本
+        isshownulllisttxt : false ,
         //搜索值
         SearchVal : '' ,
         //产品列表
@@ -243,13 +248,17 @@
           this.userselectquery ,
           querycounts ).then( ( res ) => {
 
-          console.log( 're' , res )
+          // console.log( 're' , res )
 
           if ( res != null && res.length > 0 ) {
             this.productlist = res;
+
+            this.isshownulllisttxt = false;
           }
           else {
             this.productlist = [];
+
+            this.isshownulllisttxt = true;
           }
 
           //把 最下面的 底下提示取消
