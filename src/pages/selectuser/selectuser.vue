@@ -9,6 +9,11 @@
 <template>
 
   <div>
+    <!--    <van-search :value="SearchVal"-->
+    <!--                placeholder="请输入搜索"-->
+    <!--                show-action-->
+    <!--                @search="onSearch"-->
+    <!--                @cancel="onSearchCancel"/>-->
     <van-checkbox-group :value="selectval">
       <van-cell-group>
         <van-cell v-for="(item,index) in userlist"
@@ -20,6 +25,15 @@
         </van-cell>
       </van-cell-group>
     </van-checkbox-group>
+
+    <!--    <van-checkbox-group :value="selectval"-->
+    <!--                        @change="onChangecheckbox">-->
+    <!--      <van-checkbox v-for="(item,_index) in SearchUserList"-->
+    <!--                    :key="_index"-->
+    <!--                    :name="item.userid">-->
+    <!--        {{ item.userid + '(' + item.username +')' }}-->
+    <!--      </van-checkbox>-->
+    <!--    </van-checkbox-group>-->
 
     <div v-if="usercounts>0"
          class="msgtxt">{{ '可供选择'+usercounts+'人,最多可选'+maxmancounts+'人' }}
@@ -64,7 +78,10 @@
         //已经选择的数据
         selectval : [] ,
 
-        maxmancounts : 2
+        maxmancounts : 2 ,
+
+        //搜索值
+        SearchVal : '' ,
       }
     } ,
     //方法
@@ -111,6 +128,7 @@
         this.backpage();
       } ,
       backpage () {
+
         wx.navigateBack()
 
       } ,
@@ -164,13 +182,22 @@
         } )
 
       } ,
+      onChangecheckbox ( ev ) {
+        console.log( ev )
+
+        this.selectval = ev.mp.detail;
+      } ,
       /*
        单击选择
        */
       cellclick ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
+        // console.log( val )
+
         let index = this.selectval.indexOf( val );
+
+        // console.log( index )
 
         if ( index <= -1 ) {
           //不存在就添加进去
@@ -181,6 +208,8 @@
           this.selectval.splice( index , 1 );
         }
 
+        // console.log( 'cellclick' , this.selectval )
+
         this.refreshpagetitle();
       } ,
       /*
@@ -188,11 +217,51 @@
        */
       refreshpagetitle () {
         let _title = `选择用户(已选${ this.userselectcounts }人)`;
+
         this.setuppagetitle( _title );
+      } ,
+      onSearch ( event ) {
+        //要搜索的值
+        let val = event.mp.detail;
+
+        //  把模型同步一下
+        this.SearchVal = val;
+
+        // console.log( 'onSearch' , this.selectval )
+      } ,
+      onSearchCancel () {
+        this.SearchVal = "";
+
+        // this.selectval = this.selectval;
+
+        // console.log( 'onSearchCancel' , this.selectval )
       } ,
     } ,
     //计算属性
     computed : {
+      SearchUserList () {
+        if ( this.SearchVal ) {
+          if ( this.userlist != null && this.userlist.length > 0 ) {
+
+            let result = this.userlist.filter( ( value , index , array ) => {
+              let _userid = value.userid;
+
+              if ( _userid ) {
+                return _userid.includes( this.SearchVal ); // 返回
+              }
+              else {
+                return false;
+              }
+
+            } );
+
+            return result;
+          }
+
+        }
+
+        return this.userlist;
+      } ,
       /**
        * 用户数量
        * @returns {number}

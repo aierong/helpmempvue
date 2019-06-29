@@ -4,7 +4,8 @@
     "van-checkbox-group": "/static/vant/checkbox-group/index",
     "van-button": "/static/vant/button/index",
     "van-cell": "/static/vant/cell/index",
-    "van-cell-group": "/static/vant/cell-group/index"
+    "van-cell-group": "/static/vant/cell-group/index",
+    "van-search": "/static/vant/search/index"
   },
   "navigationBarTitleText": "选择用户"
 }
