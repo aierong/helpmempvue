@@ -8,9 +8,7 @@
 -->
 <template>
 
-  <!--    <div>-->
-  <!--        -->
-  <!--    </div>-->
+
   <view>
     <text>\n</text>
   </view>

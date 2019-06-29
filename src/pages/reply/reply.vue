@@ -47,11 +47,11 @@
       </van-panel>
 
     </div>
-    <van-panel v-if="replycount<=0">
-      <mybr/>
-      <mybr/>
-      <mybr/>
-      <view style="text-align: center;color: green;">空空也,快叫上你的小伙伴来求助你吧!</view>
+    <van-panel v-if="isshownulllisttxt">
+      <!--      <mybr/>-->
+      <!--      <mybr/>-->
+      <!--      <mybr/>-->
+      <view class="nulltxt">空空也,快叫上小伙伴来求助你吧!</view>
     </van-panel>
   </div>
 
@@ -67,8 +67,6 @@
   import * as dlapi from '@/common/BmobApi/dl.js'
   import * as utils from '@/common/utils.js'
 
-  import mybr from '@/components/mybr.vue'
-
   export default {
     name : "reply" ,
     //导入混入对象 可以是多个,数组
@@ -77,9 +75,7 @@
       commoncomputed ,
       mixmethods
     ] ,
-    components : {
-      mybr
-    } ,
+
     //下拉刷新
     onPullDownRefresh () {
 
@@ -91,7 +87,9 @@
     data () {
       return {
 
-        productlist : []
+        productlist : [] ,
+        //是显示空表格提示文本
+        isshownulllisttxt : false ,
 
       }
     } ,
@@ -107,9 +105,12 @@
 
           if ( res != null && res.length > 0 ) {
             this.productlist = res;
+
+            this.isshownulllisttxt = false;
           }
           else {
             this.productlist = [];
+            this.isshownulllisttxt = true;
           }
 
         } );
