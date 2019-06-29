@@ -23,11 +23,12 @@
                 @search="onSearch"
                 @cancel="onSearchCancel"/>
 
-    <!--    页面主体部分-->
+    <!--    页面主体部分 -->
     <div style="margin-bottom: 6px;"
-         v-if="!isshownulllisttxt && listcount>0"
+         v-if=" listcount>0"
          v-for="(item,index) in SearchProductList"
          :key="index">
+
       <van-panel :title="(index+1)+ '.工单:'+item.productno"
                  :status="'客户:'+item.custno">
         <van-row>
@@ -76,11 +77,10 @@
         </van-row>
       </van-panel>
 
-      <div v-if="isshowdowntxt"
-           class="downtxt">---我是存在底线的---
-      </div>
     </div>
-
+    <div v-if="isshowdowntxt"
+         class="downtxt">---我是存在底线的---
+    </div>
     <van-panel v-if="isshownulllisttxt">
       <mybr/>
       <mybr/>
