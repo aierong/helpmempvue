@@ -75,16 +75,17 @@
         this.userlist = [];
       } ,
       selectuser () {
-        if ( this.selectval == null || this.selectval.length <= 0 ) {
+        if ( this.selectval == null || this.userselectcounts <= 0 ) {
 
           this.ShowToastMsg( '请选择求助对象' )
 
           return;
         }
 
-        if ( this.selectval.length > this.maxmancounts ) {
+        if ( this.userselectcounts > this.maxmancounts ) {
 
           this.ShowToastMsg( '最多选择' + this.maxmancounts + '个求助对象' )
+
           return;
         }
 
@@ -190,6 +191,16 @@
 
         return 0;
 
+      } ,
+      /**
+       * 操作者已经选择用户数量
+       */
+      userselectcounts () {
+        if ( this.selectval != null && this.selectval.length > 0 ) {
+          return this.selectval.length;
+        }
+
+        return 0;
       } ,
       /**
        * 用户选择的人员
