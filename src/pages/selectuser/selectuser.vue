@@ -137,9 +137,10 @@
           title : '挖数据...' ,
           mask : true , //显示透明蒙层，防止触摸穿透
         } );
+
         Promise.all( [
           userapi.getuserlist( this.getloginuserid ) ,
-          utils.runlongtims( 800 )
+          utils.runlongtims( 1000 )
         ] ).then( ( values ) => {
           //values是数组
           this.userlist = values[ 0 ];
