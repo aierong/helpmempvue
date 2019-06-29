@@ -82,10 +82,8 @@
          class="downtxt">---我是存在底线的---
     </div>
     <van-panel v-if="isshownulllisttxt">
-      <mybr/>
-      <mybr/>
-      <mybr/>
-      <view style="text-align: center;color: green;">空空也,快去求助吧!</view>
+
+      <view class="nulltxt">空空也,快去求助吧!</view>
     </van-panel>
     <!--    弹窗  -->
     <van-dialog use-slot

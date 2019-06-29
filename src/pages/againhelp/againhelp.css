@@ -5,3 +5,12 @@
 .mytxt {
   padding: 0px 10px 0px 10px;
 }
+
+
+.nulltxt {
+  text-align: center;
+  color: green;
+  margin-bottom: 10px;
+  margin-top: 50px;
+  background-color: #f7f7f7;
+}

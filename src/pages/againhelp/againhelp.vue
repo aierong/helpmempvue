@@ -48,11 +48,9 @@ Time: 19:44
         </van-row>
       </van-panel>
     </div>
-    <van-panel v-if="replycount<=0">
-      <mybr/>
-      <mybr/>
-      <mybr/>
-      <view style="text-align: center;color: green;">空空也,快来求助吧!</view>
+    <van-panel v-if="isshownulllisttxt">
+
+      <view class="nulltxt">空空也,快来求助吧!</view>
     </van-panel>
   </div>
 
@@ -66,8 +64,6 @@ Time: 19:44
 
   import * as dlapi from '@/common/BmobApi/dl.js'
 
-  import mybr from '@/components/mybr.vue'
-
   export default {
     name : "againhelp" ,
     //导入混入对象 可以是多个,数组
@@ -76,9 +72,7 @@ Time: 19:44
       commoncomputed ,
       mixmethods
     ] ,
-    components : {
-      mybr
-    } ,
+
     //下拉刷新
     onPullDownRefresh () {
 
@@ -89,7 +83,10 @@ Time: 19:44
     //数据模型
     data () {
       return {
-        productlist : []
+        productlist : [] ,
+
+        //是显示空表格提示文本
+        isshownulllisttxt : false ,
       }
     } ,
     //方法
@@ -103,9 +100,13 @@ Time: 19:44
 
           if ( res != null && res.length > 0 ) {
             this.productlist = res;
+
+            this.isshownulllisttxt = false;
           }
           else {
             this.productlist = [];
+
+            this.isshownulllisttxt = true;
           }
 
           // console.log( 'this.productlist' , this.productlist )
