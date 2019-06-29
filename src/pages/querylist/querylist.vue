@@ -83,7 +83,7 @@
       <mybr/>
       <mybr/>
       <mybr/>
-      <view style="text-align: center;color: green;">{{ nulltxt }}</view>
+      <view style="text-align: center;color: green;">空空也,快去求助吧!</view>
     </van-panel>
     <!--    弹窗  -->
     <van-dialog use-slot
@@ -215,9 +215,9 @@
       return {
         //显示对话框
         showdialog : false ,
-
+        //显示上拉到底提示文本
         isshowdowntxt : false ,
-
+        //搜索值
         SearchVal : '' ,
         //产品列表
         productlist : [] ,
@@ -227,7 +227,6 @@
           overtype : ''
         } ,
 
-        nulltxt : '空空也,快去求助吧!'
       }
     } ,
     //方法
