@@ -85,7 +85,7 @@
       <mybr/>
       <view style="text-align: center;color: green;">{{ nulltxt }}</view>
     </van-panel>
-    <!--    弹窗-->
+    <!--    弹窗  -->
     <van-dialog use-slot
                 :show="showdialog"
                 show-cancel-button
