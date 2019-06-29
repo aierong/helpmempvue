@@ -159,9 +159,14 @@
 
           // 取消加载动画
           wx.hideLoading()
+
+          this.refreshpagetitle();
         } )
 
       } ,
+      /*
+       单击选择
+       */
       cellclick ( ee ) {
         let val = ee.mp.currentTarget.dataset.name;
 
@@ -175,8 +180,16 @@
           //之前存在 现在把它干了
           this.selectval.splice( index , 1 );
         }
-      } ,
 
+        this.refreshpagetitle();
+      } ,
+      /*
+       刷新页面标题
+       */
+      refreshpagetitle () {
+        let _title = `选择用户(已选${ this.userselectcounts }人)`;
+        this.setuppagetitle( _title );
+      } ,
     } ,
     //计算属性
     computed : {
