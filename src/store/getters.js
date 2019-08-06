@@ -12,21 +12,10 @@ const getloginusername = ( state ) => {
   return '';
 }
 
-const getissaveok = ( state ) => {
-  return state.issaveok;
-}
-
-const getisrefreshquerylist = ( state ) => {
-  return state.isrefreshquerylist;
-}
-
 export default {
 
   getloginuserid ,
 
   getloginusername ,
-
-  getissaveok ,
-  getisrefreshquerylist
 
 }
