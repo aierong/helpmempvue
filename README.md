@@ -48,7 +48,7 @@ mpvue实现帮助我
 ![](mdresourcefile/ui1.png)
 
 
-![](mdresourcefile/ui2.png)
+![](mdresourcefile/ui2.jpg)
 
 
 ![](mdresourcefile/ui3.png)
